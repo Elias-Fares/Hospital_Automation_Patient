@@ -22,12 +22,7 @@ class ProfileDetailsWidget extends StatelessWidget {
     return Container(
       decoration: containerCardDecoration(),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-      child: Column(children: [
-        // IconKeyValueWidget(
-        //     iconPath: Res.fatherIcon,
-        //     keyTitle: "Father name",
-        //     value: fatherName),
-
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           children: [
             ClipOval(
@@ -57,6 +52,17 @@ class ProfileDetailsWidget extends StatelessWidget {
         ),
         IconKeyValueWidget(
             iconPath: Res.genderIcon, keyTitle: "Gender", value: gender),
+        const SizedBox(
+          height: 20,
+        ),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            KeyValueCard(keyTitle: "Last appointment", value: lastAppointment),
+            KeyValueCard(keyTitle: "Next Appointment", value: nextAppointment),
+          ],
+        )
       ]),
     );
   }

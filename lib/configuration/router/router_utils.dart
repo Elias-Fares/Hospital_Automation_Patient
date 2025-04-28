@@ -12,23 +12,23 @@ class RouterUtils {
   ]) {
     StringBuffer stringBuffer = StringBuffer();
     stringBuffer.write(baseRoute);
-    stringBuffer.write("/");
+    // stringBuffer.write("/");
     stringBuffer.write(route1);
 
     if (route2 != null) {
-      stringBuffer.write("/");
+      // stringBuffer.write("/");
       stringBuffer.write(route2);
     }
     if (route3 != null) {
-      stringBuffer.write("/");
+      // stringBuffer.write("/");
       stringBuffer.write(route3);
     }
     if (route4 != null) {
-      stringBuffer.write("/");
+      // stringBuffer.write("/");
       stringBuffer.write(route4);
     }
     if (route5 != null) {
-      stringBuffer.write("/");
+      // stringBuffer.write("/");
       stringBuffer.write(route5);
     }
 

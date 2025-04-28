@@ -20,7 +20,7 @@ class ChildrenScreen extends StatelessWidget {
               fatherName: "father name",
               motherName: "mother name",
               onTap: () {
-                context.push("$routeName/${ChildProfileScreen.routeName}");
+                context.push("$routeName${ChildProfileScreen.routeName}");
               },
             );
           },

@@ -9,6 +9,7 @@ import 'package:patient_app/features/auth/view/screens/upload_profile_image_scre
 import 'package:patient_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:patient_app/features/child_profile/view/child_profile_screen.dart';
 import 'package:patient_app/features/children/view/children_s.dart';
+import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
 import 'package:patient_app/features/notifications/view/notifications_screen.dart';
 import 'package:patient_app/features/profile/view/profile_screen.dart';
@@ -70,11 +71,16 @@ class AppRouter {
       GoRoute(
           path: AppointmentsScreen.routeName,
           builder: (context, state) => const AppointmentsScreen(),
-          routes:  [
+          routes: [
             GoRoute(
-              path: ProfileScreen.routeName,
-              builder: (context, state) => const ProfileScreen(),
-            )
+                path: ProfileScreen.routeName,
+                builder: (context, state) => const ProfileScreen(),
+                routes: [
+                  GoRoute(
+                    path: EditProfileScreen.routeName,
+                    builder: (context, state) => const EditProfileScreen(),
+                  )
+                ])
           ])
     ]);
   }

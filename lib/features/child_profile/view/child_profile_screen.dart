@@ -10,7 +10,7 @@ part 'widget/child_details_widget.dart';
 part 'widget/child_profile_navigation_section.dart';
 
 class ChildProfileScreen extends StatelessWidget {
-  static const routeName = "children_profile_screen";
+  static const routeName = "/children_profile_screen";
   const ChildProfileScreen({super.key});
 
   @override

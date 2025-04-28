@@ -6,9 +6,14 @@ import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class IconTitleNavigationButton extends StatelessWidget {
   const IconTitleNavigationButton(
-      {super.key, required this.iconPath, required this.title,required this.onTap});
+      {super.key,
+      required this.iconPath,
+      required this.title,
+      required this.onTap,
+      this.textColor});
   final String iconPath;
   final String title;
+  final Color? textColor;
   final void Function() onTap;
 
   @override
@@ -31,7 +36,10 @@ class IconTitleNavigationButton extends StatelessWidget {
             ),
             Text(
               title,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: textColor),
             )
           ],
         ),
