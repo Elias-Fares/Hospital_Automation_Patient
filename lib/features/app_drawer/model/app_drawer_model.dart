@@ -1,3 +1,6 @@
+import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
+import 'package:patient_app/features/patient_medical_record/view/patient_medical_record_screen.dart';
+import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
 import 'package:patient_app/features/profile/view/profile_screen.dart';
 
 import '../../../configuration/res.dart';
@@ -26,13 +29,15 @@ class AppDrawerModel {
       AppDrawerElement(
           iconPath: Res.drawerMedicalRecordsIcon,
           title: "Medical Records",
-          routeName: ""),
+          routeName: PatientMedicalRecordScreen.routeName),
       AppDrawerElement(
           iconPath: Res.drawerPrescriptionIcon,
           title: "Prescription",
-          routeName: ""),
+          routeName: PatientPrescriptionScreen.routeName),
       AppDrawerElement(
-          iconPath: Res.drawerDoctorsIcon, title: "Doctors", routeName: ""),
+          iconPath: Res.drawerDoctorsIcon,
+          title: "Doctors",
+          routeName: PatientDoctorsScreen.routeName),
       AppDrawerElement(
           iconPath: Res.drawerDepartmentIcon,
           title: "Departments",

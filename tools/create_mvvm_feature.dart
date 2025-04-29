@@ -12,11 +12,11 @@ void main(List<String> arguments) async {
   }
 
   // Get the feature name
-  final featureName = arguments.first.toLowerCase();
+  final lowerCaseFeatureName = arguments.first.toLowerCase();
   // Convert feature name to camelCase to use it in the files content creation
-  final camelCaseFeatureName = ToolsHelper.camelCase(featureName);
+  final camelCaseFeatureName = ToolsHelper.camelCase(lowerCaseFeatureName);
 
-  if (!ToolsHelper.isValidFeatureName(featureName)) {
+  if (!ToolsHelper.isValidFeatureName(lowerCaseFeatureName)) {
     print('❌ The Feature name you provide start with invalid char');
     exit(1);
   }
@@ -27,7 +27,7 @@ void main(List<String> arguments) async {
   await ToolsHelper.createDirectoryIfNotExists(featuresDirectory);
 
   // Create base deirectory which is the directory of the feature
-  final baseDir = Directory('${featuresDirectory.path}/$featureName');
+  final baseDir = Directory('${featuresDirectory.path}/$lowerCaseFeatureName');
   await ToolsHelper.createDirectoryIfNotExists(baseDir);
 
   // ========================== view section =========================//
@@ -42,8 +42,10 @@ void main(List<String> arguments) async {
 
   // Create Screen file
   ToolsHelper.createFile(
-      path: '${viewDirctory.path}/${featureName}_screen.dart',
-      content: ToolsHelper.getfeatureScreenContentString(camelCaseFeatureName));
+      path: '${viewDirctory.path}/${lowerCaseFeatureName}_screen.dart',
+      content: ToolsHelper.getfeatureScreenContentString(
+          caseCamelFeatureName: camelCaseFeatureName,
+          lowerCaseFeatureName: lowerCaseFeatureName));
 
   // =============================================================//
 
@@ -67,9 +69,9 @@ void main(List<String> arguments) async {
 
   //Create state file inside view_model/state/
   await ToolsHelper.createFile(
-      path: '${viewModelStateDirectory.path}/${featureName}_state.dart',
+      path:
+          '${viewModelStateDirectory.path}/${lowerCaseFeatureName}_state.dart',
       content: ToolsHelper.getViewModelStateContent(camelCaseFeatureName));
-
 
   // Create riverpod directory inside view model dir
   final viewModelRiverpodDirectory =
@@ -78,11 +80,13 @@ void main(List<String> arguments) async {
 
   // Create view model file inside view_model/riverpod/
   await ToolsHelper.createFile(
-      path: '${viewModelRiverpodDirectory.path}/${featureName}_view_model.dart',
+      path:
+          '${viewModelRiverpodDirectory.path}/${lowerCaseFeatureName}_view_model.dart',
       content: ToolsHelper.getViewModelRiverpodContent(
-          featureName: camelCaseFeatureName,
-          fileName: '${featureName}_view_model',
-          stateFileName: '${featureName}_state.dart',
-          
-          ));
+        featureName: camelCaseFeatureName,
+        fileName: '${lowerCaseFeatureName}_view_model',
+        stateFileName: '${lowerCaseFeatureName}_state.dart',
+      ));
+
+  print('🎉 Starter widgets are ready!');
 }

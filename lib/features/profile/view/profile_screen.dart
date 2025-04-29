@@ -56,13 +56,11 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-
-
 class name extends StatelessWidget {
   const name({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

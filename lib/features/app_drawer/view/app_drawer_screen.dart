@@ -30,8 +30,7 @@ class AppDrawerScreen extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: CustomInkwell(
                 onTap: () {
-                  context.push(RouterUtils.nestedRoute(
-                      AppointmentsScreen.routeName, element.routeName));
+                  context.push(element.routeName);
                   mainScreenScaffoldKey.currentState?.closeDrawer();
                 },
                 splashColor: AppColors.primaryContainer,

@@ -12,6 +12,9 @@ import 'package:patient_app/features/children/view/children_s.dart';
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
 import 'package:patient_app/features/notifications/view/notifications_screen.dart';
+import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
+import 'package:patient_app/features/patient_medical_record/view/patient_medical_record_screen.dart';
+import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
 import 'package:patient_app/features/profile/view/profile_screen.dart';
 
 class AppRouter {
@@ -71,17 +74,28 @@ class AppRouter {
       GoRoute(
           path: AppointmentsScreen.routeName,
           builder: (context, state) => const AppointmentsScreen(),
+          routes: const []),
+      GoRoute(
+          path: ProfileScreen.routeName,
+          builder: (context, state) => const ProfileScreen(),
           routes: [
             GoRoute(
-                path: ProfileScreen.routeName,
-                builder: (context, state) => const ProfileScreen(),
-                routes: [
-                  GoRoute(
-                    path: EditProfileScreen.routeName,
-                    builder: (context, state) => const EditProfileScreen(),
-                  )
-                ])
-          ])
+              path: EditProfileScreen.routeName,
+              builder: (context, state) => const EditProfileScreen(),
+            )
+          ]),
+      GoRoute(
+        path: PatientMedicalRecordScreen.routeName,
+        builder: (context, state) => const PatientMedicalRecordScreen(),
+      ),
+      GoRoute(
+        path: PatientPrescriptionScreen.routeName,
+        builder: (context, state) => const PatientPrescriptionScreen(),
+      ),
+      GoRoute(
+        path: PatientDoctorsScreen.routeName,
+        builder: (context, state) => const PatientDoctorsScreen(),
+      ),
     ]);
   }
 

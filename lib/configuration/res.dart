@@ -64,4 +64,6 @@ class Res {
   static const String drawerProfileIcon = "$drawerIconPath/d_profile$svg";
   static const String drawerVaccinationIcon =
       "$drawerIconPath/d_vaccination$png";
+  static const String medicineIcon =
+      "$drawerIconPath/medicine_icon$png";
 }

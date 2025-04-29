@@ -5,17 +5,18 @@ import 'dart:io';
 class ToolsHelper {
   ToolsHelper._();
 
-  static String getfeatureScreenContentString(String featureName) {
+  static String getfeatureScreenContentString({required String caseCamelFeatureName,required String lowerCaseFeatureName}) {
     return '''
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ${featureName}Screen extends StatelessWidget {
-  const ${featureName}Screen({super.key});
-  static const routeName = "/";
+class ${caseCamelFeatureName}Screen extends ConsumerWidget {
+  const ${caseCamelFeatureName}Screen({super.key});
+  static const routeName = "/${lowerCaseFeatureName}_screen";
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold();
   }
 }

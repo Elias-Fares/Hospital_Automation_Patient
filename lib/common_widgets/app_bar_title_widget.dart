@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class AppBarTitleWidget extends StatelessWidget {
   const AppBarTitleWidget({
     super.key,
-    required this.title, required this.imagePath,
+    required this.title,
+    required this.imagePath,
   });
 
-
   final String imagePath;
-    final String title;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class AppBarTitleWidget extends StatelessWidget {
             imagePath,
             width: 35,
             height: 35,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
           ),
         ),
         const SizedBox(
