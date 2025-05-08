@@ -5,7 +5,7 @@ part 'sign_up_state.freezed.dart';
 @freezed
 class SignupState with _$SignupState {
   factory SignupState({
-    AsyncValue? asyncValue,
+      AsyncValue? asyncValue,
     @Default(false) bool isPasswordVisible,
     @Default(false) bool isConfirmPasswordVisible,
   }) = _SignupState;

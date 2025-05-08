@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:patient_app/configuration/router/my_go_router_observer.dart';
 import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
 import 'package:patient_app/features/auth/view/screens/login_screen.dart';
@@ -7,8 +8,10 @@ import 'package:patient_app/features/auth/view/screens/reset_password_screen.dar
 import 'package:patient_app/features/auth/view/screens/sign_up_screen.dart';
 import 'package:patient_app/features/auth/view/screens/upload_profile_image_screen.dart';
 import 'package:patient_app/features/auth/view/screens/verification_code_screen.dart';
+import 'package:patient_app/features/book_appointment/view/book_appointment_screen.dart';
 import 'package:patient_app/features/child_profile/view/child_profile_screen.dart';
 import 'package:patient_app/features/children/view/children_s.dart';
+import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
 import 'package:patient_app/features/notifications/view/notifications_screen.dart';
@@ -27,6 +30,9 @@ class AppRouter {
   static final router = GoRouter(
       navigatorKey: rootNavigatorKey,
       initialLocation: initialRoute,
+      observers: [
+        MyGoRouterObserver()
+      ],
       routes: [
         // ==============================================================//
         //Auth feature
@@ -93,9 +99,19 @@ class AppRouter {
         builder: (context, state) => const PatientPrescriptionScreen(),
       ),
       GoRoute(
-        path: PatientDoctorsScreen.routeName,
-        builder: (context, state) => const PatientDoctorsScreen(),
-      ),
+          path: PatientDoctorsScreen.routeName,
+          builder: (context, state) => const PatientDoctorsScreen(),
+          routes: [
+            GoRoute(
+                path: DoctorProfileScreen.routeName,
+                builder: (context, state) => const DoctorProfileScreen(),
+                routes: [
+                  GoRoute(
+                    path: BookAppointmentScreen.routeName,
+                    builder: (context, state) =>  BookAppointmentScreen(),
+                  )
+                ])
+          ]),
     ]);
   }
 

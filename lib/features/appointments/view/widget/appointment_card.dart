@@ -1,6 +1,5 @@
 part of '../appointments.dart';
 
-
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({
     super.key,
@@ -39,20 +38,7 @@ class AppointmentCard extends StatelessWidget {
                         .bodyMedium
                         ?.copyWith(fontSize: 15)),
                 const Spacer(),
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.primary),
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Text(
-                    type,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(color: AppColors.primary),
-                  ),
-                )
+                OutlinedCard(text: type)
               ],
             ),
             const SizedBox(height: 16),

@@ -61,7 +61,15 @@ class IconKeyValueWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
-        )
+        ),
+        if (needOnTap) ...[
+          const Spacer(),
+          const Icon(
+            Icons.arrow_forward_ios,
+            size: 14,
+            color: AppColors.hintTextColor,
+          )
+        ]
       ],
     );
   }

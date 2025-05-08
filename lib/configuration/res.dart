@@ -51,6 +51,9 @@ class Res {
   static const String vaccinationIcon = "$profileIconPath/vaccination_icon$png";
   static const String editPenIcon = "$profileIconPath/edit_pen_icon$png";
   static const String suspendUserIcon = "$profileIconPath/suspend_user_icon$png";
+  static const String departmentIcon = "$profileIconPath/department_icon$png";
+  static const String emailIcon = "$profileIconPath/email_icon$png";
+  static const String phoneIcon = "$profileIconPath/phone_icon$png";
 
   //drawer
   static const String drawerDepartmentIcon = "$drawerIconPath/d_department$png";

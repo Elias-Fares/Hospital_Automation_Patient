@@ -1,4 +1,3 @@
-
 part of '../patient_doctors_screen.dart';
 
 class PatientDoctorCard extends StatelessWidget {
@@ -7,24 +6,31 @@ class PatientDoctorCard extends StatelessWidget {
     required this.doctorName,
     required this.doctorImageUrl,
     required this.doctorSpecialty,
-
+    this.onTap,
   });
 
   final String doctorName;
   final String doctorImageUrl;
   final String doctorSpecialty;
-
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(16),
-      decoration: containerCardDecoration(),
-      child: PersoneTile(
-          imageUrl: doctorImageUrl,
-          tile: doctorName,
-          subtitle: doctorSpecialty),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: CustomInkwell(
+        onTap: onTap,
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: containerCardDecoration(color: AppColors.transparent),
+          child: PersoneTile(
+              imageUrl: doctorImageUrl,
+              tile: doctorName,
+              subtitle: doctorSpecialty),
+        ),
+      ),
     );
   }
 }

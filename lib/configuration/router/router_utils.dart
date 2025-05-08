@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RouterUtils {
   RouterUtils._();
@@ -34,5 +35,12 @@ class RouterUtils {
 
     debugPrint("The route is : ${stringBuffer.toString()}");
     return stringBuffer.toString();
+  }
+
+  static String getNestedRoute(BuildContext context,
+      {required String routeName}) {
+    final currentLocation = GoRouter.of(context).state.uri.path;
+
+    return "$currentLocation$routeName";
   }
 }
