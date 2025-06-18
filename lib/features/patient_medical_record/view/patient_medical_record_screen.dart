@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/common_widgets/app_bar_title_widget.dart';
-import 'package:patient_app/common_widgets/card_container_decoration.dart';
-import 'package:patient_app/common_widgets/icon_key_value_widget.dart';
-import 'package:patient_app/common_widgets/persone_tile.dart';
-import 'package:patient_app/common_widgets/sub_app_bar.dart';
+import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
+import 'package:patient_app/core/style/card_container_decoration.dart';
+import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
+import 'package:patient_app/core/widgets/cards/persone_tile.dart';
+import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
 part 'widget/medical_record_card.dart';
 

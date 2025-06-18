@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/router.dart';
-import 'package:patient_app/core/app_colors.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/features/app/app.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
 import 'package:patient_app/features/auth/view/widgets/verification_code_page.dart';

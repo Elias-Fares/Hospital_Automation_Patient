@@ -1,10 +1,10 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/common_widgets/main_app_bar.dart';
-import 'package:patient_app/common_widgets/outlined_card.dart';
+import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
+import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/app_colors.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/animated_read_more.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 

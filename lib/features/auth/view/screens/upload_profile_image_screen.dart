@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/app_colors.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 

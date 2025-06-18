@@ -22,8 +22,8 @@ import 'package:patient_app/features/profile/view/profile_screen.dart';
 
 class AppRouter {
   AppRouter._();
-  static String initialRoute = "/appointments";
-  // static String initialRoute = SignupScreen.routeName;
+  // static String initialRoute = "/appointments";
+  static String initialRoute = SignupScreen.routeName;
 
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "root");
 
@@ -108,7 +108,7 @@ class AppRouter {
                 routes: [
                   GoRoute(
                     path: BookAppointmentScreen.routeName,
-                    builder: (context, state) =>  BookAppointmentScreen(),
+                    builder: (context, state) => BookAppointmentScreen(),
                   )
                 ])
           ]),

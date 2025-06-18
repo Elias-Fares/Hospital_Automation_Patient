@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/common_widgets/card_container_decoration.dart';
-import 'package:patient_app/common_widgets/icon_key_value_widget.dart';
-import 'package:patient_app/common_widgets/icon_title_navigation_button.dart';
-import 'package:patient_app/common_widgets/key_value_card.dart';
-import 'package:patient_app/common_widgets/sub_app_bar.dart';
+import 'package:patient_app/core/style/card_container_decoration.dart';
+import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
+import 'package:patient_app/core/widgets/cards/icon_title_navigation_button.dart';
+import 'package:patient_app/core/widgets/cards/key_value_card.dart';
+import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
 part 'widget/child_profile_title.dart';
 part 'widget/child_details_widget.dart';

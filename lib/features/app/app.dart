@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/configuration/router/router.dart';
-import 'package:patient_app/core/app_theme.dart';
+import 'package:patient_app/core/style/app_theme.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

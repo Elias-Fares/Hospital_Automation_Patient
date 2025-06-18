@@ -1,9 +1,9 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_app/common_widgets/app_bar_title_widget.dart';
-import 'package:patient_app/common_widgets/sub_app_bar.dart';
+import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
+import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/app_colors.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_outlined_button.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
 

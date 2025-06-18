@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/app_colors.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 
 class ChangeStateWidget extends StatelessWidget {
   const ChangeStateWidget(
