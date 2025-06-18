@@ -9,7 +9,7 @@ void showSnackBarErrorMessage(BuildContext context,
     Overlay.of(context),
     CustomSnackBar.error(
       message: message,
-      backgroundColor: color ?? AppColors.error.withOpacity(.7),
+      backgroundColor: color ?? AppColors.error,
       borderRadius: BorderRadius.circular(5),
       textAlign: TextAlign.start,
       textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -18,4 +18,3 @@ void showSnackBarErrorMessage(BuildContext context,
     ),
   );
 }
-

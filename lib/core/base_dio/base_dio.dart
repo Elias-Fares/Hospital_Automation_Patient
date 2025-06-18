@@ -72,13 +72,14 @@ class BaseDio {
     }
   }
 
-  Future<DataState> post<T extends GeneralModel>({
+  Future<DataState<T>> post<T extends GeneralModel>({
     required String subUrl,
     dynamic data,
     String? token,
     String? url,
     bool needToken = false,
-    T? model,
+    // T? model,
+    dynamic model,
     Map<String, dynamic>? queryParameters,
   }) async {
     if (needToken) {
@@ -104,7 +105,7 @@ class BaseDio {
       final responseData = json.decode(response.data)["data"];
       final responseObject = model?.fromJson(responseData);
       print("the reponse modeled");
-      return DataSuccess(responseObject);
+      return DataSuccess<T>(responseObject);
     } on DioException catch (e) {
       debugPrint("-----------------------------------------------");
       debugPrint("The exception is DioException: ${e.toString()}");
@@ -113,7 +114,7 @@ class BaseDio {
       // final ExceptionResponse exceptionResponse =
       //     ExceptionResponse(statusCode: 422, exceptionMessages: ["Error"]);
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed(exceptionResponse);
     } catch (e, stacktrace) {
       debugPrint("-----------------------------------------------");
       debugPrint("The exception is Other: ${e.toString()}");
@@ -122,7 +123,7 @@ class BaseDio {
       final ExceptionResponse exceptionResponse = ExceptionResponse(
           statusCode: -888,
           exceptionMessages: ["Another exception was thrown"]);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed(exceptionResponse);
     }
   }
 

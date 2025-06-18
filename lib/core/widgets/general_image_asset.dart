@@ -22,7 +22,6 @@ class GeneralImageAssets extends StatelessWidget {
   Widget build(BuildContext context) {
     String? imgType = path.split('.').last;
     if (imgType == 'svg') {
-      debugPrint("it is svg image $path");
       return SizedBox(
         height: height,
         width: width,

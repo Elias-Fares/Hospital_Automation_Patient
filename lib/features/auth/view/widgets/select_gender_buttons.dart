@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/core/enums/gender_enum.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class SelectGenderButtons extends StatelessWidget {
-  const SelectGenderButtons({super.key});
+  const SelectGenderButtons(
+      {super.key, required this.selectedGender,required this.onGenderSelect});
+
+  final GenderEnum selectedGender;
+  final void Function(GenderEnum) onGenderSelect;
 
   Widget buildButton(BuildContext context,
       {required String iconPath,
@@ -33,7 +38,6 @@ class SelectGenderButtons extends StatelessWidget {
                   width: 24.r,
                   height: 24.r,
                   boxFit: BoxFit.contain,
-              
                 ),
                 const SizedBox(
                   width: 5,
@@ -60,9 +64,11 @@ class SelectGenderButtons extends StatelessWidget {
         buildButton(
           context,
           iconPath: Res.maleIcon,
-          isSelected: true,
+          isSelected: selectedGender == GenderEnum.male,
           title: "Male",
-          onTap: () {},
+          onTap: () {
+            onGenderSelect(GenderEnum.male);
+          },
         ),
         const SizedBox(
           width: 14,
@@ -70,9 +76,11 @@ class SelectGenderButtons extends StatelessWidget {
         buildButton(
           context,
           iconPath: Res.femaleIcon,
-          isSelected: false,
+          isSelected: selectedGender == GenderEnum.female,
           title: "Female",
-          onTap: () {},
+          onTap: () {
+                  onGenderSelect(GenderEnum.female);
+          },
         ),
       ],
     );

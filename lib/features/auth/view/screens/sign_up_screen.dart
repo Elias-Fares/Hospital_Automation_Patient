@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/enums/gender_enum.dart';
 import 'package:patient_app/core/validators/fields_validator.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
 import 'package:patient_app/features/auth/view/screens/login_screen.dart';
 import 'package:patient_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:patient_app/features/auth/view/widgets/sign_up_page.dart';
+import 'package:patient_app/features/auth/view_model/sign_up_view_model.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
   static const routeName = "/sign_up_screen";
@@ -31,7 +34,6 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool isloading = false;
 
   @override
   void dispose() {
@@ -46,25 +48,24 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final val = ref.watch(authRiverpodProvider);
-    // print(val.toString());
+    final signUpValue = ref.watch(signUpViewModelProvider);
 
-    // ref.listen(
-    //   authRiverpodProvider,
-    //   (_, next) {
-    //     next?.when(
-    //       data: (data) {
-    //         Navigator.of(context).push(MaterialPageRoute(
-    //           builder: (context) => const HomeScreen(),
-    //         ));
-    //       },
-    //       error: (error, stackTrace) {
-    //         showSnackBarMessage(context, message: error.toString());
-    //       },
-    //       loading: () {},
-    //     );
-    //   },
-    // );
+    ref.listen(
+      signUpViewModelProvider.select(
+        (value) => value.signUpResponse,
+      ),
+      (_, next) {
+        next?.when(
+          data: (data) {
+            context.push(VerificationCodeScreen.routeName);
+          },
+          error: (error, stackTrace) {
+            showSnackBarErrorMessage(context, message: error.toString());
+          },
+          loading: () {},
+        );
+      },
+    );
     return Scaffold(
         body: SafeArea(
       child: SignupPage(
@@ -75,13 +76,13 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
         firstNameTextEditingController: firstNameTextEditingController,
         lastNameTextEditingController: lastNameTextEditingController,
         phoneNumberTextEditingController: phoneTextEditingController,
-        isLoading: false,
+        isLoading: signUpValue.signUpResponse?.isLoading ?? false,
         formKey: _formKey,
         emailValidator: (val) {
           return FieldsValidator.validateEmail(email: val ?? "");
         },
         passwordValidator: (val) {
-          return FieldsValidator.validatePassword(password: val ?? "");
+          return FieldsValidator.validateEmpty(value: val ?? "");
         },
         confirmPassWordValidator: (val) {
           return FieldsValidator.matchPassword(
@@ -95,18 +96,25 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
           return FieldsValidator.validateEmpty(value: val ?? "");
         },
         phoneNumberValidator: (val) {
-          return FieldsValidator.validatePhoneNumber(phone: val ?? "");
+          return FieldsValidator.validateEmpty(value: val ?? "");
+        },
+        selectedGender: signUpValue.selectedGender,
+        onGenderSelect: (gender) {
+          ref.read(signUpViewModelProvider.notifier).setGender(gender);
         },
         signUpFunc: () {
-          // if (!(_formKey.currentState?.validate() ?? false)) {
-          //   return;
-          // }
+          if (!(_formKey.currentState?.validate() ?? false)) {
+            return;
+          }
 
-          // ref.read(authRiverpodProvider.notifier).loginUser(
-          //     email: emailTextEditingController.text,
-          //     password: passwordTextEditingController.text);
-
-          context.push(VerificationCodeScreen.routeName);
+          ref.read(signUpViewModelProvider.notifier).signUp(
+                email: emailTextEditingController.text,
+                firstName: firstNameTextEditingController.text,
+                lastName: lastNameTextEditingController.text,
+                middleName: "name",
+                password: passwordTextEditingController.text,
+                phoneNumber: phoneTextEditingController.text,
+              );
         },
         goToLogin: () {
           context.go(LoginScreen.routeName);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patient_app/core/enums/gender_enum.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
@@ -26,6 +27,10 @@ class SignupPage extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
 
+  final GenderEnum selectedGender;
+
+  final void Function(GenderEnum) onGenderSelect;
+
   const SignupPage({
     super.key,
     this.emailValidator,
@@ -44,6 +49,8 @@ class SignupPage extends StatelessWidget {
     this.lastNameValidator,
     required this.signUpFunc,
     required this.goToLogin,
+    required this.selectedGender,
+    required this.onGenderSelect,
   });
 
   @override
@@ -115,6 +122,7 @@ class SignupPage extends StatelessWidget {
                 validator: passwordValidator,
                 label: "Password*",
                 keyboardType: TextInputType.visiblePassword,
+                isPassword: true,
               ),
               const SizedBox(
                 height: 22,
@@ -124,6 +132,7 @@ class SignupPage extends StatelessWidget {
                 validator: confirmPassWordValidator,
                 label: "Confirm Password*",
                 keyboardType: TextInputType.visiblePassword,
+                isPassword: true,
               ),
               const SizedBox(
                 height: 22,
@@ -135,13 +144,17 @@ class SignupPage extends StatelessWidget {
               const SizedBox(
                 height: 14,
               ),
-              const SelectGenderButtons(),
+              SelectGenderButtons(
+                selectedGender: selectedGender,
+                onGenderSelect: onGenderSelect,
+              ),
               const SizedBox(
                 height: 22,
               ),
               LoadingButton(
                 title: "Sign up",
                 onTap: signUpFunc,
+                isLoading: isLoading,
               ),
               const SizedBox(
                 height: 22,

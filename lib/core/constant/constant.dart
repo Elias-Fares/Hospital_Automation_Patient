@@ -1,8 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
 class Constant {
-  static const String role = "";
-  static const String baseUrl = "";
+  static const String role = "user";
+  static const String baseUrl = "https://dispensary-hkz3.onrender.com";
 
   static const String TOKEN = 'TOKEN';
   static const String USER_PASSWORD = 'USER_PASSWORD';
