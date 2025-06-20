@@ -1,8 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:patient_app/core/enums/gender_enum.dart';
+import 'package:patient_app/data/models/user_model.dart';
 
 class SignUpState {
-  final AsyncValue? signUpResponse;
+  final AsyncValue<UserModel?>? signUpResponse;
   final bool isPasswordVisible;
   final bool isConfirmPasswordVisible;
   final GenderEnum selectedGender;
@@ -15,7 +16,7 @@ class SignUpState {
       });
 
   SignUpState copyWith({
-    AsyncValue? signUpResponse,
+    AsyncValue<UserModel?>? signUpResponse,
     bool? isPasswordVisible,
     bool? isConfirmPasswordVisible,
     GenderEnum? selectedGender

@@ -17,6 +17,8 @@ class AddResidentialAddressPage extends StatelessWidget {
 
   final GlobalKey<FormState> formKey;
   final bool isLoading;
+  final bool isAgreeChecked;
+  final void Function(bool?)? onCheckBoxChanged;
   const AddResidentialAddressPage({
     super.key,
     required this.formKey,
@@ -31,6 +33,7 @@ class AddResidentialAddressPage extends StatelessWidget {
     required this.noteTextEditingController,
     required this.submit,
     required this.isLoading,
+    required this.isAgreeChecked, this.onCheckBoxChanged,
   });
 
   @override
@@ -97,8 +100,8 @@ class AddResidentialAddressPage extends StatelessWidget {
               height: 22,
             ),
             CheckboxListTile.adaptive(
-              value: true,
-              onChanged: (value) {},
+              value: isAgreeChecked,
+              onChanged: onCheckBoxChanged,
               title: const Text("I agree"),
               controlAffinity: ListTileControlAffinity.leading,
               contentPadding: EdgeInsets.zero,

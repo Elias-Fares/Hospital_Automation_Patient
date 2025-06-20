@@ -5,10 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/router.dart';
+import 'package:patient_app/core/function/get_message.dart';
 import 'package:patient_app/core/validators/fields_validator.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_success_message.dart';
+import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
 import 'package:patient_app/features/auth/view/screens/reset_password_screen.dart';
 import 'package:patient_app/features/auth/view/screens/sign_up_screen.dart';
 import 'package:patient_app/features/auth/view/widgets/login_page.dart';
+import 'package:patient_app/features/auth/view_models/log_in/log_in_view_model.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = "/login_screen";
@@ -39,41 +44,47 @@ class _LoginScreenV2State extends ConsumerState<LoginScreen> {
     // final val = ref.watch(authRiverpodProvider);
     // print(val.toString());
 
-    // ref.listen(
-    //   authRiverpodProvider,
-    //   (_, next) {
-    //     next?.when(
-    //       data: (data) {
-    //         Navigator.of(context).push(MaterialPageRoute(
-    //           builder: (context) => const HomeScreen(),
-    //         ));
-    //       },
-    //       error: (error, stackTrace) {
-    //         showSnackBarMessage(context, message: error.toString());
-    //       },
-    //       loading: () {},
-    //     );
-    //   },
-    // );
+    final loginState = ref.watch(logInViewModelProvider);
+
+    ref.listen(
+      logInViewModelProvider,
+      (_, next) {
+        next?.when(
+          data: (data) {
+            // showSnackBarSuccessMessage(context, message: data["message"]);
+            context.push(AddResidentialAddressScreen.routeName);
+          },
+          error: (error, stackTrace) {
+            showSnackBarErrorMessage(context, message: error.toString());
+          },
+          loading: () {},
+        );
+      },
+    );
     return Scaffold(
         body: LoginPage(
       emailTextEditingController: emailTextEditingController,
       passwordTextEditingController: passwordTextEditingController,
-      isLoading: false,
+      isLoading: loginState?.isLoading ?? false,
       formKey: _formKey,
       emailValidator: (val) {
         return FieldsValidator.validateEmail(email: val ?? "");
       },
+      //TODO implement strong password validation
       passwordValidator: (val) {
-        return FieldsValidator.validatePassword(password: val ?? "");
+        return FieldsValidator.validateEmpty(value: val ?? "");
       },
       loginFunc: () {
-        if (!(_formKey.currentState?.validate() ?? false)) {
-          return;
-        }
-        // ref.read(authRiverpodProvider.notifier).loginUser(
+        //TODO uncomment this when test finished
+        // if (!(_formKey.currentState?.validate() ?? false)) {
+        //   return;
+        // }
+        // ref.read(logInViewModelProvider.notifier).login(
         //     email: emailTextEditingController.text,
         //     password: passwordTextEditingController.text);
+
+        //TODO remove this when test finished
+        context.push(AddResidentialAddressScreen.routeName);
       },
       creatAccountFunc: () {
         context.push(SignupScreen.routeName);

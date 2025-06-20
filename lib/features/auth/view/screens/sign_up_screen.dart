@@ -6,9 +6,10 @@ import 'package:patient_app/core/enums/gender_enum.dart';
 import 'package:patient_app/core/validators/fields_validator.dart';
 import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
 import 'package:patient_app/features/auth/view/screens/login_screen.dart';
+import 'package:patient_app/features/auth/view/screens/upload_profile_image_screen.dart';
 import 'package:patient_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:patient_app/features/auth/view/widgets/sign_up_page.dart';
-import 'package:patient_app/features/auth/view_model/sign_up_view_model.dart';
+import 'package:patient_app/features/auth/view_models/sign_up/sign_up_view_model.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
   static const routeName = "/sign_up_screen";
@@ -28,6 +29,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       TextEditingController();
   final TextEditingController lastNameTextEditingController =
       TextEditingController();
+  final TextEditingController middleNameTextEditingController =
+      TextEditingController();
   final TextEditingController phoneTextEditingController =
       TextEditingController();
   final TextEditingController confirmPasswordTextEditingController =
@@ -42,6 +45,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
     passwordTextEditingController.dispose();
     firstNameTextEditingController.dispose();
     lastNameTextEditingController.dispose();
+    middleNameTextEditingController.dispose();
     phoneTextEditingController.dispose();
     confirmPasswordTextEditingController.dispose();
   }
@@ -76,11 +80,15 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
         firstNameTextEditingController: firstNameTextEditingController,
         lastNameTextEditingController: lastNameTextEditingController,
         phoneNumberTextEditingController: phoneTextEditingController,
+        middleNameTextEditingController: middleNameTextEditingController,
         isLoading: signUpValue.signUpResponse?.isLoading ?? false,
         formKey: _formKey,
         emailValidator: (val) {
           return FieldsValidator.validateEmail(email: val ?? "");
         },
+
+        //TODO add strong password validation
+
         passwordValidator: (val) {
           return FieldsValidator.validateEmpty(value: val ?? "");
         },
@@ -95,6 +103,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
         lastNameValidator: (val) {
           return FieldsValidator.validateEmpty(value: val ?? "");
         },
+        middleNameValidator: (val) {
+          return FieldsValidator.validateEmpty(value: val ?? "");
+        },
         phoneNumberValidator: (val) {
           return FieldsValidator.validateEmpty(value: val ?? "");
         },
@@ -103,18 +114,20 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
           ref.read(signUpViewModelProvider.notifier).setGender(gender);
         },
         signUpFunc: () {
-          if (!(_formKey.currentState?.validate() ?? false)) {
-            return;
-          }
+          //TODO delete after test
+          // if (!(_formKey.currentState?.validate() ?? false)) {
+          //   return;
+          // }
 
-          ref.read(signUpViewModelProvider.notifier).signUp(
-                email: emailTextEditingController.text,
-                firstName: firstNameTextEditingController.text,
-                lastName: lastNameTextEditingController.text,
-                middleName: "name",
-                password: passwordTextEditingController.text,
-                phoneNumber: phoneTextEditingController.text,
-              );
+          // ref.read(signUpViewModelProvider.notifier).signUp(
+          //       email: emailTextEditingController.text,
+          //       firstName: firstNameTextEditingController.text,
+          //       lastName: lastNameTextEditingController.text,
+          //       middleName: middleNameTextEditingController.text,
+          //       password: passwordTextEditingController.text,
+          //       phoneNumber: phoneTextEditingController.text,
+          //     );
+          context.push(UploadProfileImageScreen.routeName);
         },
         goToLogin: () {
           context.go(LoginScreen.routeName);

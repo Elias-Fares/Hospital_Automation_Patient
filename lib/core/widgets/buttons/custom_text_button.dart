@@ -6,7 +6,9 @@ class CustomTextButton extends StatelessWidget {
       this.borderRadius,
       this.onTap,
       required this.text,
-      this.textStyle,  this.textColor,  this.fontWeight});
+      this.textStyle,
+      this.textColor,
+      this.fontWeight});
   final double? borderRadius;
   final void Function()? onTap;
   final String text;
@@ -22,7 +24,7 @@ class CustomTextButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius ?? 20),
         onTap: onTap,
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
           child: Text(
             text,
             style: textStyle ??

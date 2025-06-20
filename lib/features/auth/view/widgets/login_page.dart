@@ -45,7 +45,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Form(
           key: formKey,
@@ -56,9 +56,9 @@ class LoginPage extends StatelessWidget {
               // Text("Sign Up", style: Theme.of(context).textTheme.titleLarge,),
               // SizedBox(height: 30,),
               // AuthTextFormField(textEditingController: , validator: validator, hintText: hintText, iconData: iconData),
-              // const SizedBox(
-              //   height: 40,
-              // ),
+              SizedBox(
+                height: 100.h,
+              ),
               GeneralImageAssets(
                 path: Res.loginImage,
                 width: 120.r,

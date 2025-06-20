@@ -13,11 +13,13 @@ class SignupPage extends StatelessWidget {
   final FormFieldValidator<String>? phoneNumberValidator;
   final FormFieldValidator<String>? firstNameValidator;
   final FormFieldValidator<String>? lastNameValidator;
+  final FormFieldValidator<String>? middleNameValidator;
 
   final TextEditingController? emailTextEditingController;
   final TextEditingController? passwordTextEditingController;
   final TextEditingController? firstNameTextEditingController;
   final TextEditingController? lastNameTextEditingController;
+  final TextEditingController? middleNameTextEditingController;
   final TextEditingController? confirmPasswordTextEditingController;
   final TextEditingController? phoneNumberTextEditingController;
   final VoidCallback signUpFunc;
@@ -51,6 +53,8 @@ class SignupPage extends StatelessWidget {
     required this.goToLogin,
     required this.selectedGender,
     required this.onGenderSelect,
+    this.middleNameTextEditingController,
+    this.middleNameValidator,
   });
 
   @override
@@ -95,6 +99,14 @@ class SignupPage extends StatelessWidget {
                 textEditingController: lastNameTextEditingController,
                 validator: lastNameValidator,
                 label: "Last Name*",
+              ),
+              const SizedBox(
+                height: 22,
+              ),
+              AuthTextFormField(
+                textEditingController: middleNameTextEditingController,
+                validator: middleNameValidator,
+                label: "Middle Name*",
               ),
               const SizedBox(
                 height: 22,

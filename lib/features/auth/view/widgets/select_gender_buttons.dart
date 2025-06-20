@@ -7,7 +7,7 @@ import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class SelectGenderButtons extends StatelessWidget {
   const SelectGenderButtons(
-      {super.key, required this.selectedGender,required this.onGenderSelect});
+      {super.key, required this.selectedGender, required this.onGenderSelect});
 
   final GenderEnum selectedGender;
   final void Function(GenderEnum) onGenderSelect;
@@ -33,11 +33,15 @@ class SelectGenderButtons extends StatelessWidget {
                     : null),
             child: Row(
               children: [
+                const SizedBox(
+                  width: 10,
+                ),
                 GeneralImageAssets(
                   path: iconPath,
                   width: 24.r,
                   height: 24.r,
                   boxFit: BoxFit.contain,
+                  color: AppColors.primary,
                 ),
                 const SizedBox(
                   width: 5,
@@ -79,7 +83,7 @@ class SelectGenderButtons extends StatelessWidget {
           isSelected: selectedGender == GenderEnum.female,
           title: "Female",
           onTap: () {
-                  onGenderSelect(GenderEnum.female);
+            onGenderSelect(GenderEnum.female);
           },
         ),
       ],

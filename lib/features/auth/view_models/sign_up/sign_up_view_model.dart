@@ -1,8 +1,9 @@
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/gender_enum.dart';
-import 'package:patient_app/features/auth/data/repository/auth_repository.dart';
-import 'package:patient_app/features/auth/view_model/states/sign_up_state.dart';
+import 'package:patient_app/data/repositories/auth_repository.dart';
+import 'package:patient_app/features/auth/view_models/sign_up/sign_up_state.dart';
+import 'package:patient_app/features/auth/view_models/verify_code/verify_code_view_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'sign_up_view_model.g.dart';
 
@@ -27,7 +28,6 @@ class SignUpViewModel extends _$SignUpViewModel {
     required String middleName,
     required String password,
     required String phoneNumber,
-
   }) async {
     state = state.copyWith(signUpResponse: const AsyncValue.loading());
 
@@ -41,6 +41,10 @@ class SignUpViewModel extends _$SignUpViewModel {
         gender: state.selectedGender.getTitle());
     if (response is DataSuccess) {
       state = state.copyWith(signUpResponse: AsyncValue.data(response.data));
+      await _authRepository.saveEmail(email: email);
+      await _authRepository.savePassword(password: password);
+
+      ref.read(verifyCodeViewModelProvider.notifier).sendOTP();
     } else {
       state = state.copyWith(
           signUpResponse: AsyncValue.error(

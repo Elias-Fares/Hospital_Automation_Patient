@@ -5,27 +5,29 @@ import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_success_message.dart';
 import 'package:patient_app/features/auth/view/widgets/email_widget.dart';
 
 class VerificationCodePage extends StatelessWidget {
-  final TextEditingController verifyCodeTextEditingController;
   final FormFieldValidator<String>? verifyCodeValidator;
   final VoidCallback verifyCodePress;
   final VoidCallback resendCodePress;
 
   final GlobalKey<FormState> formKey;
   final bool? isLoading;
-  final void Function(String)? onSubmitCode;
+  // final void Function(String)? onCodeChanged;
+  final void Function(String)? onSubmit;
 
   const VerificationCodePage(
       {super.key,
       required this.verifyCodeValidator,
       required this.verifyCodePress,
-      required this.verifyCodeTextEditingController,
       required this.resendCodePress,
       required this.formKey,
       this.isLoading,
-      this.onSubmitCode});
+      // this.onCodeChanged
+      this.onSubmit
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -65,15 +67,21 @@ class VerificationCodePage extends StatelessWidget {
                   email: "test@test.com", imgPath: Res.personePlaceHolderImage),
               const SizedBox(height: 30),
               OtpTextField(
-                  numberOfFields: 5,
-                  focusedBorderColor: AppColors.primary,
-                  contentPadding: const EdgeInsets.all(8),
-                  showFieldAsBox: true,
-                  borderRadius: BorderRadius.circular(8),
-                  decoration: const InputDecoration(
-                      filled: true, fillColor: AppColors.white),
-                  borderWidth: 1,
-                  onSubmit: onSubmitCode),
+                numberOfFields: 4,
+                focusedBorderColor: AppColors.primary,
+                contentPadding: const EdgeInsets.all(8),
+                showFieldAsBox: true,
+                borderRadius: BorderRadius.circular(8),
+                decoration: const InputDecoration(
+                    filled: true, fillColor: AppColors.white),
+                borderWidth: 1,
+                // onCodeChanged: onCodeChanged,
+                // onSubmit: (value) {
+                //   debugPrint("debugger$value");
+                //   showSnackBarSuccessMessage(context, message: value);
+                // },
+                onSubmit: onSubmit,
+              ),
               const SizedBox(height: 40),
               LoadingButton(
                 title: "Submit",

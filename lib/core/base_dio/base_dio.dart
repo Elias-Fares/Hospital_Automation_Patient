@@ -7,10 +7,13 @@ import 'package:patient_app/core/base_dio/errors_types_enum.dart';
 import 'package:patient_app/core/base_dio/general_model.dart';
 import 'package:patient_app/core/constant/constant.dart';
 
+import '../../services/shared_preferences_service.dart';
+
 
 class BaseDio {
   final Dio dioProject;
-  BaseDio({required this.dioProject});
+  final SharedPreferencesService sharedPreferencesService;
+  BaseDio({required this.dioProject, required this.sharedPreferencesService});
   Future<DataState> get<T extends GeneralModel>({
     required String subUrl,
     String? token,
@@ -22,7 +25,11 @@ class BaseDio {
     Map<String, dynamic>? queryParameters,
   }) async {
     if (needToken) {
-      dioProject.options.headers["Authorization"] = "Bearer $token";
+      final storedToken = sharedPreferencesService.getToken();
+      dioProject.options.headers["Authorization"] =
+          "Bearer ${token ?? storedToken}";
+
+      debugPrint("debugger $storedToken");
     }
 
     try {
@@ -83,11 +90,12 @@ class BaseDio {
     Map<String, dynamic>? queryParameters,
   }) async {
     if (needToken) {
-      // dioProject.options.headers["Authorization"] =
-      //     "Bearer ${token ?? LocalStaticVar.token}";
+      final storedToken = sharedPreferencesService.getToken();
+      dioProject.options.headers["Authorization"] =
+          "Bearer ${token ?? storedToken}";
+
+      debugPrint("debugger $storedToken");
     }
-    // dioProject.options.headers["Accept-Language"] =
-    //     AppLanguageKeys.appLang.value;
 
     try {
       debugPrint("-------------------------------------");
@@ -134,10 +142,12 @@ class BaseDio {
       Map<String, dynamic>? queryParameters,
       bool needToken = false}) async {
     if (needToken) {
-      // dioProject.options.headers["Authorization"] =
-      //     "Bearer ${token ?? LocalStaticVar.token}";
-    }
+      final storedToken = sharedPreferencesService.getToken();
+      dioProject.options.headers["Authorization"] =
+          "Bearer ${token ?? storedToken}";
 
+      debugPrint("debugger $storedToken");
+    }
     try {
       var response = await dioProject.delete("${Constant.baseUrl}$subUrl",
           data: data, queryParameters: queryParameters);
@@ -206,7 +216,11 @@ class BaseDio {
     Map<String, dynamic>? queryParameters,
   }) async {
     if (needToken) {
-      dioProject.options.headers["Authorization"] = "Bearer $token";
+      final storedToken = sharedPreferencesService.getToken();
+      dioProject.options.headers["Authorization"] =
+          "Bearer ${token ?? storedToken}";
+
+      debugPrint("debugger $storedToken");
     }
     // dioProject.options.headers["Accept-Language"] =
     //     AppLanguageKeys.appLang.value;
@@ -224,9 +238,8 @@ class BaseDio {
           queryParameters: queryParameters,
           data: data);
 
-      final responseData = response.data;
+      final responseData = json.decode(response.data);
 
-      print("the reponse modeled");
       return DataSuccess(responseData);
     } on DioException catch (e) {
       debugPrint("-----------------------------------------------");

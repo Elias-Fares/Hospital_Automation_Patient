@@ -1,9 +1,21 @@
 // ignore_for_file: avoid_print
 
 import 'dart:io';
+import 'package:path/path.dart' as p;
 
 class ToolsHelper {
   ToolsHelper._();
+
+    static const String externalPath = 'D:/flutter_repo';
+      static const String black = '\x1B[30m';
+  static const String red = '\x1B[31m';
+  static const String green = '\x1B[32m';
+  static const String yellow = '\x1B[33m';
+  static const String blue = '\x1B[34m';
+  static const String magenta = '\x1B[35m';
+  static const String cyan = '\x1B[36m';
+  static const String white = '\x1B[37m';
+  static const String reset = '\x1B[0m';
 
   static String getfeatureScreenContentString({required String caseCamelFeatureName,required String lowerCaseFeatureName}) {
     return '''
@@ -91,6 +103,47 @@ class ${featureName}ViewModel extends _\$${featureName}ViewModel {
       print('✅ Created: ${createdFile.path}');
     } else {
       print('⚠️ Already exists: ${createdFile.path}');
+    }
+  }
+
+    static Future<void> createFileV2({
+    required String fileName,
+    required String folderPath,
+    required String fileContent,
+  }) async {
+    final file = File('$folderPath/$fileName');
+    if (!await file.exists()) {
+      await file.writeAsString(fileContent);
+      print('$blue✅ Created: ${file.path}');
+    } else {
+      print('$reset⚠️  Already exists: ${file.path}');
+    }
+  }
+
+
+    static Future<void> copyFolder(
+      {required Directory source, required Directory destination}) async {
+    if (!await source.exists()) {
+      print("$red⛔ Source folder does not exist: ${source.path} ⛔");
+      print(reset);
+      exit(1);
+    }
+    if (!await destination.exists()) {
+      await destination.create(recursive: true);
+    }
+    await for (var entity in source.list(recursive: false)) {
+      if (entity is File) {
+        await createFileV2(
+            fileName: p.basename(entity.path),
+            folderPath: destination.path,
+            fileContent: entity.readAsStringSync());
+      } else if (entity is Directory) {
+        final newPath = destination.uri.path + p.basename(entity.path);
+        final subDir = Directory(newPath);
+        await createDirectoryIfNotExists(subDir);
+
+        await copyFolder(source: entity, destination: subDir);
+      }
     }
   }
 }

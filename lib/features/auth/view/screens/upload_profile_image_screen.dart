@@ -1,18 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
+import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
+import 'package:patient_app/features/appointments/view/appointments.dart';
+import 'package:patient_app/features/auth/view_models/upload_profile_image/upload_profile_image_view_model.dart';
 
-class UploadProfileImageScreen extends StatelessWidget {
+class UploadProfileImageScreen extends ConsumerWidget {
   static const routeName = "/upload_profile_image";
   const UploadProfileImageScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final uploadProfileImageState =
+        ref.watch(uploadProfileImageViewModelProvider);
+
+    ref.listen(
+      uploadProfileImageViewModelProvider.select(
+        (value) => value.uploadProfileImageResponse,
+      ),
+      (previous, next) => next?.when(
+        data: (data) {
+          context.go(AppointmentsScreen.routeName);
+        },
+        error: (error, stackTrace) {
+          showSnackBarErrorMessage(context, message: error.toString());
+        },
+        loading: () {},
+      ),
+    );
     return Scaffold(
       appBar: AppBar(),
-      body: Center( 
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -26,12 +49,22 @@ class UploadProfileImageScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    const GeneralImageAssets(
-                      path: Res.uploadImage,
-                      width: 100,
-                      height: 100,
-                      boxFit: BoxFit.contain,
-                    ),
+                    uploadProfileImageState.selectedImage == null
+                        ? const GeneralImageAssets(
+                            path: Res.uploadImage,
+                            width: 100,
+                            height: 100,
+                            boxFit: BoxFit.contain,
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.file(
+                              uploadProfileImageState.selectedImage!,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                     Text(
                       "Upload Your Profile Photo",
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -49,12 +82,27 @@ class UploadProfileImageScreen extends StatelessWidget {
                             ?.copyWith(fontWeight: FontWeight.w400),
                       ),
                     ),
+                    CustomTextButton(
+                      text: "Choose Image",
+                      onTap: () {
+                        ref
+                            .read(uploadProfileImageViewModelProvider.notifier)
+                            .selectImageFromGallery();
+                      },
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: LoadingButton(
                         title: "Upload Image",
-                        isLoading: false,
-                        onTap: () {},
+                        isLoading: uploadProfileImageState
+                                .uploadProfileImageResponse?.isLoading ??
+                            false,
+                        onTap: () {
+                          ref
+                              .read(
+                                  uploadProfileImageViewModelProvider.notifier)
+                              .uploadProfileImage();
+                        },
                       ),
                     ),
                   ],

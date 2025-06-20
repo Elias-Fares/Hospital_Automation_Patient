@@ -1,14 +1,13 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/router/router.dart';
 import 'package:patient_app/core/validators/fields_validator.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
 import 'package:patient_app/features/auth/view/screens/upload_profile_image_screen.dart';
 import 'package:patient_app/features/auth/view/widgets/add_residential_address_page.dart';
-import 'package:patient_app/features/auth/view/widgets/login_page.dart';
+import 'package:patient_app/features/auth/view_models/add_residential_address/add_residential_address_view_model.dart';
+import 'package:patient_app/features/main_screen/main_screen.dart';
 
 class AddResidentialAddressScreen extends ConsumerStatefulWidget {
   static const routeName = "/add_residential_address";
@@ -48,25 +47,24 @@ class _AddResidentialAddressScreenV2State
 
   @override
   Widget build(BuildContext context) {
-    // final val = ref.watch(authRiverpodProvider);
-    // print(val.toString());
+    final addAddressState = ref.watch(addResidentialAddressViewModelProvider);
 
-    // ref.listen(
-    //   authRiverpodProvider,
-    //   (_, next) {
-    //     next?.when(
-    //       data: (data) {
-    //         Navigator.of(context).push(MaterialPageRoute(
-    //           builder: (context) => const HomeScreen(),
-    //         ));
-    //       },
-    //       error: (error, stackTrace) {
-    //         showSnackBarMessage(context, message: error.toString());
-    //       },
-    //       loading: () {},
-    //     );
-    //   },
-    // );
+    ref.listen(
+      addResidentialAddressViewModelProvider.select(
+        (value) => value.addAddressResponse,
+      ),
+      (_, next) {
+        next?.when(
+          data: (data) {
+            context.push(UploadProfileImageScreen.routeName);
+          },
+          error: (error, stackTrace) {
+            showSnackBarErrorMessage(context, message: error.toString());
+          },
+          loading: () {},
+        );
+      },
+    );
     return Scaffold(
         appBar: AppBar(),
         body: AddResidentialAddressPage(
@@ -76,7 +74,8 @@ class _AddResidentialAddressScreenV2State
           regionTextEditingController: regionTextEditingController,
           streetTextEditingController: streetTextEditingController,
           noteTextEditingController: noteTextEditingController,
-          isLoading: false,
+          isLoading: addAddressState.addAddressResponse?.isLoading ?? false,
+          isAgreeChecked: addAddressState.agreeCheckBox,
           cityValidator: (value) =>
               FieldsValidator.validateEmpty(value: value ?? ""),
           governateValidator: (value) =>
@@ -85,8 +84,24 @@ class _AddResidentialAddressScreenV2State
               FieldsValidator.validateEmpty(value: value ?? ""),
           streetValidator: (value) =>
               FieldsValidator.validateEmpty(value: value ?? ""),
+          onCheckBoxChanged: (value) {
+            ref
+                .read(addResidentialAddressViewModelProvider.notifier)
+                .onCheckBoxChanged(value ?? false);
+          },
           submit: () {
-            context.push(UploadProfileImageScreen.routeName);
+            if (!(_formKey.currentState?.validate() ?? false) ||
+                (!addAddressState.agreeCheckBox)) {
+              return;
+            }
+            ref
+                .read(addResidentialAddressViewModelProvider.notifier)
+                .addAddress(
+                    governate: governateTextEditingController.text,
+                    city: cityTextEditingController.text,
+                    region: regionTextEditingController.text,
+                    street: streetTextEditingController.text,
+                    note: noteTextEditingController.text);
           },
         ));
   }
