@@ -76,15 +76,14 @@ class _LoginScreenV2State extends ConsumerState<LoginScreen> {
       },
       loginFunc: () {
         //TODO uncomment this when test finished
-        // if (!(_formKey.currentState?.validate() ?? false)) {
-        //   return;
-        // }
-        // ref.read(logInViewModelProvider.notifier).login(
-        //     email: emailTextEditingController.text,
-        //     password: passwordTextEditingController.text);
+        if (!(_formKey.currentState?.validate() ?? false)) {
+          return;
+        }
+        ref.read(logInViewModelProvider.notifier).login(
+            email: emailTextEditingController.text,
+            password: passwordTextEditingController.text);
 
-        //TODO remove this when test finished
-        context.push(AddResidentialAddressScreen.routeName);
+ 
       },
       creatAccountFunc: () {
         context.push(SignupScreen.routeName);

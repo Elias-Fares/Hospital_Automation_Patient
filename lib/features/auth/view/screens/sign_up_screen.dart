@@ -115,19 +115,19 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
         },
         signUpFunc: () {
           //TODO delete after test
-          // if (!(_formKey.currentState?.validate() ?? false)) {
-          //   return;
-          // }
+          if (!(_formKey.currentState?.validate() ?? false)) {
+            return;
+          }
 
-          // ref.read(signUpViewModelProvider.notifier).signUp(
-          //       email: emailTextEditingController.text,
-          //       firstName: firstNameTextEditingController.text,
-          //       lastName: lastNameTextEditingController.text,
-          //       middleName: middleNameTextEditingController.text,
-          //       password: passwordTextEditingController.text,
-          //       phoneNumber: phoneTextEditingController.text,
-          //     );
-          context.push(UploadProfileImageScreen.routeName);
+          ref.read(signUpViewModelProvider.notifier).signUp(
+                email: emailTextEditingController.text,
+                firstName: firstNameTextEditingController.text,
+                lastName: lastNameTextEditingController.text,
+                middleName: middleNameTextEditingController.text,
+                password: passwordTextEditingController.text,
+                phoneNumber: phoneTextEditingController.text,
+              );
+          // context.push(UploadProfileImageScreen.routeName);
         },
         goToLogin: () {
           context.go(LoginScreen.routeName);

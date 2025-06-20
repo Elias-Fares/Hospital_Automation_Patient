@@ -80,16 +80,16 @@ class _VerificationCodeScreenState
           },
           verifyCodePress: () {
             //TODO uncomment when you finish Auth
-            // debugPrint(_otpCode.length.toString());
-            // if (_otpCode.length < 4) {
-            //   return;
-            // }
-            // ref
-            //     .read(verifyCodeViewModelProvider.notifier)
-            //     .verifyOTP(otp: _otpCode);
+            debugPrint(_otpCode.length.toString());
+            if (_otpCode.length < 4) {
+              return;
+            }
+            ref
+                .read(verifyCodeViewModelProvider.notifier)
+                .verifyOTP(otp: _otpCode);
 
             //TODO delete it when u fininsh testign
-            context.push(LoginScreen.routeName);
+            // context.push(LoginScreen.routeName);
           },
           resendCodePress: () {
             ref.read(verifyCodeViewModelProvider.notifier).sendOTP();
