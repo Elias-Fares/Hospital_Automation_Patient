@@ -1,23 +1,29 @@
 part of '../appointments.dart';
-class AppointmentTabView extends StatelessWidget {
-  const AppointmentTabView(
-      {super.key, required this.appointments});
 
-  final List<Map<String, String>> appointments;
+class AppointmentTabView extends StatelessWidget {
+  const AppointmentTabView({super.key, required this.appointments, required this.onRefresh});
+
+  final List<AppointmentModel> appointments;
+  final Future<void> Function() onRefresh;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: appointments.length,
-      itemBuilder: (context, index) {
-        final data = appointments.elementAt(index);
-        return AppointmentCard(
-          name: data["name"]!,
-          dateTime: data["time"]!,
-          doctorName: data["doctor"]!,
-          type: data["tag"]!,
-        );
-      },
+    return RefreshIndicator(
+      onRefresh: onRefresh,
+      child: ListView.builder(
+        itemCount: appointments.length,
+        physics: const AlwaysScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          final data = appointments.elementAt(index);
+          return AppointmentCard(
+            name: "Not yet",
+            dateTime: data.date?.getYearMonthDay() ?? "",
+            doctorName:
+                "${data.doctor?.firstName} ${data.doctor?.middleName} ${data.doctor?.lastName}",
+            type: data.appointmentType?.typeName ?? "",
+          );
+        },
+      ),
     );
   }
 }

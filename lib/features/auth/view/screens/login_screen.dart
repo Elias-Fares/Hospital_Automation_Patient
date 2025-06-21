@@ -9,6 +9,7 @@ import 'package:patient_app/core/function/get_message.dart';
 import 'package:patient_app/core/validators/fields_validator.dart';
 import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
 import 'package:patient_app/core/widgets/show_snack_bar_success_message.dart';
+import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
 import 'package:patient_app/features/auth/view/screens/reset_password_screen.dart';
 import 'package:patient_app/features/auth/view/screens/sign_up_screen.dart';
@@ -52,7 +53,7 @@ class _LoginScreenV2State extends ConsumerState<LoginScreen> {
         next?.when(
           data: (data) {
             // showSnackBarSuccessMessage(context, message: data["message"]);
-            context.push(AddResidentialAddressScreen.routeName);
+            context.push(AppointmentsScreen.routeName);
           },
           error: (error, stackTrace) {
             showSnackBarErrorMessage(context, message: error.toString());
@@ -82,8 +83,6 @@ class _LoginScreenV2State extends ConsumerState<LoginScreen> {
         ref.read(logInViewModelProvider.notifier).login(
             email: emailTextEditingController.text,
             password: passwordTextEditingController.text);
-
- 
       },
       creatAccountFunc: () {
         context.push(SignupScreen.routeName);

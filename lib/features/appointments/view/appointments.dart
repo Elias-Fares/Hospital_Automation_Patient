@@ -1,12 +1,19 @@
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:patient_app/core/function/date_format.dart';
 import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/animated_read_more.dart';
+import 'package:patient_app/core/widgets/custom_error_widget.dart';
+import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
+import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import 'package:patient_app/features/appointments/view_model/appointments_view_model.dart';
 
 part 'appointments_screen.dart';
 part 'widget/appointment_card.dart';

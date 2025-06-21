@@ -39,6 +39,7 @@ class Res {
   static const String notificationIcon = "$mainScreenIconPath/notification$png";
   static const String motherIcon = "$mainScreenIconPath/mother_icon$png";
   static const String fatherIcon = "$mainScreenIconPath/father_icon$png";
+  static const String errorIcon = "$mainScreenIconPath/error_icon$svg";
 
   //profile
   static const String appointmenProfiletIcon =
@@ -50,7 +51,8 @@ class Res {
   static const String recordIcon = "$profileIconPath/record_icon$png";
   static const String vaccinationIcon = "$profileIconPath/vaccination_icon$png";
   static const String editPenIcon = "$profileIconPath/edit_pen_icon$png";
-  static const String suspendUserIcon = "$profileIconPath/suspend_user_icon$png";
+  static const String suspendUserIcon =
+      "$profileIconPath/suspend_user_icon$png";
   static const String departmentIcon = "$profileIconPath/department_icon$png";
   static const String emailIcon = "$profileIconPath/email_icon$png";
   static const String phoneIcon = "$profileIconPath/phone_icon$png";
@@ -67,6 +69,5 @@ class Res {
   static const String drawerProfileIcon = "$drawerIconPath/d_profile$svg";
   static const String drawerVaccinationIcon =
       "$drawerIconPath/d_vaccination$png";
-  static const String medicineIcon =
-      "$drawerIconPath/medicine_icon$png";
+  static const String medicineIcon = "$drawerIconPath/medicine_icon$png";
 }

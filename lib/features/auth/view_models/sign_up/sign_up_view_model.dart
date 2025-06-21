@@ -1,7 +1,7 @@
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/gender_enum.dart';
-import 'package:patient_app/data/repositories/auth_repository.dart';
+import 'package:patient_app/data/auth/repository/auth_repository.dart';
 import 'package:patient_app/features/auth/view_models/sign_up/sign_up_state.dart';
 import 'package:patient_app/features/auth/view_models/verify_code/verify_code_view_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

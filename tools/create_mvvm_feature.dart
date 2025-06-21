@@ -64,24 +64,24 @@ void main(List<String> arguments) async {
   await ToolsHelper.createDirectoryIfNotExists(viewModelDirectory);
 
   // Create state directory inside view model dir
-  final viewModelStateDirectory = Directory('${viewModelDirectory.path}/state');
-  await ToolsHelper.createDirectoryIfNotExists(viewModelStateDirectory);
+  // final viewModelStateDirectory = Directory('${viewModelDirectory.path}/state');
+  // await ToolsHelper.createDirectoryIfNotExists(viewModelStateDirectory);
 
-  //Create state file inside view_model/state/
+  //Create state file inside view_model/
   await ToolsHelper.createFile(
       path:
-          '${viewModelStateDirectory.path}/${lowerCaseFeatureName}_state.dart',
+          '${viewModelDirectory.path}/${lowerCaseFeatureName}_state.dart',
       content: ToolsHelper.getViewModelStateContent(camelCaseFeatureName));
 
   // Create riverpod directory inside view model dir
-  final viewModelRiverpodDirectory =
-      Directory('${viewModelDirectory.path}/riverpod');
-  await ToolsHelper.createDirectoryIfNotExists(viewModelRiverpodDirectory);
+  // final viewModelRiverpodDirectory =
+  //     Directory('${viewModelDirectory.path}/riverpod');
+  // await ToolsHelper.createDirectoryIfNotExists(viewModelRiverpodDirectory);
 
   // Create view model file inside view_model/riverpod/
   await ToolsHelper.createFile(
       path:
-          '${viewModelRiverpodDirectory.path}/${lowerCaseFeatureName}_view_model.dart',
+          '${viewModelDirectory.path}/${lowerCaseFeatureName}_view_model.dart',
       content: ToolsHelper.getViewModelRiverpodContent(
         featureName: camelCaseFeatureName,
         fileName: '${lowerCaseFeatureName}_view_model',

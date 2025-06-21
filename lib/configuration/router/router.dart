@@ -23,7 +23,7 @@ import 'package:patient_app/features/profile/view/profile_screen.dart';
 class AppRouter {
   AppRouter._();
   // static String initialRoute = "/appointments";
-  static String initialRoute = SignupScreen.routeName;
+  static String initialRoute = LoginScreen.routeName;
 
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "root");
 
@@ -123,7 +123,11 @@ class AppRouter {
           routes: [
             GoRoute(
               path: ChildProfileScreen.routeName,
-              builder: (context, state) => const ChildProfileScreen(),
+              builder: (context, state) {
+                final childId = state.extra as String?;
+
+                return ChildProfileScreen(childId: childId,);
+              },
             )
           ])
     ]);

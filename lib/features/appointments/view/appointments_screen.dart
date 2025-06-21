@@ -1,53 +1,112 @@
 part of 'appointments.dart';
 
-class AppointmentsScreen extends StatelessWidget {
+class AppointmentsScreen extends ConsumerStatefulWidget {
   static const routeName = "/appointments";
-  final List<Map<String, String>> upcomingAppointments = const [
-    {
-      'name': 'Mariam Saoud',
-      'tag': 'Vaccination',
-      'time': '20 Dec - 11:05 AM',
-      'doctor': 'Magferah Ahmad',
-    },
-    {
-      'name': 'Mariam Ahmad',
-      'tag': 'Check up',
-      'time': '20 Dec - 12:25 PM',
-      'doctor': 'Maram Mansoura',
-    },
-    {
-      'name': 'Jana Fares',
-      'tag': 'Adenoid surgery',
-      'time': '20 Dec - 01:15 PM',
-      'doctor': 'Elias Fares',
-    },
-  ];
-
-  // final List<Map<String, String>> dec2Appointments = const [
-
-  // ];
 
   const AppointmentsScreen({super.key});
 
   @override
+  ConsumerState<AppointmentsScreen> createState() => _AppointmentsScreenState();
+}
+
+class _AppointmentsScreenState extends ConsumerState<AppointmentsScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(
+      () async {
+        final appointmentsViewModel =
+            ref.read(appointmentsViewModelProvider.notifier);
+        appointmentsViewModel.getBothUpcomingAppointments();
+        appointmentsViewModel.getBothPassedAppointments();
+        appointmentsViewModel.getBothMissedAppointments();
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final appointmentsState = ref.watch(appointmentsViewModelProvider);
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: const MainAppBar(),
         body: Column(
           children: [
-            const AppointmentsTabBar(),
+            AppointmentsTabBar(
+              upcomingCount:
+                  appointmentsState.upcomingAppointments?.asData?.value.length,
+              passedCount:
+                  appointmentsState.passedAppointments?.asData?.value.length,
+              missedCount:
+                  appointmentsState.missedAppointments?.asData?.value.length,
+            ),
             const SizedBox(
               height: 15,
             ),
             Expanded(
               child: TabBarView(
                 children: [
-                  // appointmentsList(),
-                  AppointmentTabView(appointments: upcomingAppointments),
-                  const Center(child: Text('No passed appointments')),
-                  const Center(child: Text('No missed appointments')),
+                  appointmentsState.upcomingAppointments?.when(
+                        data: (data) => AppointmentTabView(
+                          appointments: data,
+                          onRefresh: () async {
+                            ref
+                                .read(appointmentsViewModelProvider.notifier)
+                                .getBothUpcomingAppointments();
+                          },
+                        ),
+                        error: (error, stackTrace) => CustomErrorWidget(
+                          message: error.toString(),
+                          onTryAgainTap: () {
+                            ref
+                                .read(appointmentsViewModelProvider.notifier)
+                                .getBothUpcomingAppointments();
+                          },
+                        ),
+                        loading: () => const CustomLoadingWidget(),
+                      ) ??
+                      const SizedBox.shrink(),
+                  appointmentsState.passedAppointments?.when(
+                        data: (data) => AppointmentTabView(
+                          appointments: data,
+                          onRefresh: () async {
+                            ref
+                                .read(appointmentsViewModelProvider.notifier)
+                                .getBothPassedAppointments();
+                          },
+                        ),
+                        error: (error, stackTrace) => CustomErrorWidget(
+                          message: error.toString(),
+                          onTryAgainTap: () {
+                            ref
+                                .read(appointmentsViewModelProvider.notifier)
+                                .getBothPassedAppointments();
+                          },
+                        ),
+                        loading: () => const CustomLoadingWidget(),
+                      ) ??
+                      const SizedBox.shrink(),
+                  appointmentsState.missedAppointments?.when(
+                        data: (data) => AppointmentTabView(
+                          appointments: data,
+                          onRefresh: () async {
+                            ref
+                                .read(appointmentsViewModelProvider.notifier)
+                                .getBothMissedAppointments();
+                          },
+                        ),
+                        error: (error, stackTrace) => CustomErrorWidget(
+                          message: error.toString(),
+                          onTryAgainTap: () {
+                            ref
+                                .read(appointmentsViewModelProvider.notifier)
+                                .getBothMissedAppointments();
+                          },
+                        ),
+                        loading: () => const CustomLoadingWidget(),
+                      ) ??
+                      const SizedBox.shrink(),
                 ],
               ),
             ),
@@ -57,14 +116,3 @@ class AppointmentsScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-/**
- * 
- *      'name': 'Mariam Ahmad',
-      'tag': 'Check up',
-      'time': '20 Dec - 12:25 PM',
-      'doctor': 'Maram Mansoura',
- */
-

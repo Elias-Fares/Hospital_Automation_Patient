@@ -7,7 +7,7 @@ part of 'upload_profile_image_view_model.dart';
 // **************************************************************************
 
 String _$uploadProfileImageViewModelHash() =>
-    r'130d72a4a53401800520a36d4a9ecdfc47dc5d55';
+    r'50bbd537a15152fe02d7eb42d7458dbc9048f64b';
 
 /// See also [UploadProfileImageViewModel].
 @ProviderFor(UploadProfileImageViewModel)

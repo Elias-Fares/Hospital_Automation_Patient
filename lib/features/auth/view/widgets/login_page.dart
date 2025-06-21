@@ -94,10 +94,10 @@ class LoginPage extends StatelessWidget {
                 height: 22,
               ),
               AuthTextFormField(
-                textEditingController: passwordTextEditingController,
-                validator: passwordValidator,
-                label: "Password",
-              ),
+                  textEditingController: passwordTextEditingController,
+                  validator: passwordValidator,
+                  label: "Password",
+                  isPassword: true),
               const SizedBox(
                 height: 5,
               ),

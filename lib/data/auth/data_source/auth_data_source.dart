@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:patient_app/core/base_dio/base_dio.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/constant/constant.dart';
-import 'package:patient_app/data/models/user_model.dart';
+import 'package:patient_app/data/auth/models/user_model.dart';
 
 class AuthDataSource {
   final BaseDio baseDio;

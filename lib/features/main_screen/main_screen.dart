@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/features/app_drawer/view/app_drawer_screen.dart';
+import 'package:patient_app/features/children/view_model/children_view_model.dart';
 
 final GlobalKey<ScaffoldState> mainScreenScaffoldKey =
     GlobalKey<ScaffoldState>();
 
-class MainScreen extends StatefulWidget {
+class MainScreen extends ConsumerStatefulWidget {
   const MainScreen({super.key, required this.statefulNavigationShell});
   final StatefulNavigationShell statefulNavigationShell;
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  ConsumerState<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,11 +27,13 @@ class _MainScreenState extends State<MainScreen> {
       drawer: AppDrawerScreen(
         mainScreenKey: mainScreenScaffoldKey,
       ),
-
       bottomNavigationBar: NavigationBar(
         selectedIndex: widget.statefulNavigationShell.currentIndex,
         onDestinationSelected: (index) {
           widget.statefulNavigationShell.goBranch(index, initialLocation: true);
+          // if (index == 1) {
+          //   ref.read(childrenViewModelProvider.notifier).getChildren();
+          // }
         },
         height: 70,
         backgroundColor: AppColors.backgroundColor,

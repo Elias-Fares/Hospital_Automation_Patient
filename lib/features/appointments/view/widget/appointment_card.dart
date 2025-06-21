@@ -77,13 +77,13 @@ class AppointmentCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Date & Time",
+                      "Doctor",
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall
                           ?.copyWith(color: AppColors.hintTextColor),
                     ),
-                    Text(dateTime),
+                    Text(doctorName),
                   ],
                 ),
               ],

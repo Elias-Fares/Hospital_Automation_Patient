@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:patient_app/core/enums/gender_enum.dart';
-import 'package:patient_app/data/models/user_model.dart';
+import 'package:patient_app/data/auth/models/user_model.dart';
 
 class SignUpState {
   final AsyncValue<UserModel?>? signUpResponse;

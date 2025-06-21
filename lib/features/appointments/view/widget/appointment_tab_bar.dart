@@ -1,9 +1,11 @@
-
 part of '../appointments.dart';
 
-
 class AppointmentsTabBar extends StatelessWidget {
-  const AppointmentsTabBar({super.key});
+  const AppointmentsTabBar(
+      {super.key, this.upcomingCount, this.passedCount, this.missedCount});
+  final int? upcomingCount;
+  final int? passedCount;
+  final int? missedCount;
 
   @override
   Widget build(BuildContext context) {
@@ -27,18 +29,20 @@ class AppointmentsTabBar extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         splashColor: AppColors.primaryContainer,
         elevation: 0,
-        tabs: const [
+        tabs: [
           Tab(
             text: "Upcoming",
-            icon: TabBarBadge(count: 10),
+            icon: upcomingCount != null
+                ? TabBarBadge(count: upcomingCount!)
+                : null,
           ),
           Tab(
             text: "Passed",
-            icon: TabBarBadge(count: 50),
+            icon: passedCount != null ? TabBarBadge(count: passedCount!) : null,
           ),
           Tab(
             text: "Missed",
-            icon: TabBarBadge(count: 110),
+            icon: missedCount != null ? TabBarBadge(count: missedCount!) : null,
           ),
         ],
       ),

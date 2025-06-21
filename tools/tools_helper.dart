@@ -6,8 +6,8 @@ import 'package:path/path.dart' as p;
 class ToolsHelper {
   ToolsHelper._();
 
-    static const String externalPath = 'D:/flutter_repo';
-      static const String black = '\x1B[30m';
+  static const String externalPath = 'D:/flutter_repo';
+  static const String black = '\x1B[30m';
   static const String red = '\x1B[31m';
   static const String green = '\x1B[32m';
   static const String yellow = '\x1B[33m';
@@ -17,7 +17,9 @@ class ToolsHelper {
   static const String white = '\x1B[37m';
   static const String reset = '\x1B[0m';
 
-  static String getfeatureScreenContentString({required String caseCamelFeatureName,required String lowerCaseFeatureName}) {
+  static String getfeatureScreenContentString(
+      {required String caseCamelFeatureName,
+      required String lowerCaseFeatureName}) {
     return '''
 
 import 'package:flutter/material.dart';
@@ -52,7 +54,7 @@ class ${featureName}State {
   }) {
     return '''
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../state/$stateFileName';
+import '$stateFileName';
 part '$fileName.g.dart';
 
 @riverpod
@@ -106,7 +108,7 @@ class ${featureName}ViewModel extends _\$${featureName}ViewModel {
     }
   }
 
-    static Future<void> createFileV2({
+  static Future<void> createFileV2({
     required String fileName,
     required String folderPath,
     required String fileContent,
@@ -120,8 +122,7 @@ class ${featureName}ViewModel extends _\$${featureName}ViewModel {
     }
   }
 
-
-    static Future<void> copyFolder(
+  static Future<void> copyFolder(
       {required Directory source, required Directory destination}) async {
     if (!await source.exists()) {
       print("$red⛔ Source folder does not exist: ${source.path} ⛔");

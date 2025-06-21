@@ -1,6 +1,6 @@
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/repositories/auth_repository.dart';
+import 'package:patient_app/data/auth/repository/auth_repository.dart';
 import 'package:patient_app/features/auth/view_models/add_residential_address/add_residential_address_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'add_residential_address_view_model.g.dart';
