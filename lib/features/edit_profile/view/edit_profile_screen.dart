@@ -1,36 +1,69 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_outlined_button.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
+import 'package:patient_app/data/profile/models/user_profile_model.dart';
+import 'package:patient_app/features/edit_profile/view_model/edit_profile_view_model.dart';
+import 'package:patient_app/features/profile/view_model/profile_view_model.dart';
 
 part 'widget/edit_profile_text_form_field.dart';
 part 'widget/edit_profile_page.dart';
 part 'widget/edit_profile_add_note_button.dart';
 
-class EditProfileScreen extends StatefulWidget {
+class EditProfileScreen extends ConsumerStatefulWidget {
   static const routeName = "/edit_profile";
-  const EditProfileScreen({super.key});
+  const EditProfileScreen({super.key, this.userProfileData});
+
+  final UserProfileData? userProfileData;
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  ConsumerState<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
   // Controllers
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController secondNameController = TextEditingController();
-  final TextEditingController governorateController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController regionController = TextEditingController();
-  final TextEditingController streetController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  late TextEditingController firstNameController;
+  late TextEditingController secondNameController;
+  late TextEditingController governorateController;
+  late TextEditingController cityController;
+  late TextEditingController regionController;
+  late TextEditingController streetController;
+  late TextEditingController phoneController;
+  late TextEditingController emailController;
+  late TextEditingController noteController;
 
   final GlobalKey<FormState> _editProfileFormKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    firstNameController =
+        TextEditingController(text: widget.userProfileData?.firstName ?? "");
+    secondNameController =
+        TextEditingController(text: widget.userProfileData?.lastName ?? "");
+    governorateController = TextEditingController(
+        text: widget.userProfileData?.addressGovernorate ?? "");
+    cityController =
+        TextEditingController(text: widget.userProfileData?.addressCity ?? "");
+    regionController = TextEditingController(
+        text: widget.userProfileData?.addressRegion ?? "");
+    streetController = TextEditingController(
+        text: widget.userProfileData?.addressStreet ?? "");
+    phoneController =
+        TextEditingController(text: widget.userProfileData?.phoneNumber ?? "");
+    emailController =
+        TextEditingController(text: widget.userProfileData?.email ?? "");
+    noteController =
+        TextEditingController(text: widget.userProfileData?.addressNote ?? "");
+  }
 
   @override
   void dispose() {
@@ -48,9 +81,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SubAppBar(
+      appBar: SubAppBar(
           titleWidget: AppBarTitleWidget(
-              title: "John Doe", imagePath: Res.personePlaceHolderImage)),
+              title: joinStrings([
+                widget.userProfileData?.firstName,
+                widget.userProfileData?.lastName
+              ]),
+              imagePath: Res.personePlaceHolderImage)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: EditProfilePage(
@@ -63,8 +100,30 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           streetController: streetController,
           phoneController: phoneController,
           emailController: emailController,
-          onDiscardPressed: () {},
-          onSavePressed: () {},
+          noteController: noteController,
+          isSaveChangesLoading:
+              ref.watch(editProfileViewModelProvider)?.isLoading ?? false,
+          onDiscardPressed: () {
+            context.pop();
+          },
+          onSavePressed: () async {
+            await ref
+                .read(editProfileViewModelProvider.notifier)
+                .editUserProfile(
+                    email: emailController.text,
+                    firstName: firstNameController.text,
+                    middleName: widget.userProfileData?.middleName ?? "",
+                    lastName: secondNameController.text,
+                    phoneNumber: phoneController.text,
+                    addressGovernate: governorateController.text,
+                    addressRegion: regionController.text,
+                    addressCity: cityController.text,
+                    addressStreet: streetController.text,
+                    addressNote: noteController.text,
+                    gender: widget.userProfileData?.gender ?? "");
+
+            await ref.read(profileViewModelProvider.notifier).getUserProfile();
+          },
         ),
       ),
     );

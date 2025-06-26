@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/core/function/date_format.dart';
+import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
+import 'package:patient_app/core/widgets/appointment_card.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
@@ -16,7 +18,6 @@ import 'package:patient_app/data/appointments/models/appointment_model.dart';
 import 'package:patient_app/features/appointments/view_model/appointments_view_model.dart';
 
 part 'appointments_screen.dart';
-part 'widget/appointment_card.dart';
 part 'widget/appointment_tab_view.dart';
 part 'widget/appointment_tab_bar.dart';
 part 'widget/tab_bar_badge.dart';

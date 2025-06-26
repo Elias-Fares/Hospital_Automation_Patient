@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/core/constant/constant.dart';
+import 'package:patient_app/core/widgets/general_image_asset.dart';
+import 'package:patient_app/core/widgets/general_network_image.dart';
 
 class AppBarTitleWidget extends StatelessWidget {
   const AppBarTitleWidget({
@@ -7,7 +11,7 @@ class AppBarTitleWidget extends StatelessWidget {
     required this.imagePath,
   });
 
-  final String imagePath;
+  final String? imagePath;
   final String title;
 
   @override
@@ -15,11 +19,17 @@ class AppBarTitleWidget extends StatelessWidget {
     return Row(
       children: [
         ClipOval(
-          child: Image.asset(
-            imagePath,
+          child: GeneralNetworkImage(
+            url: "${Constant.baseUrl}/$imagePath",
             width: 35,
             height: 35,
-            fit: BoxFit.cover,
+            boxFit: BoxFit.cover,
+            failWidget: const GeneralImageAssets(
+              path: Res.childCardIcon,
+              width: 35,
+              height: 35,
+              boxFit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(

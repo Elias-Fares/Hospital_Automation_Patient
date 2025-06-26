@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:patient_app/core/base_dio/base_dio_interceptors.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/base_dio/errors_types_enum.dart';
 import 'package:patient_app/core/base_dio/general_model.dart';
@@ -9,11 +10,12 @@ import 'package:patient_app/core/constant/constant.dart';
 
 import '../../services/shared_preferences_service.dart';
 
-
 class BaseDio {
   final Dio dioProject;
   final SharedPreferencesService sharedPreferencesService;
-  BaseDio({required this.dioProject, required this.sharedPreferencesService});
+  BaseDio({required this.dioProject, required this.sharedPreferencesService}) {
+    dioProject.interceptors.add(BaseDioInterceptors());
+  }
   Future<DataState> get<T extends GeneralModel>({
     required String subUrl,
     String? token,
@@ -29,21 +31,13 @@ class BaseDio {
       dioProject.options.headers["Authorization"] =
           "Bearer ${token ?? storedToken}";
 
-      debugPrint("debugger $storedToken");
+      debugPrint("The token is $storedToken");
     }
 
     try {
-      debugPrint("-------------------------------------");
-      debugPrint("URL is ${url ?? Constant.baseUrl}$subUrl");
-      debugPrint("-------------------------------------");
-      debugPrint("Query Parameters is $queryParameters");
-      debugPrint("-------------------------------------");
-      debugPrint("Data is $data");
-      debugPrint("-------------------------------------");
       final response = await dioProject.get("${url ?? Constant.baseUrl}$subUrl",
           queryParameters: queryParameters, data: data);
 
-      debugPrint(json.decode(response.data).toString());
       final responseData = json.decode(response.data)["data"];
 
       if (isListOfModel) {
@@ -51,19 +45,14 @@ class BaseDio {
         responseData.forEach((customModel) {
           dataList.add(model.fromJson(customModel));
         });
-        print("the reponse modeled");
+        debugPrint("the reponse modeled");
         return DataSuccess(dataList);
       }
 
       final responseObject = model.fromJson(responseData);
-      print("the reponse modeled");
+      debugPrint("the reponse modeled");
       return DataSuccess(responseObject);
     } on DioException catch (e) {
-      debugPrint("-----------------------------------------------");
-      debugPrint("The exception is DioException: ${e.toString()}");
-      debugPrint("-----------------------------------------------");
-      // debugPrint("The StackTrace ${e.stackTrace}");
-      // debugPrint("--------------End of Stacktrace----------------");
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
       return DataFailed<ExceptionResponse>(exceptionResponse);
     } catch (e, stacktrace) {
@@ -94,33 +83,19 @@ class BaseDio {
       dioProject.options.headers["Authorization"] =
           "Bearer ${token ?? storedToken}";
 
-      debugPrint("debugger $storedToken");
+      debugPrint("The token is $storedToken");
     }
 
     try {
-      debugPrint("-------------------------------------");
-      debugPrint("URL is ${url ?? Constant.baseUrl}$subUrl");
-      debugPrint("-------------------------------------");
-      debugPrint("Query Parameters is $queryParameters");
-      debugPrint("-------------------------------------");
-      debugPrint("Data is $data");
-      debugPrint("-------------------------------------");
       final response = await dioProject.post(
           "${url ?? Constant.baseUrl}$subUrl",
           queryParameters: queryParameters,
           data: data);
-      debugPrint(json.decode(response.data).toString());
       final responseData = json.decode(response.data)["data"];
       final responseObject = model?.fromJson(responseData);
       print("the reponse modeled");
       return DataSuccess<T>(responseObject);
     } on DioException catch (e) {
-      debugPrint("-----------------------------------------------");
-      debugPrint("The exception is DioException: ${e.toString()}");
-      debugPrint("-----------------------------------------------");
-      debugPrint("The StackTrace ${e.stackTrace}");
-      // final ExceptionResponse exceptionResponse =
-      //     ExceptionResponse(statusCode: 422, exceptionMessages: ["Error"]);
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
       return DataFailed(exceptionResponse);
     } catch (e, stacktrace) {
@@ -146,7 +121,7 @@ class BaseDio {
       dioProject.options.headers["Authorization"] =
           "Bearer ${token ?? storedToken}";
 
-      debugPrint("debugger $storedToken");
+      debugPrint("The token is $storedToken");
     }
     try {
       var response = await dioProject.delete("${Constant.baseUrl}$subUrl",
@@ -220,19 +195,10 @@ class BaseDio {
       dioProject.options.headers["Authorization"] =
           "Bearer ${token ?? storedToken}";
 
-      debugPrint("debugger $storedToken");
+      debugPrint("The token is $storedToken");
     }
-    // dioProject.options.headers["Accept-Language"] =
-    //     AppLanguageKeys.appLang.value;
 
     try {
-      debugPrint("-------------------------------------");
-      debugPrint("URL is ${url ?? Constant.baseUrl}$subUrl");
-      debugPrint("-------------------------------------");
-      debugPrint("Query Parameters is $queryParameters");
-      debugPrint("-------------------------------------");
-      debugPrint("Data is $data");
-      debugPrint("-------------------------------------");
       final response = await dioProject.post(
           "${url ?? Constant.baseUrl}$subUrl",
           queryParameters: queryParameters,
@@ -242,12 +208,6 @@ class BaseDio {
 
       return DataSuccess(responseData);
     } on DioException catch (e) {
-      debugPrint("-----------------------------------------------");
-      debugPrint("The exception is DioException: ${e.toString()}");
-      debugPrint("-----------------------------------------------");
-      debugPrint("The StackTrace ${e.stackTrace}");
-      // final ExceptionResponse exceptionResponse =
-      //     ExceptionResponse(statusCode: 422, exceptionMessages: ["Error"]);
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
       return DataFailed<ExceptionResponse>(exceptionResponse);
     } catch (e, stacktrace) {
@@ -255,6 +215,48 @@ class BaseDio {
       debugPrint("The exception is Other: ${e.toString()}");
       debugPrint("-----------------------------------------------");
       debugPrint("The StackTrace $stacktrace");
+      final ExceptionResponse exceptionResponse = ExceptionResponse(
+          statusCode: -888,
+          exceptionMessages: ["Another exception was thrown"]);
+      return DataFailed<ExceptionResponse>(exceptionResponse);
+    }
+  }
+
+  Future<DataState> baseGet<T extends GeneralModel>({
+    required String subUrl,
+    String? token,
+    String? url,
+    bool needToken = false,
+    required dynamic model,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    if (needToken) {
+      final storedToken = sharedPreferencesService.getToken();
+      dioProject.options.headers["Authorization"] =
+          "Bearer ${token ?? storedToken}";
+
+      debugPrint("The token is $storedToken");
+    }
+
+    try {
+      final response = await dioProject.get("${url ?? Constant.baseUrl}$subUrl",
+          queryParameters: queryParameters, data: data);
+
+      final responseData = json.decode(response.data);
+
+      final responseObject = model.fromJson(responseData);
+      debugPrint("the reponse modeled");
+      return DataSuccess(responseObject);
+    } on DioException catch (e) {
+      final ExceptionResponse exceptionResponse = getExceptionResponse(e);
+      return DataFailed<ExceptionResponse>(exceptionResponse);
+    } catch (e, stacktrace) {
+      debugPrint("-----------------------------------------------");
+      debugPrint("The exception is Other: ${e.toString()}");
+      debugPrint("-----------------------------------------------");
+      debugPrint("The StackTrace $stacktrace");
+      debugPrint("--------------End of Stacktrace----------------");
       final ExceptionResponse exceptionResponse = ExceptionResponse(
           statusCode: -888,
           exceptionMessages: ["Another exception was thrown"]);

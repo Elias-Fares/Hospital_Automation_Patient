@@ -26,8 +26,8 @@ class ProfileDetailsWidget extends StatelessWidget {
         Row(
           children: [
             ClipOval(
-                child: GeneralImageAssets(
-              path: imagePath,
+                child: GeneralNetworkImage(
+              url: "${Constant.baseUrl}/$imagePath",
               width: 70.w,
               height: 70.w,
             )),

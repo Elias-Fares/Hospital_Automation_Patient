@@ -1,10 +1,66 @@
 import 'dart:convert';
 
 import 'package:patient_app/core/base_dio/general_model.dart';
-
 import 'package:patient_app/core/models/user.dart';
 
 class ChildProfileModel extends GeneralModel {
+  final ChildProfileData? childProfileData;
+  final DateTime? lastAppointment;
+  final DateTime? lastVaccine;
+  final int? numOfGuardian;
+
+  ChildProfileModel({
+    this.childProfileData,
+    this.lastAppointment,
+    this.lastVaccine,
+    this.numOfGuardian,
+  });
+
+  ChildProfileModel copyWith({
+    ChildProfileData? childProfileData,
+    DateTime? lastAppointment,
+    DateTime? lastVaccine,
+    int? numOfGuardian,
+  }) =>
+      ChildProfileModel(
+        childProfileData: childProfileData ?? this.childProfileData,
+        lastAppointment: lastAppointment ?? this.lastAppointment,
+        lastVaccine: lastVaccine ?? this.lastVaccine,
+        numOfGuardian: numOfGuardian ?? this.numOfGuardian,
+      );
+
+  factory ChildProfileModel.fromRawJson(String str) =>
+      ChildProfileModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory ChildProfileModel.fromJson(Map<String, dynamic> json) =>
+      ChildProfileModel(
+        childProfileData: json["data"] == null ? null : ChildProfileData.fromJson(json["data"]),
+        lastAppointment: json["last_appointment"] == null
+            ? null
+            : DateTime.parse(json["last_appointment"]),
+        lastVaccine: json["last_vaccine"] == null
+            ? null
+            : DateTime.parse(json["last_vaccine"]),
+        numOfGuardian: json["numOfGuardian"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "data":childProfileData?.toJson(),
+        "last_appointment":
+            "${lastAppointment!.year.toString().padLeft(4, '0')}-${lastAppointment!.month.toString().padLeft(2, '0')}-${lastAppointment!.day.toString().padLeft(2, '0')}",
+        "last_vaccine": lastVaccine?.toIso8601String(),
+        "numOfGuardian": numOfGuardian,
+      };
+
+  @override
+  GeneralModel fromJson(json) {
+    return ChildProfileModel.fromJson(json);
+  }
+}
+
+class ChildProfileData {
   final int? childId;
   final String? firstName;
   final String? lastName;
@@ -20,7 +76,7 @@ class ChildProfileModel extends GeneralModel {
   final int? employeeId;
   final User? user;
 
-  ChildProfileModel({
+  ChildProfileData({
     this.childId,
     this.firstName,
     this.lastName,
@@ -37,7 +93,7 @@ class ChildProfileModel extends GeneralModel {
     this.user,
   });
 
-  ChildProfileModel copyWith({
+  ChildProfileData copyWith({
     int? childId,
     String? firstName,
     String? lastName,
@@ -53,7 +109,7 @@ class ChildProfileModel extends GeneralModel {
     int? employeeId,
     User? user,
   }) =>
-      ChildProfileModel(
+      ChildProfileData(
         childId: childId ?? this.childId,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
@@ -71,13 +127,11 @@ class ChildProfileModel extends GeneralModel {
         user: user ?? this.user,
       );
 
-  factory ChildProfileModel.fromRawJson(String str) =>
-      ChildProfileModel.fromJson(json.decode(str));
+  factory ChildProfileData.fromRawJson(String str) => ChildProfileData.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ChildProfileModel.fromJson(Map<String, dynamic> json) =>
-      ChildProfileModel(
+  factory ChildProfileData.fromJson(Map<String, dynamic> json) => ChildProfileData(
         childId: json["childId"],
         firstName: json["first_name"],
         lastName: json["last_name"],
@@ -117,9 +171,5 @@ class ChildProfileModel extends GeneralModel {
         "employee_id": employeeId,
         "user": user?.toJson(),
       };
-
-  @override
-  GeneralModel fromJson(json) {
-    return ChildProfileModel.fromJson(json);
-  }
 }
+

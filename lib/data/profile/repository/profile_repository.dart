@@ -1,0 +1,45 @@
+import 'package:patient_app/core/base_dio/data_state.dart';
+import 'package:patient_app/data/profile/data_source/profile_data_source.dart';
+import 'package:patient_app/data/profile/models/user_profile_model.dart';
+
+class ProfileRepository {
+  final ProfileDataSource _profileDataSource;
+
+  ProfileRepository({required ProfileDataSource profileDataSource})
+      : _profileDataSource = profileDataSource;
+
+  Future<DataState> getUserProfile() async {
+    final response = _profileDataSource.getUserProfile();
+
+    return response;
+  }
+
+  Future<DataState> editUserProfile({
+    required String email,
+    required String firstName,
+    required String middleName,
+    required String lastName,
+    required String phoneNumber,
+    required String addressGovernate,
+    required String addressRegion,
+    required String addressCity,
+    required String addressStreet,
+    required String addressNote,
+    required String gender,
+  }) async {
+    final response = _profileDataSource.editUserProfile(
+        email: email,
+        firstName: firstName,
+        middleName: middleName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        addressGovernate: addressGovernate,
+        addressRegion: addressRegion,
+        addressCity: addressCity,
+        addressStreet: addressStreet,
+        addressNote: addressNote,
+        gender: gender);
+
+    return response;
+  }
+}

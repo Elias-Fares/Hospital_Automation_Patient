@@ -20,7 +20,7 @@ class AppointmentsDataSource {
       querMap["filter"] = state;
     }
 
-    final response = _baseDio.get<AppointmentModel>(
+    final response = await _baseDio.get<AppointmentModel>(
       subUrl: "/user/show-appointments",
       model: AppointmentModel(),
       needToken: true,

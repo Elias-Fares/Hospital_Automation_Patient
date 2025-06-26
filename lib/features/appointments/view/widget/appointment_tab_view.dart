@@ -1,7 +1,8 @@
 part of '../appointments.dart';
 
 class AppointmentTabView extends StatelessWidget {
-  const AppointmentTabView({super.key, required this.appointments, required this.onRefresh});
+  const AppointmentTabView(
+      {super.key, required this.appointments, required this.onRefresh});
 
   final List<AppointmentModel> appointments;
   final Future<void> Function() onRefresh;
@@ -16,10 +17,18 @@ class AppointmentTabView extends StatelessWidget {
         itemBuilder: (context, index) {
           final data = appointments.elementAt(index);
           return AppointmentCard(
-            name: "Not yet",
+            name: data.child != null
+                ? joinStrings([
+                    data.child?.firstName,
+                    data.child?.lastName,
+                  ])
+                : joinStrings([data.user?.firstName, data.user?.lastName]),
             dateTime: data.date?.getYearMonthDay() ?? "",
-            doctorName:
-                "${data.doctor?.firstName} ${data.doctor?.middleName} ${data.doctor?.lastName}",
+            doctorName: joinStrings([
+              data.doctor?.firstName,
+              data.doctor?.middleName,
+              data.doctor?.lastName
+            ]),
             type: data.appointmentType?.typeName ?? "",
           );
         },

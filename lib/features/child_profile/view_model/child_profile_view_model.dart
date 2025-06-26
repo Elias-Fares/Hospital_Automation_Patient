@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/data/auth/repository/auth_repository.dart';
+import 'package:patient_app/data/childern/models/child_profile_model.dart';
 import 'package:patient_app/data/childern/repository/children_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -9,7 +11,7 @@ part 'child_profile_view_model.g.dart';
 @riverpod
 class ChildProfileViewModel extends _$ChildProfileViewModel {
   @override
-  AsyncValue? build() => null;
+  AsyncValue<ChildProfileModel>? build() => null;
 
   final _childrenRepository = getIt<ChildrenRepository>();
 
@@ -17,6 +19,8 @@ class ChildProfileViewModel extends _$ChildProfileViewModel {
     required String childId,
   }) async {
     state = const AsyncValue.loading();
+
+    debugPrint("debugger ${state.runtimeType}");
 
     final response =
         await _childrenRepository.getChildProfile(childId: childId);

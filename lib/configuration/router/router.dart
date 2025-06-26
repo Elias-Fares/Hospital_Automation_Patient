@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/my_go_router_observer.dart';
+import 'package:patient_app/core/params/child_appointment_params.dart';
+import 'package:patient_app/data/profile/models/user_profile_model.dart';
 import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
 import 'package:patient_app/features/auth/view/screens/login_screen.dart';
@@ -9,6 +11,7 @@ import 'package:patient_app/features/auth/view/screens/sign_up_screen.dart';
 import 'package:patient_app/features/auth/view/screens/upload_profile_image_screen.dart';
 import 'package:patient_app/features/auth/view/screens/verification_code_screen.dart';
 import 'package:patient_app/features/book_appointment/view/book_appointment_screen.dart';
+import 'package:patient_app/features/child_appointments/view/child_appointments_screen.dart';
 import 'package:patient_app/features/child_profile/view/child_profile_screen.dart';
 import 'package:patient_app/features/children/view/children_s.dart';
 import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
@@ -22,8 +25,8 @@ import 'package:patient_app/features/profile/view/profile_screen.dart';
 
 class AppRouter {
   AppRouter._();
-  // static String initialRoute = "/appointments";
-  static String initialRoute = LoginScreen.routeName;
+  static String initialRoute = "/appointments";
+  // static String initialRoute = LoginScreen.routeName;
 
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "root");
 
@@ -87,7 +90,12 @@ class AppRouter {
           routes: [
             GoRoute(
               path: EditProfileScreen.routeName,
-              builder: (context, state) => const EditProfileScreen(),
+              builder: (context, state) {
+                final userProfileData = state.extra as UserProfileData?;
+                return EditProfileScreen(
+                  userProfileData: userProfileData,
+                );
+              },
             )
           ]),
       GoRoute(
@@ -122,13 +130,27 @@ class AppRouter {
           builder: (context, state) => const ChildrenScreen(),
           routes: [
             GoRoute(
-              path: ChildProfileScreen.routeName,
-              builder: (context, state) {
-                final childId = state.extra as String?;
+                path: ChildProfileScreen.routeName,
+                builder: (context, state) {
+                  final childId = state.extra as String?;
 
-                return ChildProfileScreen(childId: childId,);
-              },
-            )
+                  return ChildProfileScreen(
+                    childId: childId,
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: ChildAppointmentsScreen.routeName,
+                    builder: (context, state) {
+                      final childAppointmentParams =
+                          state.extra as ChildAppointmentParams?;
+                      return ChildAppointmentsScreen(
+                        childAppointmentParams:
+                            childAppointmentParams ?? ChildAppointmentParams(),
+                      );
+                    },
+                  ),
+                ])
           ])
     ]);
   }

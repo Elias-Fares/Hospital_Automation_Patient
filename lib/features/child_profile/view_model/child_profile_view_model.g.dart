@@ -7,12 +7,12 @@ part of 'child_profile_view_model.dart';
 // **************************************************************************
 
 String _$childProfileViewModelHash() =>
-    r'3c4019982c80b9f087f4844cac0b4f97c40e3c43';
+    r'b76e2eddd943177a468f60f8ac026f9b7df9db95';
 
 /// See also [ChildProfileViewModel].
 @ProviderFor(ChildProfileViewModel)
-final childProfileViewModelProvider =
-    AutoDisposeNotifierProvider<ChildProfileViewModel, AsyncValue?>.internal(
+final childProfileViewModelProvider = AutoDisposeNotifierProvider<
+    ChildProfileViewModel, AsyncValue<ChildProfileModel>?>.internal(
   ChildProfileViewModel.new,
   name: r'childProfileViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,7 @@ final childProfileViewModelProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ChildProfileViewModel = AutoDisposeNotifier<AsyncValue?>;
+typedef _$ChildProfileViewModel
+    = AutoDisposeNotifier<AsyncValue<ChildProfileModel>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

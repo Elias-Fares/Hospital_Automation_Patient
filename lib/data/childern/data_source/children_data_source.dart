@@ -10,7 +10,7 @@ class ChildrenDataSource {
   ChildrenDataSource({required BaseDio baseDio}) : _baseDio = baseDio;
 
   Future<DataState> getChildren() async {
-    final response = _baseDio.get<ChildModel>(
+    final response = await _baseDio.get<ChildModel>(
         subUrl: "/user/get-children",
         model: ChildModel(),
         isListOfModel: true,
@@ -21,7 +21,7 @@ class ChildrenDataSource {
   Future<DataState> getChildProfile({
     required String childId,
   }) async {
-    final response = _baseDio.get<ChildProfileModel>(
+    final response =await _baseDio.baseGet<ChildProfileModel>(
         subUrl: "/user/get-profile-for",
         model: ChildProfileModel(),
         queryParameters: {

@@ -1,4 +1,10 @@
-part of '../appointments.dart';
+
+
+import 'package:flutter/material.dart';
+import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/core/style/app_colors.dart';
+import 'package:patient_app/core/widgets/cards/outlined_card.dart';
+import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({

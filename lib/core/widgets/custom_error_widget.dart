@@ -22,7 +22,6 @@ class CustomErrorWidget extends StatelessWidget {
   final TextStyle? textStyle;
   final void Function()? onTryAgainTap;
 
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -48,11 +47,10 @@ class CustomErrorWidget extends StatelessWidget {
             ),
             CustomInkwell(
               onTap: onTryAgainTap,
-              child: Container(
+              color: AppColors.primary.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(20),
+              child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 4),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.primary.withValues(alpha: 0.15)),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [

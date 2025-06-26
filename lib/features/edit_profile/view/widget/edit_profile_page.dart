@@ -13,7 +13,8 @@ class EditProfilePage extends StatelessWidget {
       required this.emailController,
       required this.formKey,
       this.onDiscardPressed,
-      this.onSavePressed});
+      this.onSavePressed,
+      required this.noteController, required this.isSaveChangesLoading});
 
   final TextEditingController firstNameController;
   final TextEditingController secondNameController;
@@ -23,10 +24,13 @@ class EditProfilePage extends StatelessWidget {
   final TextEditingController streetController;
   final TextEditingController phoneController;
   final TextEditingController emailController;
+  final TextEditingController noteController;
   final GlobalKey<FormState> formKey;
 
   final void Function()? onDiscardPressed;
   final void Function()? onSavePressed;
+
+  final bool isSaveChangesLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +82,11 @@ class EditProfilePage extends StatelessWidget {
             label: "Street",
           ),
           const SizedBox(height: 12),
-          const EditProfileAddNoteButton(),
+          EditProfileTextFormField(
+            textEditingController: noteController,
+            label: "Note",
+            keyboardType: TextInputType.text,
+          ),
           const SizedBox(height: 24),
           Text(
             "Contact Info",
@@ -115,6 +123,7 @@ class EditProfilePage extends StatelessWidget {
                   title: "Save Changes",
                   borderRaduis: BorderRadius.circular(12),
                   onTap: onSavePressed,
+                  isLoading: isSaveChangesLoading,
                 ),
               )
             ],

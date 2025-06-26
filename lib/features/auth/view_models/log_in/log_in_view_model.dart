@@ -20,10 +20,10 @@ class LogInViewModel extends _$LogInViewModel {
     final response =
         await _authRepository.login(email: email, password: password);
     if (response is DataSuccess) {
-      state = AsyncValue.data(response.data);
       await _authRepository.saveEmail(email: email);
       await _authRepository.savePassword(password: password);
       await _authRepository.saveToken(token: response.data["token"].toString());
+      state = AsyncValue.data(response.data);
     } else {
       state = AsyncValue.error(
           response.exceptionResponse?.exceptionMessages.firstOrNull ?? "",

@@ -1,65 +1,69 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:lpc_lms/core/widgets/general_image_asset.dart';
-// import 'package:shimmer/shimmer.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 
-// import '../../../res.dart';
+import 'package:shimmer/shimmer.dart';
 
-// ///Create an image or provide a widget or path to a fallback value
-// ///[failWidget] the widget to show if loading of image faild
-// ///[placeHolderWhileLoading] the widget to show while loading the image
-// class NetworkImageSvg extends StatelessWidget {
-//   // static Widget fallbackFlag = const Icon(Icons.image_not_supported_rounded);
-//   static Widget fallbackFlagV2 = const Icon(Icons.image_not_supported_outlined);
-//   static Widget loadingDefault = Shimmer.fromColors(
-//     baseColor: Colors.grey.shade300,
-//     highlightColor: Colors.grey.shade100,
-//     child: Image.asset(Res.lpcLogoImage, fit: BoxFit.contain),
-//   );
 
-//   final Widget? failWidget;
-//   final bool matchTextDirection;
-//   final String url;
-//   final BoxFit boxFit;
-//   final double? height;
-//   final double? width;
-//   final Widget? placeHolderWhileLoading;
-//   final Color? color;
 
-//   //when app can't ,load image
-//   Widget errorBuilder(
-//       BuildContext context, Object exception, StackTrace? stackTrace) {
-//     return failWidget ?? fallbackFlagV2;
-//   }
+///Create an image or provide a widget or path to a fallback value
+///[failWidget] the widget to show if loading of image faild
+///[placeHolderWhileLoading] the widget to show while loading the image
+class NetworkImageSvg extends StatelessWidget {
+  // static Widget fallbackFlag = const Icon(Icons.image_not_supported_rounded);
+  static Widget fallbackFlagV2 = const Icon(Icons.image_not_supported_outlined);
+  static Widget loadingDefault = Shimmer.fromColors(
+    baseColor: Colors.grey.shade300,
+    highlightColor: Colors.grey.shade100,
+    child: const Icon(
+      Icons.image_not_supported_outlined,
+      color: AppColors.primaryContainerTransparent,
+    ),
+  );
 
-//   //while app load the image
-//   Widget loadingBuilder(BuildContext context) {
-//     return Center(child: placeHolderWhileLoading ?? loadingDefault);
-//   }
+  final Widget? failWidget;
+  final bool matchTextDirection;
+  final String url;
+  final BoxFit boxFit;
+  final double? height;
+  final double? width;
+  final Widget? placeHolderWhileLoading;
+  final Color? color;
 
-//   const NetworkImageSvg({
-//     super.key,
-//     required this.url,
-//     this.failWidget,
-//     this.height = 50,
-//     this.width = 50,
-//     this.matchTextDirection = true,
-//     this.boxFit = BoxFit.cover,
-//     this.placeHolderWhileLoading,
-//     this.color,
-//   });
+  //when app can't ,load image
+  Widget errorBuilder(
+      BuildContext context, Object exception, StackTrace? stackTrace) {
+    return failWidget ?? fallbackFlagV2;
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return SvgPicture.network(
-//       url,
-//       colorFilter:
-//       color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
-//       height: height,
-//       width: width,
-//       fit: boxFit,
-//       matchTextDirection: matchTextDirection,
-//       placeholderBuilder: loadingBuilder,
-//     );
-//   }
-// }
+  //while app load the image
+  Widget loadingBuilder(BuildContext context) {
+    return Center(child: placeHolderWhileLoading ?? loadingDefault);
+  }
+
+  const NetworkImageSvg({
+    super.key,
+    required this.url,
+    this.failWidget,
+    this.height = 50,
+    this.width = 50,
+    this.matchTextDirection = true,
+    this.boxFit = BoxFit.cover,
+    this.placeHolderWhileLoading,
+    this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.network(
+      url,
+      colorFilter:
+      color != null ? ColorFilter.mode(color!, BlendMode.srcIn) : null,
+      height: height,
+      width: width,
+      fit: boxFit,
+      matchTextDirection: matchTextDirection,
+      placeholderBuilder: loadingBuilder,
+    );
+  }
+}
