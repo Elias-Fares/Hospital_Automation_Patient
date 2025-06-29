@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../state/book_appointment_state.dart';
+import 'book_appointment_state.dart';
 part 'book_appointment_view_model.g.dart';
 
 @riverpod

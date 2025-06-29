@@ -6,13 +6,13 @@ class PrescriptionCard extends StatelessWidget {
       required this.doctorName,
       required this.doctorImageUrl,
       required this.doctorSpecialty,
-      required this.medicinesCount});
+      required this.medicinesNames});
 
   final String doctorName;
   final String doctorImageUrl;
   final String doctorSpecialty;
 
-  final String medicinesCount;
+  final String medicinesNames;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class PrescriptionCard extends StatelessWidget {
           IconKeyValueWidget(
             iconPath: Res.medicineIcon,
             keyTitle: "Medicines",
-            value: medicinesCount,
+            value: medicinesNames,
           )
         ],
       ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/my_go_router_observer.dart';
+import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/params/child_appointment_params.dart';
+import 'package:patient_app/core/params/medical_records_screen_params.dart';
+import 'package:patient_app/core/params/prescriptions_screen_params.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
 import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
@@ -14,12 +17,13 @@ import 'package:patient_app/features/book_appointment/view/book_appointment_scre
 import 'package:patient_app/features/child_appointments/view/child_appointments_screen.dart';
 import 'package:patient_app/features/child_profile/view/child_profile_screen.dart';
 import 'package:patient_app/features/children/view/children_s.dart';
+import 'package:patient_app/features/choose_appointment_date/view/choose_appointment_date_screen.dart';
 import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
 import 'package:patient_app/features/notifications/view/notifications_screen.dart';
 import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
-import 'package:patient_app/features/patient_medical_record/view/patient_medical_record_screen.dart';
+import 'package:patient_app/features/medical_record/view/medical_record_screen.dart';
 import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
 import 'package:patient_app/features/profile/view/profile_screen.dart';
 
@@ -99,12 +103,21 @@ class AppRouter {
             )
           ]),
       GoRoute(
-        path: PatientMedicalRecordScreen.routeName,
-        builder: (context, state) => const PatientMedicalRecordScreen(),
+        path: MedicalRecordScreen.routeName,
+        builder: (context, state) {
+          final params = state.extra as MedicalRecordsScreenParams?;
+          return MedicalRecordScreen(medicalRecordsScreenParams: params);
+        },
       ),
       GoRoute(
         path: PatientPrescriptionScreen.routeName,
-        builder: (context, state) => const PatientPrescriptionScreen(),
+        builder: (context, state) {
+          final params = state.extra as PrescriptionsScreenParams?;
+          return PatientPrescriptionScreen(
+            prescriptionsScreenParams: params ??
+                PrescriptionsScreenParams(comingFrom: ParamsValues.patient),
+          );
+        },
       ),
       GoRoute(
           path: PatientDoctorsScreen.routeName,
@@ -115,9 +128,15 @@ class AppRouter {
                 builder: (context, state) => const DoctorProfileScreen(),
                 routes: [
                   GoRoute(
-                    path: BookAppointmentScreen.routeName,
-                    builder: (context, state) => BookAppointmentScreen(),
-                  )
+                      path: BookAppointmentScreen.routeName,
+                      builder: (context, state) => BookAppointmentScreen(),
+                      routes: [
+                        GoRoute(
+                          path: ChooseAppointmentDateScreen.routeName,
+                          builder: (context, state) =>
+                              const ChooseAppointmentDateScreen(),
+                        )
+                      ])
                 ])
           ]),
     ]);

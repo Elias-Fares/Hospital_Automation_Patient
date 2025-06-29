@@ -7,7 +7,7 @@ part of 'patient_doctors_view_model.dart';
 // **************************************************************************
 
 String _$patientDoctorsViewModelHash() =>
-    r'b4bef765b195fcbeac116185ddcbb58c1a7af364';
+    r'1eb3427a7b8d5f2eb4fb6cee7e016b02eff5f347';
 
 /// See also [PatientDoctorsViewModel].
 @ProviderFor(PatientDoctorsViewModel)

@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/constant/constant.dart';
+import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/function/date_format.dart';
 import 'package:patient_app/core/function/join_strings.dart';
+import 'package:patient_app/core/params/prescriptions_screen_params.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
 import 'package:patient_app/core/widgets/cards/icon_title_navigation_button.dart';
@@ -19,6 +21,7 @@ import 'package:patient_app/core/widgets/general_image_asset.dart';
 import 'package:patient_app/core/widgets/general_network_image.dart';
 
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
+import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
 import 'package:patient_app/features/profile/view_model/profile_view_model.dart';
 part 'widget/profile_details_widget.dart';
 part 'widget/profile_navigation_section.dart';
@@ -99,7 +102,11 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     height: 24,
                   ),
                   ProfileNavigationSection(
-                    onPrescriptionTap: () {},
+                    onPrescriptionTap: () {
+                      context.push(PatientPrescriptionScreen.routeName,
+                          extra: PrescriptionsScreenParams(
+                              comingFrom: ParamsValues.patient));
+                    },
                     onMedicalRecordTap: () {},
                     onSuspendUserAccountTap: () {},
                   )
@@ -108,14 +115,5 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
           ),
         ));
-  }
-}
-
-class name extends StatelessWidget {
-  const name({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold();
   }
 }

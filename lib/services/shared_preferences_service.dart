@@ -59,4 +59,20 @@ class SharedPreferencesService {
   Future<void> clearPassword() async {
     await _prefs.remove(Constant.USER_PASSWORD);
   }
+
+   Future<void> saveUserName({required String? userName}) async {
+    if (userName == null) {
+      debugPrint("Cant save empty userName");
+      return;
+    }
+    await _prefs.setString(Constant.USER_NAME, userName);
+  }
+
+  String? getUserName() {
+    return _prefs.getString(Constant.USER_NAME);
+  }
+
+  Future<void> clearUserName() async {
+    await _prefs.remove(Constant.USER_NAME);
+  }
 }

@@ -3,34 +3,57 @@ import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/data/childern/models/child_model.dart';
 import 'package:patient_app/data/childern/models/child_profile_model.dart';
+import 'package:patient_app/data/perscriptions/models/prescription_model.dart';
 
 class PrescriptionsDataSource {
   final BaseDio _baseDio;
 
   PrescriptionsDataSource({required BaseDio baseDio}) : _baseDio = baseDio;
 
-  // Future<DataState> getChildren() async {
-  //   final response = _baseDio.get<ChildModel>(
-  //       subUrl: "/user/get-children",
-  //       model: ChildModel(),
-  //       isListOfModel: true,
-  //       needToken: true);
+  Future<DataState> getPrescriptionsPharmacy({
+    String? pharmacyId,
+    required String type,
+  }) async {
+    final response = _baseDio.get<PrescriptionModel>(
+        subUrl: "/user/get-prescription-pharmacy/$pharmacyId",
+        model: PrescriptionModel(),
+        isListOfModel: true,
+        queryParameters: {
+          "type": type,
+        },
+        needToken: true);
 
-  //   return response;
-  // }
-  // Future<DataState> getChildProfile({
-  //   required String childId,
-  // }) async {
-  //   final response = _baseDio.baseGet<ChildProfileModel>(
-  //       subUrl: "/user/get-profile-for",
-  //       model: ChildProfileModel(),
-  //       queryParameters: {
-  //         "type": ParamsValues.child.value,
-  //         "_id":childId,
-  //       },
-  //       needToken: true);
+    return response;
+  }
 
-  //   return response;
-  // }
+  Future<DataState> getChildPrescription({
+    String? childId,
+    required String type,
+  }) async {
+    final response = _baseDio.get<PrescriptionModel>(
+        subUrl: "/user/show-prescriptions-for-child/$childId",
+        model: PrescriptionModel(),
+        isListOfModel: true,
+        queryParameters: {
+          "type": type,
+        },
+        needToken: true);
 
+    return response;
+  }
+
+  Future<DataState> getPatientPrescription({
+    String? type,
+  }) async {
+    final response = _baseDio.get<PrescriptionModel>(
+        subUrl: "/user/get-prescription-for-patient",
+        model: PrescriptionModel(),
+        isListOfModel: true,
+        // queryParameters: {
+        //   "type": type,
+        // },
+        needToken: true);
+
+    return response;
+  }
 }

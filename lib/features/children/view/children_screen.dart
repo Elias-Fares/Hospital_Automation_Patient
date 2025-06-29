@@ -43,7 +43,7 @@ class _ChildrenScreenState extends ConsumerState<ChildrenScreen> {
                       final element = data.elementAtOrNull(index);
                       return ChildCard(
                         childName:
-                            "${(element?.child?.firstName ?? "")} ${(element?.child?.firstName ?? "")}",
+                            "${(element?.child?.firstName ?? "")} ${(element?.child?.lastName ?? "")}",
                         fatherName:
                             "${(element?.child?.fatherFirstName ?? "")} ${(element?.child?.fatherLastName ?? "")}",
                         motherName:
@@ -51,7 +51,7 @@ class _ChildrenScreenState extends ConsumerState<ChildrenScreen> {
                         onTap: () {
                           context.push(
                               "${ChildrenScreen.routeName}${ChildProfileScreen.routeName}",
-                              extra: element?.usersChildrenId?.toString());
+                              extra: element?.childId?.toString());
                         },
                       );
                     },

@@ -79,6 +79,9 @@ class AuthRepository {
   Future<void> saveToken({required String? token}) async {
     await _sharedPreferencesService.saveToken(token: token);
   }
+  Future<void> saveUserNAme({required String? userName}) async {
+    await _sharedPreferencesService.saveUserName(userName: userName);
+  }
 
   String? getToken() {
     return _sharedPreferencesService.getToken();

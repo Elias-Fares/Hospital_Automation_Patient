@@ -6,6 +6,9 @@ enum ParamsValues {
   passed,
   missed,
   child,
+  doctor,
+  details,
+  pharmacy
 }
 
 extension ParamsValuesExtension on ParamsValues {
@@ -25,6 +28,12 @@ extension ParamsValuesExtension on ParamsValues {
         return 'child';
       case ParamsValues.missed:
         return 'missed';
+      case ParamsValues.doctor:
+        return "doctor";
+      case ParamsValues.details:
+        return "details";
+      case ParamsValues.pharmacy:
+        return "pharmacy";
     }
   }
 }

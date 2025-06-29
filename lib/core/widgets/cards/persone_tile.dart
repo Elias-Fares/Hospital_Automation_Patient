@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
+import 'package:patient_app/core/widgets/general_network_image.dart';
 
 class PersoneTile extends StatelessWidget {
   final String imageUrl;
@@ -21,8 +22,8 @@ class PersoneTile extends StatelessWidget {
       child: Row(
         children: [
           ClipOval(
-            child: GeneralImageAssets(
-              path: imageUrl,
+            child: GeneralNetworkImage(
+              url: imageUrl,
               width: 40,
               height: 40,
               boxFit: BoxFit.cover,

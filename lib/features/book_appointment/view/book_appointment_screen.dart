@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:patient_app/configuration/router/router_utils.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/cards/persone_tile.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
@@ -8,8 +10,9 @@ import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
 import 'package:patient_app/features/book_appointment/model/medical_procedure_model.dart';
-import 'package:patient_app/features/book_appointment/view_model/riverpod/book_appointment_view_model.dart';
-import 'package:patient_app/features/book_appointment/view_model/state/book_appointment_state.dart';
+import 'package:patient_app/features/book_appointment/view_model/book_appointment_view_model.dart';
+import 'package:patient_app/features/book_appointment/view_model/book_appointment_state.dart';
+import 'package:patient_app/features/choose_appointment_date/view/choose_appointment_date_screen.dart';
 
 class BookAppointmentScreen extends ConsumerWidget {
   BookAppointmentScreen({super.key});
@@ -93,7 +96,13 @@ class BookAppointmentScreen extends ConsumerWidget {
             const SizedBox(
               height: 24,
             ),
-            const LoadingButton(title: "Next")
+            LoadingButton(
+              title: "Next",
+              onTap: () {
+                context.push(RouterUtils.getNestedRoute(context,
+                    routeName: ChooseAppointmentDateScreen.routeName));
+              },
+            )
           ],
         ),
       ),

@@ -1,4 +1,4 @@
-part of '../patient_medical_record_screen.dart';
+part of '../medical_record_screen.dart';
 
 class MedicalRecordCard extends StatelessWidget {
   const MedicalRecordCard({

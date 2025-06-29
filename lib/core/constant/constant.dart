@@ -7,8 +7,10 @@ class Constant {
   static const String TOKEN = 'TOKEN';
   static const String USER_PASSWORD = 'USER_PASSWORD';
   static const String USER_EMAIL = 'USER_EMAIL';
+  static const String USER_NAME = 'USER_NAME';
   static const String USER_ID = 'USER_ID';
   static const String USER_TYPE = 'USER_TYPE';
   static const String ACCESS_TOKEN = 'ACCESS_TOKEN';
+
 
 }

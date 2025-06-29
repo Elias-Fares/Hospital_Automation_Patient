@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/router_utils.dart';
+import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/function/date_format.dart';
 import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/params/child_appointment_params.dart';
+import 'package:patient_app/core/params/medical_records_screen_params.dart';
+import 'package:patient_app/core/params/prescriptions_screen_params.dart'
+    show PrescriptionsScreenParams;
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
 import 'package:patient_app/core/widgets/cards/icon_title_navigation_button.dart';
@@ -15,6 +19,8 @@ import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/features/child_appointments/view/child_appointments_screen.dart';
 import 'package:patient_app/features/child_profile/view_model/child_profile_view_model.dart';
+import 'package:patient_app/features/medical_record/view/medical_record_screen.dart';
+import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
 part 'widget/child_profile_title.dart';
 part 'widget/child_details_widget.dart';
 part 'widget/child_profile_navigation_section.dart';
@@ -50,7 +56,7 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final childProfileState = ref.watch(childProfileViewModelProvider);
-    debugPrint("debugger form build ${childProfileState.runtimeType}");
+
     return Scaffold(
         appBar: SubAppBar(
             titleWidget: ChildProfileTitle(
@@ -101,17 +107,42 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                       ChildProfileNavigationSection(
                           onVaccinationTap: () {},
                           onAppointmentTap: () {
-                            context.push(RouterUtils.getNestedRoute(context,
-                                routeName: ChildAppointmentsScreen.routeName), extra: ChildAppointmentParams(childId: data.childProfileData?.childId?.toString(), childName: joinStrings([
-                                  data.childProfileData?.firstName,
-                                  data.childProfileData?.lastName,
-                                ]),
-                                
-                              
-                                 ));
+                            context.push(
+                                RouterUtils.getNestedRoute(context,
+                                    routeName:
+                                        ChildAppointmentsScreen.routeName),
+                                extra: ChildAppointmentParams(
+                                  childId: data.childProfileData?.childId
+                                      ?.toString(),
+                                  childName: joinStrings([
+                                    data.childProfileData?.firstName,
+                                    data.childProfileData?.lastName,
+                                  ]),
+                                ));
                           },
-                          onPrescriptionTap: () {},
-                          onMedicalRecordTap: () {}),
+                          onPrescriptionTap: () {
+                            context.push(PatientPrescriptionScreen.routeName,
+                                extra: PrescriptionsScreenParams(
+                                    comingFrom: ParamsValues.child,
+                                    childId: data.childProfileData?.childId
+                                        ?.toString(),
+                                    childName: joinStrings([
+                                      data.childProfileData?.firstName,
+                                      data.childProfileData?.lastName,
+                                    ])));
+                          },
+                          onMedicalRecordTap: () {
+                            context.push(MedicalRecordScreen.routeName,
+                                extra: MedicalRecordsScreenParams(
+                                  comingFrom: ParamsValues.child,
+                                  childId: data.childProfileData?.childId
+                                      ?.toString(),
+                                  childName: joinStrings([
+                                    data.childProfileData?.firstName,
+                                    data.childProfileData?.lastName,
+                                  ]),
+                                ));
+                          }),
                       const SizedBox(
                         height: 24,
                       ),

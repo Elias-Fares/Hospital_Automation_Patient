@@ -9,6 +9,8 @@ import 'package:patient_app/data/childern/data_source/children_data_source.dart'
 import 'package:patient_app/data/childern/repository/children_repository.dart';
 import 'package:patient_app/data/doctors/data_source/doctors_data_source.dart';
 import 'package:patient_app/data/doctors/repository/doctors_repository.dart';
+import 'package:patient_app/data/medical_records/data_source/medical_records_data_source.dart';
+import 'package:patient_app/data/medical_records/repository/medical_records_repository.dart';
 import 'package:patient_app/data/perscriptions/data_source/prescriptions_data_source.dart';
 import 'package:patient_app/data/perscriptions/repository/prescriptions_repository.dart';
 import 'package:patient_app/data/profile/data_source/profile_data_source.dart';
@@ -27,6 +29,7 @@ Future<void> initializeDependencies() async {
   _initProfile();
   _intitDoctors();
   _initPrescriptions();
+  _initMedicalRecords();
 }
 
 void _initDio() {
@@ -82,7 +85,9 @@ void _initAppointments() {
 void _initProfile() {
   getIt.registerLazySingleton(
     () => ProfileRepository(
-        profileDataSource: ProfileDataSource(baseDio: getIt<BaseDio>())),
+        profileDataSource: ProfileDataSource(
+            baseDio: getIt<BaseDio>(),
+            sharedPreferencesService: getIt<SharedPreferencesService>())),
   );
 }
 
@@ -98,5 +103,13 @@ void _initPrescriptions() {
     () => PrescriptionsRepository(
         prescriptionsDataSource:
             PrescriptionsDataSource(baseDio: getIt<BaseDio>())),
+  );
+}
+
+void _initMedicalRecords() {
+  getIt.registerLazySingleton(
+    () => MedicalRecordsRepository(
+        medicalRecordsDataSource:
+            MedicalRecordsDataSource(baseDio: getIt<BaseDio>())),
   );
 }

@@ -14,7 +14,6 @@ import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.d
 import 'package:patient_app/features/main_screen/main_screen.dart';
 import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
 import 'package:patient_app/features/patient_doctors/view_model/patient_doctors_view_model.dart';
-import 'package:patient_app/features/patient_medical_record/view_model/riverpod/patient_medical_record_view_model.dart';
 
 import '../../../configuration/router/router_utils.dart';
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/constant/constant.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 import 'package:patient_app/core/widgets/general_network_image.dart';
 
@@ -20,17 +21,27 @@ class AppBarTitleWidget extends StatelessWidget {
       children: [
         ClipOval(
           child: GeneralNetworkImage(
-            url: "${Constant.baseUrl}/$imagePath",
-            width: 35,
-            height: 35,
-            boxFit: BoxFit.cover,
-            failWidget: const GeneralImageAssets(
-              path: Res.childCardIcon,
+              url: "${Constant.baseUrl}/$imagePath",
               width: 35,
               height: 35,
               boxFit: BoxFit.cover,
-            ),
-          ),
+              failWidget: title.isNotEmpty
+                  ? Container(
+                      width: 35,
+                      height: 35,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                          color: AppColors.primaryDimmed,
+                          shape: BoxShape.circle),
+                      child: Text(
+                        title.substring(0, 1),
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: AppColors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    )
+                  : const SizedBox.shrink()),
         ),
         const SizedBox(
           width: 8,

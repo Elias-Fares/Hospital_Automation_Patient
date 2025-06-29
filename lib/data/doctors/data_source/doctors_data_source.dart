@@ -3,7 +3,7 @@ import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/data/childern/models/child_model.dart';
 import 'package:patient_app/data/childern/models/child_profile_model.dart';
-import 'package:patient_app/data/doctors/models/doctor_model.dart';
+import 'package:patient_app/core/models/doctor_model.dart';
 
 class DoctorsDataSource {
   final BaseDio _baseDio;

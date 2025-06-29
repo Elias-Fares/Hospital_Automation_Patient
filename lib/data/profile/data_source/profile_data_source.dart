@@ -2,11 +2,25 @@ import 'package:patient_app/core/base_dio/base_dio.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
+import 'package:patient_app/services/shared_preferences_service.dart';
 
 class ProfileDataSource {
   final BaseDio _baseDio;
+  final SharedPreferencesService _sharedPreferencesService;
 
-  ProfileDataSource({required BaseDio baseDio}) : _baseDio = baseDio;
+  ProfileDataSource(
+      {required BaseDio baseDio,
+      required SharedPreferencesService sharedPreferencesService})
+      : _baseDio = baseDio,
+        _sharedPreferencesService = sharedPreferencesService;
+
+  String? getUserName() {
+    return _sharedPreferencesService.getUserName();
+  }
+
+  Future<void> saveUserName({required String? userName}) async {
+    await _sharedPreferencesService.saveUserName(userName: userName);
+  }
 
   Future<DataState> getUserProfile() async {
     final response = await _baseDio.baseGet<UserProfileModel>(

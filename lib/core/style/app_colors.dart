@@ -47,4 +47,5 @@ class AppColors {
   static const Color surfaceContainerLow = Color(0xFFF2F2FA);
   static const Color hintTextColor = Color(0xFF99999F);
   static const Color backgroundLight = Color(0xFFF9F9FA);
+
 }

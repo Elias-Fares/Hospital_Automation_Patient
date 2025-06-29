@@ -14,6 +14,14 @@ class ProfileRepository {
     return response;
   }
 
+    String? getUserName() {
+    return _profileDataSource.getUserName();
+  }
+
+  Future<void> saveUserName({required String? userName}) async {
+    await _profileDataSource.saveUserName(userName: userName);
+  }
+
   Future<DataState> editUserProfile({
     required String email,
     required String firstName,
