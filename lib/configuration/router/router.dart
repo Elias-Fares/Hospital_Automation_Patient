@@ -18,6 +18,8 @@ import 'package:patient_app/features/child_appointments/view/child_appointments_
 import 'package:patient_app/features/child_profile/view/child_profile_screen.dart';
 import 'package:patient_app/features/children/view/children_s.dart';
 import 'package:patient_app/features/choose_appointment_date/view/choose_appointment_date_screen.dart';
+import 'package:patient_app/features/department_details/view/department_details_screen.dart';
+import 'package:patient_app/features/departments/view/departments_screen.dart';
 import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
@@ -139,6 +141,17 @@ class AppRouter {
                       ])
                 ])
           ]),
+      GoRoute(
+        path: DepartmentsScreen.routeName,
+        builder: (context, state) => const DepartmentsScreen(),
+        routes: [
+                         GoRoute(
+                          path: DepartmentDetailsScreen.routeName,
+                          builder: (context, state) =>
+                              const DepartmentDetailsScreen(),
+                        )
+        ]
+      ),
     ]);
   }
 

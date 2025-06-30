@@ -7,13 +7,15 @@ import 'package:patient_app/core/widgets/general_image_asset.dart';
 class IconKeyValueWidget extends StatelessWidget {
   const IconKeyValueWidget(
       {super.key,
-      required this.iconPath,
+      this.iconPath,
       required this.keyTitle,
       required this.value,
       this.needOnTap = false,
-      this.onTap});
+      this.onTap,
+      this.iconData});
 
-  final String iconPath;
+  final String? iconPath;
+  final IconData? iconData;
   final String keyTitle;
   final String value;
   final bool needOnTap;
@@ -34,12 +36,17 @@ class IconKeyValueWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GeneralImageAssets(
-          path: iconPath,
-          width: 24,
-          height: 24,
-          boxFit: BoxFit.contain,
-        ),
+        if (iconPath != null) ...[
+          GeneralImageAssets(
+            path: iconPath!,
+            width: 24,
+            height: 24,
+            boxFit: BoxFit.contain,
+          ),
+        ],
+        if (iconData != null) ...[
+          
+        ],
         const SizedBox(
           width: 12,
         ),

@@ -1,3 +1,4 @@
+import 'package:patient_app/features/departments/view/departments_screen.dart';
 import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
 import 'package:patient_app/features/medical_record/view/medical_record_screen.dart';
 import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
@@ -41,7 +42,7 @@ class AppDrawerModel {
       AppDrawerElement(
           iconPath: Res.drawerDepartmentIcon,
           title: "Departments",
-          routeName: ""),
+          routeName: DepartmentsScreen.routeName),
       AppDrawerElement(
           iconPath: Res.drawerVaccinationIcon,
           title: "Vaccines",
