@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'tools_helper.dart';
@@ -52,8 +53,8 @@ void main(List<String> arguments) async {
   // ============================== Model ==========================//
 
   // Create model directory
-  final modelDirectory = Directory('${baseDir.path}/model');
-  await ToolsHelper.createDirectoryIfNotExists(modelDirectory);
+  // final modelDirectory = Directory('${baseDir.path}/model');
+  // await ToolsHelper.createDirectoryIfNotExists(modelDirectory);
 
   //================================================================//
 
@@ -69,8 +70,7 @@ void main(List<String> arguments) async {
 
   //Create state file inside view_model/
   await ToolsHelper.createFile(
-      path:
-          '${viewModelDirectory.path}/${lowerCaseFeatureName}_state.dart',
+      path: '${viewModelDirectory.path}/${lowerCaseFeatureName}_state.dart',
       content: ToolsHelper.getViewModelStateContent(camelCaseFeatureName));
 
   // Create riverpod directory inside view model dir
@@ -87,6 +87,35 @@ void main(List<String> arguments) async {
         fileName: '${lowerCaseFeatureName}_view_model',
         stateFileName: '${lowerCaseFeatureName}_state.dart',
       ));
+
+  try {
+    // Start the process
+    Process process = await Process.start(
+      'dart',
+      ['run', 'build_runner', 'build'],
+      runInShell: true,
+    );
+
+    // Listen to stdout and stderr streams
+    process.stdout.transform(utf8.decoder).listen((data) {
+      print('OUT: $data');
+    });
+
+    process.stderr.transform(utf8.decoder).listen((data) {
+      print('ERR: $data');
+    });
+
+    // Wait for the process to complete
+    int exitCode = await process.exitCode;
+
+    if (exitCode == 0) {
+      print('Build runner completed successfully!');
+    } else {
+      print('Build runner failed with exit code: $exitCode');
+    }
+  } catch (e) {
+    print('Error executing build runner: $e');
+  }
 
   print('🎉 Starter widgets are ready!');
 }

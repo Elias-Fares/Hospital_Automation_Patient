@@ -25,12 +25,18 @@ class ToolsHelper {
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ${caseCamelFeatureName}Screen extends ConsumerWidget {
+class ${caseCamelFeatureName}Screen extends ConsumerStatefulWidget {
   const ${caseCamelFeatureName}Screen({super.key});
   static const routeName = "/${lowerCaseFeatureName}_screen";
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<${caseCamelFeatureName}Screen> createState() => _${caseCamelFeatureName}ScreenState();
+  }
+
+  class _${caseCamelFeatureName}ScreenState extends ConsumerState<${caseCamelFeatureName}Screen> {
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold();
   }
 }

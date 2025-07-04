@@ -16,6 +16,7 @@ class Res {
   static const mainScreenIconPath = "$iconPath/main_screen";
   static const profileIconPath = "$iconPath/profile";
   static const drawerIconPath = "$iconPath/drawer";
+  static const vaccineIconPath = "$iconPath/vaccine";
 
   //Auth icons
   static const String femaleIcon = "$authIconPath/female_icon$svg";
@@ -70,4 +71,8 @@ class Res {
   static const String drawerVaccinationIcon =
       "$drawerIconPath/d_vaccination$png";
   static const String medicineIcon = "$drawerIconPath/medicine_icon$png";
+
+  //vaccine
+  static const String lineEndCircle = "$vaccineIconPath/line_end_circle$svg";
+  static const String lineStartCircle = "$vaccineIconPath/line_start_circle$svg";
 }

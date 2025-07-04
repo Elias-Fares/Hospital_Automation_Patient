@@ -23,11 +23,17 @@ import 'package:patient_app/features/departments/view/departments_screen.dart';
 import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
+import 'package:patient_app/features/medicines_search/view/medicines_search_screen.dart';
 import 'package:patient_app/features/notifications/view/notifications_screen.dart';
 import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
 import 'package:patient_app/features/medical_record/view/medical_record_screen.dart';
 import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
+import 'package:patient_app/features/pharmacies/view/pharmacies_screen.dart';
+import 'package:patient_app/features/pharmacy_profile/view/pharmacy_profile_screen.dart';
 import 'package:patient_app/features/profile/view/profile_screen.dart';
+import 'package:patient_app/features/vaccination_table/view/vaccination_table_screen.dart';
+import 'package:patient_app/features/vaccine_details/view/vaccine_details_screen.dart';
+import 'package:patient_app/features/vaccines/view/vaccines_screen.dart';
 
 class AppRouter {
   AppRouter._();
@@ -142,16 +148,53 @@ class AppRouter {
                 ])
           ]),
       GoRoute(
-        path: DepartmentsScreen.routeName,
-        builder: (context, state) => const DepartmentsScreen(),
-        routes: [
-                         GoRoute(
-                          path: DepartmentDetailsScreen.routeName,
-                          builder: (context, state) =>
-                              const DepartmentDetailsScreen(),
-                        )
-        ]
-      ),
+          path: DepartmentsScreen.routeName,
+          builder: (context, state) => const DepartmentsScreen(),
+          routes: [
+            GoRoute(
+              path: DepartmentDetailsScreen.routeName,
+              builder: (context, state) => const DepartmentDetailsScreen(),
+            )
+          ]),
+      GoRoute(
+          path: VaccinesScreen.routeName,
+          builder: (context, state) {
+            return const VaccinesScreen();
+          },
+          routes: [
+            GoRoute(
+              path: VaccineDetailsScreen.routeName,
+              builder: (context, state) {
+                return const VaccineDetailsScreen();
+              },
+            )
+          ]),
+      GoRoute(
+          path: PharmaciesScreen.routeName,
+          builder: (context, state) {
+            return const PharmaciesScreen();
+          },
+          routes: [
+            GoRoute(
+              path: PharmacyProfileScreen.routeName,
+              builder: (context, state) {
+                return const PharmacyProfileScreen();
+              },
+            )
+          ]),
+      GoRoute(
+          path: MedicinesSearchScreen.routeName,
+          builder: (context, state) {
+            return const MedicinesSearchScreen();
+          },
+          routes: const [
+            // GoRoute(
+            //   path: PharmacyProfileScreen.routeName,
+            //   builder: (context, state) {
+            //     return const PharmacyProfileScreen();
+            //   },
+            // )
+          ]),
     ]);
   }
 
@@ -182,6 +225,12 @@ class AppRouter {
                       );
                     },
                   ),
+                  GoRoute(
+                    path: VaccinationTableScreen.routeName,
+                    builder: (context, state) {
+                      return const VaccinationTableScreen();
+                    },
+                  )
                 ])
           ])
     ]);

@@ -90,6 +90,7 @@ flutter:
     - assets/icons/main_screen/
     - assets/icons/drawer/
     - assets/icons/profile/
+    - assets/icons/vaccine/
     - assets/images/auth/
 
 

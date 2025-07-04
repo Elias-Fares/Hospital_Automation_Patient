@@ -10,10 +10,12 @@ class AppBarTitleWidget extends StatelessWidget {
     super.key,
     required this.title,
     required this.imagePath,
+    this.subtitle,
   });
 
   final String? imagePath;
   final String title;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +48,24 @@ class AppBarTitleWidget extends StatelessWidget {
         const SizedBox(
           width: 8,
         ),
-        Text(
-          title,
-          style: Theme.of(context).textTheme.bodyLarge,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+            if (subtitle != null) ...[
+
+              Text(
+                subtitle!,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppColors.hintTextColor),
+              ),
+            ]
+          ],
         ),
       ],
     );
