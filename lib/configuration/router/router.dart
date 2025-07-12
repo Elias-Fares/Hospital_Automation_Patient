@@ -5,7 +5,10 @@ import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/params/child_appointment_params.dart';
 import 'package:patient_app/core/params/medical_records_screen_params.dart';
 import 'package:patient_app/core/params/prescriptions_screen_params.dart';
+import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import 'package:patient_app/data/perscriptions/models/prescription_model.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
+import 'package:patient_app/features/appointment_details/view/appointment_details_screen.dart';
 import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
 import 'package:patient_app/features/auth/view/screens/login_screen.dart';
@@ -30,6 +33,7 @@ import 'package:patient_app/features/medical_record/view/medical_record_screen.d
 import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
 import 'package:patient_app/features/pharmacies/view/pharmacies_screen.dart';
 import 'package:patient_app/features/pharmacy_profile/view/pharmacy_profile_screen.dart';
+import 'package:patient_app/features/prescription_details/view/prescription_details_screen.dart';
 import 'package:patient_app/features/profile/view/profile_screen.dart';
 import 'package:patient_app/features/vaccination_table/view/vaccination_table_screen.dart';
 import 'package:patient_app/features/vaccine_details/view/vaccine_details_screen.dart';
@@ -95,7 +99,17 @@ class AppRouter {
       GoRoute(
           path: AppointmentsScreen.routeName,
           builder: (context, state) => const AppointmentsScreen(),
-          routes: const []),
+          routes: [
+            GoRoute(
+              path: AppointmentDetailsScreen.routeName,
+              builder: (context, state) {
+                final appointmentModel = state.extra as AppointmentModel?;
+                return AppointmentDetailsScreen(
+                  appointmentModel: appointmentModel,
+                );
+              },
+            )
+          ]),
       GoRoute(
           path: ProfileScreen.routeName,
           builder: (context, state) => const ProfileScreen(),
@@ -118,22 +132,35 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: PatientPrescriptionScreen.routeName,
-        builder: (context, state) {
-          final params = state.extra as PrescriptionsScreenParams?;
-          return PatientPrescriptionScreen(
-            prescriptionsScreenParams: params ??
-                PrescriptionsScreenParams(comingFrom: ParamsValues.patient),
-          );
-        },
-      ),
+          path: PatientPrescriptionScreen.routeName,
+          builder: (context, state) {
+            final params = state.extra as PrescriptionsScreenParams?;
+            return PatientPrescriptionScreen(
+              prescriptionsScreenParams: params ??
+                  PrescriptionsScreenParams(comingFrom: ParamsValues.patient),
+            );
+          },
+          routes: [
+            GoRoute(
+              path: PrescriptionDetailsScreen.routeName,
+              builder: (context, state) {
+                final prescriptionModel = state.extra as PrescriptionModel?;
+                return PrescriptionDetailsScreen(
+                  prescriptionModel: prescriptionModel,
+                );
+              },
+            )
+          ]),
       GoRoute(
           path: PatientDoctorsScreen.routeName,
           builder: (context, state) => const PatientDoctorsScreen(),
           routes: [
             GoRoute(
                 path: DoctorProfileScreen.routeName,
-                builder: (context, state) => const DoctorProfileScreen(),
+                builder: (context, state) {
+                  final id = state.extra as String?;
+                  return  DoctorProfileScreen(doctorId: id,);
+                },
                 routes: [
                   GoRoute(
                       path: BookAppointmentScreen.routeName,

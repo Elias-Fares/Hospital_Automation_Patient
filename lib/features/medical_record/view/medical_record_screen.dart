@@ -45,8 +45,12 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
         break;
 
       default:
+        debugPrint("debugger default exc");
         appBarTitle = ref.read(profileViewModelProvider.notifier).getUserName();
     }
+
+    debugPrint(
+        "debugger $appBarTitle coming from: ${widget.medicalRecordsScreenParams?.comingFrom} the user name is ${ref.read(profileViewModelProvider.notifier).getUserName()}");
 
     Future.microtask(
       () {

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/function/join_strings.dart';
@@ -36,7 +37,16 @@ class ProfileViewModel extends _$ProfileViewModel {
   }
 
   String getUserName() {
-    return _profileRepository.getUserName() ?? "";
+    if (_profileRepository.getUserName() != null) {
+      return _profileRepository.getUserName()!;
+    } else {
+      debugPrint(
+          "debugger ${state.userProfileResponse?.asData?.value.userProfileData?.firstName}");
+      return joinStrings([
+        state.userProfileResponse?.asData?.value.userProfileData?.firstName,
+        state.userProfileResponse?.asData?.value.userProfileData?.lastName,
+      ]);
+    }
   }
 
   String getUserImage() {

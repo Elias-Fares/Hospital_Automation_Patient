@@ -73,9 +73,11 @@ class _PatientDoctorsScreenState extends ConsumerState<PatientDoctorsScreen> {
                         doctorSpecialty: doctor?.specialty ?? "",
                         doctorImageUrl: Res.personePlaceHolderImage,
                         onTap: () {
-                          context.push(RouterUtils.nestedRoute(
-                              PatientDoctorsScreen.routeName,
-                              DoctorProfileScreen.routeName));
+                          context.push(
+                              RouterUtils.nestedRoute(
+                                  PatientDoctorsScreen.routeName,
+                                  DoctorProfileScreen.routeName),
+                              extra: doctor?.userId?.toString());
                         },
                       );
                     },

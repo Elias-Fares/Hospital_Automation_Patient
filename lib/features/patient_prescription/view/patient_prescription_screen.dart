@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:patient_app/configuration/router/router_utils.dart';
 import 'package:patient_app/core/constant/constant.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/params/prescriptions_screen_params.dart';
+import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
+import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
 import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
 import 'package:patient_app/core/widgets/cards/persone_tile.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
@@ -13,6 +17,7 @@ import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/features/patient_prescription/view_model/patient_prescription_view_model.dart';
+import 'package:patient_app/features/prescription_details/view/prescription_details_screen.dart';
 
 part 'widget/prescription_card.dart';
 
@@ -70,8 +75,8 @@ class _PatientPrescriptionScreenState
     final prescriptionsState = ref.watch(patientPrescriptionViewModelProvider);
     return Scaffold(
         appBar: SubAppBar(
-          titleWidget: AppBarTitleWidget(
-              title: appBarTitle ?? "", imagePath: Res.personePlaceHolderImage),
+          titleWidget:
+              AppBarTitleWidget(title: appBarTitle ?? "", imagePath: ""),
           withSearch: true,
         ),
         body: prescriptionsState.prescriptionsResponse?.when(
@@ -93,10 +98,13 @@ class _PatientPrescriptionScreenState
                     const SizedBox(
                       height: 15,
                     ),
-                    ListView.builder(
+                    ListView.separated(
                       itemCount: data.length,
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 8,
+                      ),
                       itemBuilder: (context, index) {
                         final prescription = data.elementAtOrNull(index);
                         return PrescriptionCard(
@@ -115,6 +123,13 @@ class _PatientPrescriptionScreenState
                               .getMedicinesNames(
                                   prescriptionMedicines:
                                       prescription?.prescriptionMedicines),
+                          onPrescriptionCardTap: () {
+                            context.push(
+                                RouterUtils.getNestedRoute(context,
+                                    routeName:
+                                        PrescriptionDetailsScreen.routeName),
+                                extra: prescription);
+                          },
                         );
                       },
                     )

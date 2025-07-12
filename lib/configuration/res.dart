@@ -75,4 +75,6 @@ class Res {
   //vaccine
   static const String lineEndCircle = "$vaccineIconPath/line_end_circle$svg";
   static const String lineStartCircle = "$vaccineIconPath/line_start_circle$svg";
+  static const String verified = "$vaccineIconPath/verified$svg";
+  static const String diagnosis = "$vaccineIconPath/diagnosis$svg";
 }

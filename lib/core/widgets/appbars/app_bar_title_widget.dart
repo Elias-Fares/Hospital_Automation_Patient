@@ -9,7 +9,7 @@ class AppBarTitleWidget extends StatelessWidget {
   const AppBarTitleWidget({
     super.key,
     required this.title,
-    required this.imagePath,
+    this.imagePath,
     this.subtitle,
   });
 
@@ -22,28 +22,16 @@ class AppBarTitleWidget extends StatelessWidget {
     return Row(
       children: [
         ClipOval(
-          child: GeneralNetworkImage(
-              url: "${Constant.baseUrl}/$imagePath",
-              width: 35,
-              height: 35,
-              boxFit: BoxFit.cover,
-              failWidget: title.isNotEmpty
-                  ? Container(
-                      width: 35,
-                      height: 35,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                          color: AppColors.primaryDimmed,
-                          shape: BoxShape.circle),
-                      child: Text(
-                        title.substring(0, 1),
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: AppColors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400),
-                      ),
-                    )
-                  : const SizedBox.shrink()),
+          child: (imagePath?.isNotEmpty ?? false)
+              ? GeneralNetworkImage(
+                  url: "${Constant.baseUrl}/$imagePath",
+                  width: 35,
+                  height: 35,
+                  boxFit: BoxFit.cover,
+                  failWidget: title.isNotEmpty
+                      ? _failWidget(context)
+                      : const SizedBox.shrink())
+              : _failWidget(context),
         ),
         const SizedBox(
           width: 8,
@@ -56,7 +44,6 @@ class AppBarTitleWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             if (subtitle != null) ...[
-
               Text(
                 subtitle!,
                 style: Theme.of(context)
@@ -68,6 +55,21 @@ class AppBarTitleWidget extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Container _failWidget(BuildContext context) {
+    return Container(
+      width: 35,
+      height: 35,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          color: AppColors.primaryDimmed, shape: BoxShape.circle),
+      child: Text(
+        title.substring(0, 1),
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: AppColors.white, fontSize: 18, fontWeight: FontWeight.w400),
+      ),
     );
   }
 }

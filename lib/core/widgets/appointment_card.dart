@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
+import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 
@@ -13,88 +12,96 @@ class AppointmentCard extends StatelessWidget {
     required this.type,
     required this.dateTime,
     required this.doctorName,
+    this.onAppointmentCardTap,
   });
 
   final String name;
   final String type;
   final String dateTime;
   final String doctorName;
+  final void Function()? onAppointmentCardTap;
 
   @override
   Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(16.0),
         margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
-        decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(10)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const GeneralImageAssets(
-                  path: Res.childCardIcon,
-                  width: 40,
-                  height: 40,
-                ),
-                const SizedBox(width: 12),
-                Text(name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium
-                        ?.copyWith(fontSize: 15)),
-                const Spacer(),
-                OutlinedCard(text: type)
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+        child: CustomInkwell(
+          onTap: onAppointmentCardTap,
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(10),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  Res.calendarIcon,
-                  width: 24,
-                  height: 24,
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "Date & Time",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: AppColors.hintTextColor),
+                    const GeneralImageAssets(
+                      path: Res.childCardIcon,
+                      width: 40,
+                      height: 40,
                     ),
-                    Text(dateTime),
+                    const SizedBox(width: 12),
+                    Text(name,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontSize: 15)),
+                    const Spacer(),
+                    OutlinedCard(text: type)
                   ],
                 ),
-                const Spacer(),
-                ClipOval(
-                  child: Image.asset(
-                    Res.personePlaceHolderImage,
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Column(
+                const SizedBox(height: 16),
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Doctor",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: AppColors.hintTextColor),
+                    Image.asset(
+                      Res.calendarIcon,
+                      width: 24,
+                      height: 24,
                     ),
-                    Text(doctorName),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Date & Time",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(color: AppColors.hintTextColor),
+                        ),
+                        Text(dateTime),
+                      ],
+                    ),
+                    const Spacer(),
+                    ClipOval(
+                      child: Image.asset(
+                        Res.personePlaceHolderImage,
+                        width: 24,
+                        height: 24,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Doctor",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(color: AppColors.hintTextColor),
+                        ),
+                        Text(doctorName),
+                      ],
+                    ),
                   ],
-                ),
+                )
               ],
-            )
-          ],
+            ),
+          ),
         ),
       );
 }

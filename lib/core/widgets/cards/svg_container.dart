@@ -20,7 +20,7 @@ class SvgContainer extends StatelessWidget {
         padding: EdgeInsets.all(containerPadding ?? 6),
         alignment: Alignment.center,
         decoration: const BoxDecoration(
-            color: AppColors.primaryContainer, shape: BoxShape.circle),
+            color: AppColors.backgroundColor, shape: BoxShape.circle),
         child: GeneralImageAssets(
           path: imgPath,
           color: AppColors.primary,

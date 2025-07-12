@@ -23,8 +23,8 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
   final String gender;
   final String imagePath;
   final String address;
-  final List<AvailabilitySchedule> availabilitySchedule;
-  final List<String> appointmentTypes;
+  final List<WorkDay> availabilitySchedule;
+  final List<AppointmentType> appointmentTypes;
   final String phoneNumber;
   final String emailAddress;
 
@@ -40,8 +40,8 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
         Row(
           children: [
             ClipOval(
-                child: GeneralImageAssets(
-              path: imagePath,
+                child: GeneralNetworkImage(
+              url: imagePath,
               width: 70.w,
               height: 70.w,
             )),
@@ -49,6 +49,7 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
               width: 20,
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   name,
@@ -102,8 +103,17 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
           children: List.generate(
             availabilitySchedule.length,
             (index) => KeyValueCard(
-                keyTitle: availabilitySchedule.elementAt(index).day,
-                value: availabilitySchedule.elementAt(index).schedule),
+                keyTitle: availabilitySchedule.elementAt(index).day ?? "",
+                value: joinStrings([
+                  availabilitySchedule
+                      .elementAt(index)
+                      .workStartTime
+                      ?.substring(0, 5),
+                  availabilitySchedule
+                      .elementAt(index)
+                      .workStartTime
+                      ?.substring(0, 5),
+                ])),
           ),
         ),
         const SizedBox(
@@ -122,7 +132,7 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
           children: List.generate(
             appointmentTypes.length,
             (index) => OutlinedCard(
-              text: appointmentTypes.elementAt(index),
+              text: appointmentTypes.elementAt(index).typeName ?? "",
             ),
           ),
         ),
@@ -142,7 +152,8 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
               onTap: onEmailTap,
             )
           ],
-        )
+        ),
+  
       ]),
     );
   }

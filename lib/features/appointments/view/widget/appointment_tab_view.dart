@@ -30,6 +30,14 @@ class AppointmentTabView extends StatelessWidget {
               data.doctor?.lastName
             ]),
             type: data.appointmentType?.typeName ?? "",
+            onAppointmentCardTap: () {
+              context.push(
+                  RouterUtils.getNestedRoute(
+                    context,
+                    routeName: AppointmentDetailsScreen.routeName,
+                  ),
+                  extra: data);
+            },
           );
         },
       ),

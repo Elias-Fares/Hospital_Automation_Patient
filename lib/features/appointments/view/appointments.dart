@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:patient_app/configuration/router/router_utils.dart';
 import 'package:patient_app/core/function/date_format.dart';
 import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
@@ -15,6 +17,7 @@ import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import 'package:patient_app/features/appointment_details/view/appointment_details_screen.dart';
 import 'package:patient_app/features/appointments/view_model/appointments_view_model.dart';
 
 part 'appointments_screen.dart';

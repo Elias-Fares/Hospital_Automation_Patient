@@ -6,35 +6,41 @@ class PrescriptionCard extends StatelessWidget {
       required this.doctorName,
       required this.doctorImageUrl,
       required this.doctorSpecialty,
-      required this.medicinesNames});
+      required this.medicinesNames,
+      this.onPrescriptionCardTap});
 
   final String doctorName;
   final String doctorImageUrl;
   final String doctorSpecialty;
 
   final String medicinesNames;
+  final void Function()? onPrescriptionCardTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      padding: const EdgeInsets.all(16),
-      decoration: containerCardDecoration(),
-      child: Column(
-        children: [
-          PersoneTile(
-              imageUrl: doctorImageUrl,
-              tile: doctorName,
-              subtitle: doctorSpecialty),
-          const SizedBox(
-            height: 20,
-          ),
-          IconKeyValueWidget(
-            iconPath: Res.medicineIcon,
-            keyTitle: "Medicines",
-            value: medicinesNames,
-          )
-        ],
+    return CustomInkwell(
+      onTap: onPrescriptionCardTap,
+      color: AppColors.white,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+        child: Column(
+          children: [
+            PersoneTile(
+                imageUrl: doctorImageUrl,
+                tile: doctorName,
+                subtitle: doctorSpecialty),
+            const SizedBox(
+              height: 20,
+            ),
+            IconKeyValueWidget(
+              iconPath: Res.medicineIcon,
+              keyTitle: "Medicines",
+              value: medicinesNames,
+            )
+          ],
+        ),
       ),
     );
   }

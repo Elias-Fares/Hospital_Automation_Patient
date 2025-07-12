@@ -15,4 +15,10 @@ class DoctorsRepository {
 
     return response;
   }
+
+    Future<DataState> getDoctorProfile({required String doctorId}) async {
+    final response = _doctorsDataSource.getDoctorProfile(doctorId: doctorId);
+
+    return response;
+  }
 }

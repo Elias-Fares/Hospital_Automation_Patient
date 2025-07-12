@@ -1,4 +1,5 @@
 import 'package:patient_app/core/base_dio/data_state.dart';
+import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/data/profile/data_source/profile_data_source.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
 
@@ -9,12 +10,15 @@ class ProfileRepository {
       : _profileDataSource = profileDataSource;
 
   Future<DataState> getUserProfile() async {
-    final response = _profileDataSource.getUserProfile();
+    final response = _profileDataSource.getUserProfile(
+     );
 
     return response;
   }
 
-    String? getUserName() {
+
+
+  String? getUserName() {
     return _profileDataSource.getUserName();
   }
 
