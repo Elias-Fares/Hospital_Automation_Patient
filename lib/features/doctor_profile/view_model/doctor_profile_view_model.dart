@@ -1,5 +1,6 @@
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
+import 'package:patient_app/core/managers/appointment_data_manager.dart';
 import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
 import 'package:patient_app/data/doctors/repository/doctors_repository.dart';
 import 'package:patient_app/data/profile/repository/profile_repository.dart';
@@ -28,5 +29,11 @@ class DoctorProfileViewModel extends _$DoctorProfileViewModel {
               response.exceptionResponse?.exceptionMessages.firstOrNull ?? "",
               StackTrace.current));
     }
+  }
+
+  void setDoctorId() {
+    ref.read(appointmentDataManagerProvider).setDoctorId(
+        doctorId:
+            state.doctorProfileResponse?.asData?.value.userId?.toString());
   }
 }

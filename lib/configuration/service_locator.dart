@@ -15,7 +15,7 @@ import 'package:patient_app/data/perscriptions/data_source/prescriptions_data_so
 import 'package:patient_app/data/perscriptions/repository/prescriptions_repository.dart';
 import 'package:patient_app/data/profile/data_source/profile_data_source.dart';
 import 'package:patient_app/data/profile/repository/profile_repository.dart';
-import 'package:patient_app/services/shared_preferences_service.dart';
+import 'package:patient_app/core/services/shared_preferences_service.dart';
 
 final getIt = GetIt.instance;
 

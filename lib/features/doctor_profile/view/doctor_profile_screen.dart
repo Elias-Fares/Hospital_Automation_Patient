@@ -65,13 +65,15 @@ class _DoctorProfileScreenState extends ConsumerState<DoctorProfileScreen> {
               ? const SizedBox.shrink()
               : DoctorProfileBookAppointmentButton(
                   onTap: () {
+                    ref
+                        .read(doctorProfileViewModelProvider.notifier)
+                        .setDoctorId();
                     context.push(
-                        RouterUtils.getNestedRoute(context,
-                            routeName: BookAppointmentScreen.routeName),
-                        // extra: doctorProfileState.doctorProfileResponse?.asData
-                        //     ?.value.appointmentTypes
-                            
-                            );
+                      RouterUtils.getNestedRoute(context,
+                          routeName: BookAppointmentScreen.routeName),
+                      // extra: doctorProfileState.doctorProfileResponse?.asData
+                      //     ?.value.appointmentTypes
+                    );
                   },
                 ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

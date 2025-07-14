@@ -30,4 +30,16 @@ class AppointmentsDataSource {
 
     return response;
   }
+
+  Future<DataState> getFreeAppointmentTime(
+      {required String date,
+      required String doctorId,
+      required String appointmentType}) async {
+    final response = await _baseDio.basePost(
+        subUrl: "/user/showFreeAppointments/$doctorId/$appointmentType",
+        needToken: true,
+        data: {"date": date});
+
+    return response;
+  }
 }

@@ -3,7 +3,7 @@ import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
-import 'package:patient_app/services/shared_preferences_service.dart';
+import 'package:patient_app/core/services/shared_preferences_service.dart';
 
 class ProfileDataSource {
   final BaseDio _baseDio;

@@ -8,7 +8,7 @@ import 'package:patient_app/core/base_dio/errors_types_enum.dart';
 import 'package:patient_app/core/base_dio/general_model.dart';
 import 'package:patient_app/core/constant/constant.dart';
 
-import '../../services/shared_preferences_service.dart';
+import '../services/shared_preferences_service.dart';
 
 class BaseDio {
   final Dio dioProject;

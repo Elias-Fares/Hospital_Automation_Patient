@@ -1,6 +1,6 @@
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/data/auth/data_source/auth_data_source.dart';
-import 'package:patient_app/services/shared_preferences_service.dart';
+import 'package:patient_app/core/services/shared_preferences_service.dart';
 
 import '../models/user_model.dart';
 

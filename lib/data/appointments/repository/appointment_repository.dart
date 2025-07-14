@@ -18,4 +18,14 @@ class AppointmentRepository {
 
     return response;
   }
+
+  Future<DataState> getFreeAppointmentTime(
+      {required String date,
+      required String doctorId,
+      required String appointmentType}) async {
+    final response = await _appointmentsDataSource.getFreeAppointmentTime(
+        date: date, appointmentType: appointmentType, doctorId: doctorId);
+
+    return response;
+  }
 }

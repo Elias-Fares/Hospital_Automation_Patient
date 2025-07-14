@@ -7,7 +7,7 @@ part of 'book_appointment_view_model.dart';
 // **************************************************************************
 
 String _$bookAppointmentViewModelHash() =>
-    r'4ce8fc2e26676d7ffcb874db842442815ea1f506';
+    r'51d024e0adb32d6660daecb4575129901b0c36d2';
 
 /// See also [BookAppointmentViewModel].
 @ProviderFor(BookAppointmentViewModel)
