@@ -34,6 +34,9 @@ class AppointmentDataManager {
   void setTime({required String? time}) {
     _bookAppointmentEntity = _bookAppointmentEntity.copyWith(time: time);
   }
+  void setChildId({required String? childId}) {
+    _bookAppointmentEntity = _bookAppointmentEntity.copyWith(childId: childId);
+  }
 
   void reset() {
     _bookAppointmentEntity = BookAppointmentEntity();

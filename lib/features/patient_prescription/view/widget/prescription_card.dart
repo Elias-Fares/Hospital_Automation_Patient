@@ -29,7 +29,7 @@ class PrescriptionCard extends StatelessWidget {
           children: [
             PersoneTile(
                 imageUrl: doctorImageUrl,
-                tile: doctorName,
+                title: doctorName,
                 subtitle: doctorSpecialty),
             const SizedBox(
               height: 20,

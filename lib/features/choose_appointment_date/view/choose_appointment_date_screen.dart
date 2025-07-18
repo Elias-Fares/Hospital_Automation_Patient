@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/core/constant/constant.dart';
 import 'package:patient_app/core/function/date_format.dart';
+import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/managers/appointment_data_manager.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
+import 'package:patient_app/core/widgets/buttons/loading_button.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/core/widgets/cards/persone_tile.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
+import 'package:patient_app/core/widgets/show_snack_bar_success_message.dart';
+import 'package:patient_app/features/appointment_details/view/appointment_details_screen.dart';
+import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/choose_appointment_date/view_model/choose_appointment_date_view_model.dart';
+import 'package:patient_app/features/doctor_profile/view_model/doctor_profile_view_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 part 'widget/book_appointment_calendar.dart';
 part 'widget/available_time.dart';
@@ -37,6 +46,10 @@ class _ChooseAppointmentDateScreenState
 
     Future.microtask(
       () {
+        _selectedDay = _focusedDay;
+        ref
+            .read(chooseAppointmentDateViewModelProvider.notifier)
+            .setDate(date: _selectedDay?.getYearMonthDay());
         ref
             .read(chooseAppointmentDateViewModelProvider.notifier)
             .getFreeAppointmentTime();
@@ -50,19 +63,49 @@ class _ChooseAppointmentDateScreenState
   ) {
     final chooseAppointmentDateState =
         ref.watch(chooseAppointmentDateViewModelProvider);
-    return Scaffold(
-        appBar: const SubAppBar(
-          titleWidget: PersoneTile(
-              imageUrl: Res.personePlaceHolderImage,
-              tile: "Doctor Name",
-              subtitle: "Cardiologist"),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            debugPrint(
-                ref.read(appointmentDataManagerProvider).current.toString());
+
+    final doctorProfileModel = ref
+        .watch(doctorProfileViewModelProvider)
+        .doctorProfileResponse
+        ?.asData
+        ?.value;
+
+    ref.listen(
+      chooseAppointmentDateViewModelProvider.select(
+        (value) => value.bookAppointmentResponse,
+      ),
+      (previous, next) {
+        next?.when(
+          data: (data) {
+            showSnackBarSuccessMessage(context,
+                message: "The appointment has been booked successfully.");
+
+            context.go(AppointmentsScreen.routeName);
           },
+          error: (error, stackTrace) {
+            showSnackBarErrorMessage(context, message: error.toString());
+          },
+          loading: () {},
+        );
+      },
+    );
+    return Scaffold(
+        appBar: SubAppBar(
+          titleWidget: PersoneTile(
+              imageUrl:
+                  "${Constant.baseUrl}/${doctorProfileModel?.imgurl ?? ""}",
+              title: joinStrings([
+                doctorProfileModel?.firstName,
+                doctorProfileModel?.lastName,
+              ]),
+              subtitle: doctorProfileModel?.specialty ?? ""),
         ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     debugPrint(
+        //         ref.read(appointmentDataManagerProvider).current.toString());
+        //   },
+        // ),
         body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Container(
@@ -94,10 +137,12 @@ class _ChooseAppointmentDateScreenState
                         // });
                       },
                       onDaySelected: (selectedDay, focusedDay) {
-                        setState(() {
-                          print(selectedDay.toString());
-                          _selectedDay = selectedDay;
-                        });
+                        // setState(() {
+
+                        // });
+
+                        print(selectedDay.toString());
+                        _selectedDay = selectedDay;
 
                         final controller = ref.read(
                             chooseAppointmentDateViewModelProvider.notifier);
@@ -114,20 +159,50 @@ class _ChooseAppointmentDateScreenState
                     const SizedBox(
                       height: 10,
                     ),
-                    const Divider(
-                      color: AppColors.primaryDimmed,
-                      thickness: .6,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     chooseAppointmentDateState.freeAppointmentDate?.when(
-                          data: (data) => AvailableTime(
-                              selectedDate:
-                                  _selectedDay?.getYearMonthDay() ?? "",
-                              availableTimeValue: data?.toString() ?? ""),
-                          error: (error, stackTrace) =>
-                              CustomErrorWidget(message: error.toString()),
+                          data: (data) => Column(
+                            children: [
+                              const Divider(
+                                color: AppColors.primaryDimmed,
+                                thickness: .6,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              AvailableTime(
+                                  selectedDate:
+                                      _selectedDay?.getYearMonthDay() ?? "",
+                                  availableTimeValue: data?.toString() ?? ""),
+                              if (chooseAppointmentDateState
+                                  .showBookAppointmentButton) ...[
+                                const SizedBox(
+                                  height: 14,
+                                ),
+                                LoadingButton(
+                                  title: "Confirm",
+                                  isLoading: chooseAppointmentDateState
+                                          .bookAppointmentResponse?.isLoading ??
+                                      false,
+                                  onTap: () {
+                                    ref
+                                        .read(
+                                            chooseAppointmentDateViewModelProvider
+                                                .notifier)
+                                        .bookAppointment();
+                                  },
+                                )
+                              ]
+                            ],
+                          ),
+                          error: (error, stackTrace) => CustomErrorWidget(
+                            message: error.toString(),
+                            onTryAgainTap: () {
+                              final controller = ref.read(
+                                  chooseAppointmentDateViewModelProvider
+                                      .notifier);
+                              controller.getFreeAppointmentTime();
+                            },
+                          ),
                           loading: () => const CustomLoadingWidget(),
                         ) ??
                         const SizedBox.shrink(),

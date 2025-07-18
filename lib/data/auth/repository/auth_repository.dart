@@ -14,7 +14,7 @@ class AuthRepository {
       : _authDataSource = authDataSource,
         _sharedPreferencesService = sharedPreferencesService;
 
-  Future<DataState<UserModel>> signUp({
+  Future<DataState> signUp({
     required String email,
     required String firstName,
     required String lastName,
@@ -79,6 +79,7 @@ class AuthRepository {
   Future<void> saveToken({required String? token}) async {
     await _sharedPreferencesService.saveToken(token: token);
   }
+
   Future<void> saveUserNAme({required String? userName}) async {
     await _sharedPreferencesService.saveUserName(userName: userName);
   }
@@ -133,8 +134,6 @@ class AuthRepository {
   }
 
   Future<DataState> uploadProfileImage({required String imagePath}) async {
-
-
     final response =
         await _authDataSource.uploadProfileImage(imagePath: imagePath);
 

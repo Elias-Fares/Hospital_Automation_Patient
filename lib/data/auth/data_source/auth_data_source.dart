@@ -9,7 +9,7 @@ class AuthDataSource {
 
   AuthDataSource({required this.baseDio});
 
-  Future<DataState<UserModel>> signUp({
+  Future<DataState> signUp({
     required String email,
     required String firstName,
     required String lastName,

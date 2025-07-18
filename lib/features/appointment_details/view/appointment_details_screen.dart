@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/configuration/router/router_utils.dart';
 import 'package:patient_app/core/constant/constant.dart';
 import 'package:patient_app/core/function/date_format.dart';
 import 'package:patient_app/core/function/join_strings.dart';
@@ -42,6 +43,7 @@ class _AppointmentDetailsScreenState
                 ]),
         ),
       ),
+
       body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: AppointmentDetailsPage(
@@ -109,7 +111,7 @@ class AppointmentDetailsPage extends StatelessWidget {
             children: [
               PersoneTile(
                   imageUrl: doctorProfileImage,
-                  tile: doctorName,
+                  title: doctorName,
                   subtitle: speciality),
               CustomInkwell(
                 onTap: viewDoctorProfile,

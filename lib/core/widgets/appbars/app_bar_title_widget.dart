@@ -22,17 +22,12 @@ class AppBarTitleWidget extends StatelessWidget {
     return Row(
       children: [
         ClipOval(
-          child: (imagePath?.isNotEmpty ?? false)
-              ? GeneralNetworkImage(
-                  url: "${Constant.baseUrl}/$imagePath",
-                  width: 35,
-                  height: 35,
-                  boxFit: BoxFit.cover,
-                  failWidget: title.isNotEmpty
-                      ? _failWidget(context)
-                      : const SizedBox.shrink())
-              : _failWidget(context),
-        ),
+            child: GeneralNetworkImage(
+                url: "${Constant.baseUrl}/$imagePath",
+                width: 35,
+                height: 35,
+                boxFit: BoxFit.cover,
+                failWidget: _failWidget(context))),
         const SizedBox(
           width: 8,
         ),

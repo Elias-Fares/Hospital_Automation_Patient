@@ -5,13 +5,13 @@ import 'package:patient_app/core/widgets/general_network_image.dart';
 
 class PersoneTile extends StatelessWidget {
   final String imageUrl;
-  final String tile;
+  final String title;
   final String subtitle;
 
   const PersoneTile({
     super.key,
     required this.imageUrl,
-    required this.tile,
+    required this.title,
     required this.subtitle,
   });
 
@@ -27,6 +27,7 @@ class PersoneTile extends StatelessWidget {
               width: 40,
               height: 40,
               boxFit: BoxFit.cover,
+              failWidget: _failWidget(context),
             ),
           ),
           const SizedBox(width: 12),
@@ -34,7 +35,7 @@ class PersoneTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(tile, style: Theme.of(context).textTheme.bodyMedium),
+              Text(title, style: Theme.of(context).textTheme.bodyMedium),
               Text(
                 subtitle,
                 style: Theme.of(context)
@@ -45,6 +46,21 @@ class PersoneTile extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Container _failWidget(BuildContext context) {
+    return Container(
+      width: 35,
+      height: 35,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          color: AppColors.primaryDimmed, shape: BoxShape.circle),
+      child: Text(
+        title.substring(0, 1),
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: AppColors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),
     );
   }

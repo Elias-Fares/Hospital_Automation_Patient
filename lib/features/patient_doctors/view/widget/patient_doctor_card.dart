@@ -27,7 +27,7 @@ class PatientDoctorCard extends StatelessWidget {
           decoration: containerCardDecoration(color: AppColors.transparent),
           child: PersoneTile(
               imageUrl: doctorImageUrl,
-              tile: doctorName,
+              title: doctorName,
               subtitle: doctorSpecialty),
         ),
       ),

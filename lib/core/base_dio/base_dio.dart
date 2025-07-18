@@ -68,7 +68,7 @@ class BaseDio {
     }
   }
 
-  Future<DataState<T>> post<T extends GeneralModel>({
+  Future<DataState> post<T extends GeneralModel>({
     required String subUrl,
     dynamic data,
     String? token,
@@ -94,7 +94,7 @@ class BaseDio {
       final responseData = json.decode(response.data)["data"];
       final responseObject = model?.fromJson(responseData);
       print("the reponse modeled");
-      return DataSuccess<T>(responseObject);
+      return DataSuccess(responseObject);
     } on DioException catch (e) {
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
       return DataFailed(exceptionResponse);

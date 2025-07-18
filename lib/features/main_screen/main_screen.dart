@@ -8,6 +8,8 @@ import 'package:patient_app/features/app_drawer/view/app_drawer_screen.dart';
 import 'package:patient_app/features/children/view_model/children_view_model.dart';
 import 'package:patient_app/features/profile/view_model/profile_view_model.dart';
 
+import '../../configuration/router/router_utils.dart';
+
 final GlobalKey<ScaffoldState> mainScreenScaffoldKey =
     GlobalKey<ScaffoldState>();
 
@@ -38,6 +40,11 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       drawer: AppDrawerScreen(
         mainScreenKey: mainScreenScaffoldKey,
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     RouterUtils.debugGoRouterStack(context);
+      //   },
+      // ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: widget.statefulNavigationShell.currentIndex,
         onDestinationSelected: (index) {

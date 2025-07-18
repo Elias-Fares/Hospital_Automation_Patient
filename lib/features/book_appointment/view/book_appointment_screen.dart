@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/router_utils.dart';
+import 'package:patient_app/configuration/service_locator.dart';
+import 'package:patient_app/core/constant/constant.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/function/join_strings.dart';
+import 'package:patient_app/core/managers/appointment_data_manager.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/cards/persone_tile.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
@@ -11,6 +14,8 @@ import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
 import 'package:patient_app/core/widgets/buttons/loading_button.dart';
+import 'package:patient_app/core/widgets/textfields/select_option_text_field.dart';
+import 'package:patient_app/data/childern/repository/children_repository.dart';
 import 'package:patient_app/features/book_appointment/model/medical_procedure_model.dart';
 import 'package:patient_app/features/book_appointment/view_model/book_appointment_view_model.dart';
 import 'package:patient_app/features/book_appointment/view_model/book_appointment_state.dart';
@@ -19,42 +24,27 @@ import 'package:patient_app/features/doctor_profile/view_model/doctor_profile_vi
 
 part 'widget/procedure_card.dart';
 
-class BookAppointmentScreen extends ConsumerWidget {
+class BookAppointmentScreen extends ConsumerStatefulWidget {
   const BookAppointmentScreen({super.key});
   static const routeName = "/book_appointment_screen";
-  // final List<MedicalProcedure> procedures = [
-  //   MedicalProcedure(
-  //     id: "1",
-  //     name: "Check up",
-  //     description:
-  //         "If you are worried about being sick it is always good to do a check up.",
-  //     durationInMinutes: 15,
-  //   ),
-  //   MedicalProcedure(
-  //     id: "2",
-  //     name: "Review",
-  //     description:
-  //         "When the doctor already knows about you medical and you are only going for a quick review to make sure your medical state is stable.",
-  //     durationInMinutes: 10,
-  //   ),
-  //   MedicalProcedure(
-  //     id: "3",
-  //     name: "Adenoid surgery",
-  //     description:
-  //         "When the doctor already knows about you medical and you are only going for a quick Adenoid surgery to make sure your medical state is stable.",
-  //     durationInMinutes: 40,
-  //   ),
-  //   MedicalProcedure(
-  //     id: "4",
-  //     name: "Radiography",
-  //     description:
-  //         "When the doctor already knows about you medical and you are only going for a quick Radiography to make sure your medical state is stable.",
-  //     durationInMinutes: 20,
-  //   ),
-  // ];
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<BookAppointmentScreen> createState() =>
+      _BookAppointmentScreenState();
+}
+
+class _BookAppointmentScreenState extends ConsumerState<BookAppointmentScreen> {
+  late final TextEditingController selectedChildController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    selectedChildController = TextEditingController();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final doctorProfileModel = ref
         .watch(doctorProfileViewModelProvider)
         .doctorProfileResponse
@@ -66,12 +56,21 @@ class BookAppointmentScreen extends ConsumerWidget {
     return Scaffold(
       appBar: SubAppBar(
         titleWidget: PersoneTile(
-            imageUrl: doctorProfileModel?.imgurl ?? "",
-            tile: joinStrings([
+            imageUrl: "${Constant.baseUrl}/${doctorProfileModel?.imgurl ?? ""}",
+            title: joinStrings([
               doctorProfileModel?.firstName,
               doctorProfileModel?.lastName,
             ]),
             subtitle: doctorProfileModel?.specialty ?? ""),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // // ref.read(appointmentDataManagerProvider).reset();
+          // debugPrint(
+          //     ref.read(appointmentDataManagerProvider).current.toString());
+          getIt<ChildrenRepository>().clearCache();
+          ref.read(bookAppointmentViewModelProvider.notifier).getChildren();
+        },
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -124,6 +123,34 @@ class BookAppointmentScreen extends ConsumerWidget {
             const SizedBox(
               height: 15,
             ),
+            if (bookAppointmentState.showChildrenList) ...[
+              SelectOptionsTextField(
+                bottomSheetTitle: "Select Child",
+                hintText: "Select Child",
+                isLoading: bookAppointmentState.childrenResponse?.isLoading,
+                textEditingController: selectedChildController,
+                optionsList: ref
+                    .read(bookAppointmentViewModelProvider.notifier)
+                    .getChildrenNames(),
+                onTap: (index) {
+                  final selectedChild = bookAppointmentState
+                      .childrenResponse?.asData?.value
+                      .elementAtOrNull(index);
+
+                  ref
+                      .read(bookAppointmentViewModelProvider.notifier)
+                      .setChildId(childId: selectedChild?.childId?.toString());
+
+                  selectedChildController.text = joinStrings([
+                    selectedChild?.child?.firstName,
+                    selectedChild?.child?.lastName,
+                  ]);
+                },
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+            ],
             Container(
               decoration: containerCardDecoration(),
               padding: const EdgeInsets.all(16),
@@ -169,4 +196,3 @@ class BookAppointmentScreen extends ConsumerWidget {
     );
   }
 }
-
