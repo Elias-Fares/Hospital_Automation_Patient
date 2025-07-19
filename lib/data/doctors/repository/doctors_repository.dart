@@ -1,7 +1,4 @@
-import 'package:patient_app/data/childern/data_source/children_data_source.dart';
 import 'package:patient_app/data/doctors/data_source/doctors_data_source.dart';
-import 'package:patient_app/data/perscriptions/data_source/prescriptions_data_source.dart';
-
 import '../../../core/base_dio/data_state.dart';
 
 class DoctorsRepository {
@@ -16,9 +13,20 @@ class DoctorsRepository {
     return response;
   }
 
-    Future<DataState> getDoctorProfile({required String doctorId}) async {
+  Future<DataState> getDoctorProfile({required String doctorId}) async {
     final response = _doctorsDataSource.getDoctorProfile(doctorId: doctorId);
 
+    return response;
+  }
+
+  Future<DataState> getAllDepartments() async {
+    final response = await _doctorsDataSource.getAllDepartments();
+
+    return response;
+  }
+
+  Future<DataState> getDepartmentDetails({required String id}) async {
+    final response = await _doctorsDataSource.getDepartmentDetails(id: id);
     return response;
   }
 }

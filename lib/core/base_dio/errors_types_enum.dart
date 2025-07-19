@@ -76,6 +76,11 @@ ExceptionResponse handleExceptionWithoutStatusCode(DioException dioException) {
           statusCode: LocalStatusCode.BAD_CERTIFICATE,
           exceptionMessages: ["Bad Certificate"]);
       break;
+    case DioExceptionType.connectionError:
+      exceptionResponse = ExceptionResponse(
+          statusCode: LocalStatusCode.NO_INTERNET_CONNECTION,
+          exceptionMessages: ["No Internet Connection"]);
+      break;
     default:
       exceptionResponse = ExceptionResponse(
           statusCode: LocalStatusCode.DEFAULT,

@@ -58,7 +58,7 @@ class PersoneTile extends StatelessWidget {
       decoration: const BoxDecoration(
           color: AppColors.primaryDimmed, shape: BoxShape.circle),
       child: Text(
-        title.substring(0, 1),
+        title.length > 2 ? title.substring(0, 1) : "",
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             color: AppColors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),

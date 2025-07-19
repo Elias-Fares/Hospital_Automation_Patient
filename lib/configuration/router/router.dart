@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/my_go_router_observer.dart';
+import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/params/child_appointment_params.dart';
 import 'package:patient_app/core/params/medical_records_screen_params.dart';
 import 'package:patient_app/core/params/prescriptions_screen_params.dart';
+import 'package:patient_app/core/services/shared_preferences_service.dart';
 import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import 'package:patient_app/data/doctors/models/department_model.dart';
 import 'package:patient_app/data/perscriptions/models/prescription_model.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
 import 'package:patient_app/features/appointment_details/view/appointment_details_screen.dart';
@@ -41,8 +44,8 @@ import 'package:patient_app/features/vaccines/view/vaccines_screen.dart';
 
 class AppRouter {
   AppRouter._();
-  static String initialRoute = "/appointments";
-  // static String initialRoute = LoginScreen.routeName;
+  // static String initialRoute = getIt<> "/appointments";
+  static String initialRoute = LoginScreen.routeName;
 
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "root");
 
@@ -62,6 +65,17 @@ class AppRouter {
         GoRoute(
           path: LoginScreen.routeName,
           builder: (context, state) => const LoginScreen(),
+          redirect: (context, state) {
+            // debugPrint("redirect called");
+            // final sharedPrefsService = getIt<SharedPreferencesService>();
+            // final token = sharedPrefsService.getToken();
+            // final isTokenEmpty = token?.isEmpty ?? true;
+            // if (isTokenEmpty) {
+            //   return null;
+            // } else {
+            //   return AppointmentsScreen.routeName;
+            // }
+          },
         ),
         GoRoute(
           path: VerificationCodeScreen.routeName,
@@ -159,12 +173,15 @@ class AppRouter {
                 path: DoctorProfileScreen.routeName,
                 builder: (context, state) {
                   final id = state.extra as String?;
-                  return  DoctorProfileScreen(doctorId: id,);
+                  return DoctorProfileScreen(
+                    doctorId: id,
+                  );
                 },
                 routes: [
                   GoRoute(
                       path: BookAppointmentScreen.routeName,
-                      builder: (context, state) => BookAppointmentScreen(),
+                      builder: (context, state) =>
+                          const BookAppointmentScreen(),
                       routes: [
                         GoRoute(
                           path: ChooseAppointmentDateScreen.routeName,
@@ -180,7 +197,12 @@ class AppRouter {
           routes: [
             GoRoute(
               path: DepartmentDetailsScreen.routeName,
-              builder: (context, state) => const DepartmentDetailsScreen(),
+              builder: (context, state) {
+                final departmentId = state.extra as int?;
+                return DepartmentDetailsScreen(
+                  departmentId: departmentId,
+                );
+              },
             )
           ]),
       GoRoute(

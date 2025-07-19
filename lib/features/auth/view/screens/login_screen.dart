@@ -34,6 +34,19 @@ class _LoginScreenV2State extends ConsumerState<LoginScreen> {
   bool isloading = false;
 
   @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(
+      () {
+        if (mounted) {
+          ref.read(logInViewModelProvider.notifier).autoLogin(context: context);
+        }
+      },
+    );
+  }
+
+  @override
   void dispose() {
     super.dispose();
     emailTextEditingController.dispose();
