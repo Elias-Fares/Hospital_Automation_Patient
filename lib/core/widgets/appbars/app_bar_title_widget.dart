@@ -23,7 +23,7 @@ class AppBarTitleWidget extends StatelessWidget {
       children: [
         ClipOval(
             child: GeneralNetworkImage(
-                url: "${Constant.baseUrl}/$imagePath",
+                url: imagePath ?? "",
                 width: 35,
                 height: 35,
                 boxFit: BoxFit.cover,
@@ -61,7 +61,7 @@ class AppBarTitleWidget extends StatelessWidget {
       decoration: const BoxDecoration(
           color: AppColors.primaryDimmed, shape: BoxShape.circle),
       child: Text(
-        title.substring(0, 1),
+        title.length > 2 ? title.substring(0, 1) : "",
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             color: AppColors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),

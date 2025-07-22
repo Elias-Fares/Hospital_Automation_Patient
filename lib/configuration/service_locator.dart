@@ -13,9 +13,13 @@ import 'package:patient_app/data/medical_records/data_source/medical_records_dat
 import 'package:patient_app/data/medical_records/repository/medical_records_repository.dart';
 import 'package:patient_app/data/perscriptions/data_source/prescriptions_data_source.dart';
 import 'package:patient_app/data/perscriptions/repository/prescriptions_repository.dart';
+import 'package:patient_app/data/pharmacies/data_source/pharmacies_data_source.dart';
+import 'package:patient_app/data/pharmacies/repository/pharmacies_repository.dart';
 import 'package:patient_app/data/profile/data_source/profile_data_source.dart';
 import 'package:patient_app/data/profile/repository/profile_repository.dart';
 import 'package:patient_app/core/services/shared_preferences_service.dart';
+import 'package:patient_app/data/vaccines/data_source/vaccines_data_source.dart';
+import 'package:patient_app/data/vaccines/repository/vaccine_repository.dart';
 
 final getIt = GetIt.instance;
 
@@ -30,6 +34,8 @@ Future<void> initializeDependencies() async {
   _intitDoctors();
   _initPrescriptions();
   _initMedicalRecords();
+  _initVaccines();
+  _initPharmacies();
 }
 
 void _initDio() {
@@ -42,7 +48,8 @@ void _initDio() {
               "charset": "utf-8",
               "Accept-Charset": "utf-8"
             },
-            responseType: ResponseType.plain),
+            responseType: ResponseType.plain,
+            connectTimeout: const Duration(seconds: 7)),
       ));
 }
 
@@ -111,5 +118,19 @@ void _initMedicalRecords() {
     () => MedicalRecordsRepository(
         medicalRecordsDataSource:
             MedicalRecordsDataSource(baseDio: getIt<BaseDio>())),
+  );
+}
+
+void _initVaccines() {
+  getIt.registerLazySingleton(
+    () => VaccineRepository(
+        dataSource: VaccinesDataSource(baseDio: getIt<BaseDio>())),
+  );
+}
+
+void _initPharmacies() {
+  getIt.registerLazySingleton(
+    () => PharmaciesRepository(
+        dataSource: PharmaciesDataSource(baseDio: getIt<BaseDio>())),
   );
 }

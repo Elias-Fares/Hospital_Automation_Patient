@@ -53,6 +53,9 @@ class AppointmentsDataSource {
         bookAppointmentEntity.type == ParamsValues.child.value) {
       queryMap['child_id'] = bookAppointmentEntity.childId;
     }
+    if (bookAppointmentEntity.vaccineId != null) {
+      queryMap['vaccin_id'] = bookAppointmentEntity.vaccineId;
+    }
     final response = await _baseDio.post(
       subUrl:
           "/user/confirm-an-order/${bookAppointmentEntity.doctorId}/${bookAppointmentEntity.appointmentType}",

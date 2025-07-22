@@ -5,6 +5,7 @@ class BookAppointmentEntity {
   final String? time;
   final String? type;
   final String? childId;
+  final String? vaccineId;
 
   BookAppointmentEntity({
     this.doctorId,
@@ -13,6 +14,7 @@ class BookAppointmentEntity {
     this.time,
     this.type,
     this.childId,
+    this.vaccineId,
   });
 
   BookAppointmentEntity copyWith({
@@ -22,6 +24,7 @@ class BookAppointmentEntity {
     String? time,
     String? type,
     String? childId,
+    String? vaccineId,
   }) {
     return BookAppointmentEntity(
         doctorId: doctorId ?? this.doctorId,
@@ -29,11 +32,12 @@ class BookAppointmentEntity {
         date: date ?? this.date,
         time: time ?? this.time,
         type: type ?? this.type,
-        childId: childId ?? this.childId);
+        childId: childId ?? this.childId,
+        vaccineId: vaccineId ?? this.vaccineId);
   }
 
   @override
   String toString() {
-    return 'BookAppointmentEntity(doctorId: $doctorId, childId: $childId appointmentType: $appointmentType, date: $date, type: $type, time: $time)';
+    return 'BookAppointmentEntity(doctorId: $doctorId, childId: $childId appointmentType: $appointmentType, date: $date, type: $type, time: $time, vaccine ID: $vaccineId)';
   }
 }

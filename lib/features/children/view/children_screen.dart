@@ -29,7 +29,9 @@ class _ChildrenScreenState extends ConsumerState<ChildrenScreen> {
       appBar: const MainAppBar(),
       body: RefreshIndicator(
         onRefresh: () async {
-          ref.read(childrenViewModelProvider.notifier).getChildren();
+          ref
+              .read(childrenViewModelProvider.notifier)
+              .getChildren(withRefresh: true);
         },
         triggerMode: RefreshIndicatorTriggerMode.anywhere,
         child: Padding(

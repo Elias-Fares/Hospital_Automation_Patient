@@ -21,11 +21,11 @@ class PharmacyProfileNavigationSection extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Column(
         children: [
-          IconTitleNavigationButton(
-            iconPath: Res.appointmenProfiletIcon,
-            title: "Filled Prescriptions",
-            onTap: onPrescriptionTap,
-          ),
+          // IconTitleNavigationButton(
+          //   iconPath: Res.appointmenProfiletIcon,
+          //   title: "Filled Prescriptions",
+          //   onTap: onPrescriptionTap,
+          // ),
           IconTitleNavigationButton(
             iconPath: Res.prescriptionsIcon,
             title: "Medicines",

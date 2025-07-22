@@ -27,10 +27,12 @@ class PharmacyCard extends StatelessWidget {
             Container(
               width: 40,
               height: 40,
+              clipBehavior: Clip.hardEdge,
               decoration: const BoxDecoration(shape: BoxShape.circle),
               child: GeneralNetworkImage(
                 url: imageUrl,
-                boxFit: BoxFit.contain,
+                boxFit: BoxFit.cover,
+                failWidget: _failWidget(context),
               ),
             ),
             const SizedBox(
@@ -57,6 +59,23 @@ class PharmacyCard extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Container _failWidget(BuildContext context) {
+    return Container(
+      width: 35,
+      height: 35,
+      alignment: Alignment.center,
+      decoration: const BoxDecoration(
+          color: AppColors.primaryDimmed, shape: BoxShape.circle),
+      child: Text(
+        pharmacistName.length > 2
+            ? pharmacistName.substring(0, 1).toUpperCase()
+            : "",
+        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: AppColors.white, fontSize: 18, fontWeight: FontWeight.w400),
       ),
     );
   }

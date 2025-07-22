@@ -1,11 +1,14 @@
 part of '../medicines_search_screen.dart';
+
 class SearchForMedicineTextField extends StatelessWidget {
   const SearchForMedicineTextField({
     super.key,
     required this.searchTextEditingController,
+    this.onEditingComplete,
   });
 
   final TextEditingController searchTextEditingController;
+  final void Function()? onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,8 @@ class SearchForMedicineTextField extends StatelessWidget {
             color: AppColors.primary,
           ),
         ),
+        controller: searchTextEditingController,
+        onEditingComplete: onEditingComplete,
       ),
     );
   }

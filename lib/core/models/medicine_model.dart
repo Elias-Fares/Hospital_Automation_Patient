@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-class MedicineModel {
+import 'package:patient_app/core/base_dio/general_model.dart';
+
+class MedicineModel extends GeneralModel {
   final int? medicinesId;
   final String? name;
-  final DateTime? expiredAt;
   final int? pharmaceuticalTiter;
   final String? pharmaceuticalIndications;
   final String? pharmaceuticalComposition;
@@ -11,14 +12,14 @@ class MedicineModel {
   final int? price;
   final bool? isAllowedWithoutPrescription;
   final String? barcode;
-  final dynamic medImageUrl;
+  final String? medImageUrl;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  final List<PharmacyMedicine>? pharmacyMedicines;
 
   MedicineModel({
     this.medicinesId,
     this.name,
-    this.expiredAt,
     this.pharmaceuticalTiter,
     this.pharmaceuticalIndications,
     this.pharmaceuticalComposition,
@@ -29,12 +30,12 @@ class MedicineModel {
     this.medImageUrl,
     this.createdAt,
     this.updatedAt,
+    this.pharmacyMedicines,
   });
 
   MedicineModel copyWith({
     int? medicinesId,
     String? name,
-    DateTime? expiredAt,
     int? pharmaceuticalTiter,
     String? pharmaceuticalIndications,
     String? pharmaceuticalComposition,
@@ -42,14 +43,14 @@ class MedicineModel {
     int? price,
     bool? isAllowedWithoutPrescription,
     String? barcode,
-    dynamic medImageUrl,
+    String? medImageUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    List<PharmacyMedicine>? pharmacyMedicines,
   }) =>
       MedicineModel(
         medicinesId: medicinesId ?? this.medicinesId,
         name: name ?? this.name,
-        expiredAt: expiredAt ?? this.expiredAt,
         pharmaceuticalTiter: pharmaceuticalTiter ?? this.pharmaceuticalTiter,
         pharmaceuticalIndications:
             pharmaceuticalIndications ?? this.pharmaceuticalIndications,
@@ -63,6 +64,7 @@ class MedicineModel {
         medImageUrl: medImageUrl ?? this.medImageUrl,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
+        pharmacyMedicines: pharmacyMedicines ?? this.pharmacyMedicines,
       );
 
   factory MedicineModel.fromRawJson(String str) =>
@@ -73,9 +75,6 @@ class MedicineModel {
   factory MedicineModel.fromJson(Map<String, dynamic> json) => MedicineModel(
         medicinesId: json["medicinesId"],
         name: json["name"],
-        expiredAt: json["expiredAt"] == null
-            ? null
-            : DateTime.parse(json["expiredAt"]),
         pharmaceuticalTiter: json["pharmaceuticalTiter"],
         pharmaceuticalIndications: json["pharmaceuticalIndications"],
         pharmaceuticalComposition: json["pharmaceuticalComposition"],
@@ -90,12 +89,15 @@ class MedicineModel {
         updatedAt: json["updatedAt"] == null
             ? null
             : DateTime.parse(json["updatedAt"]),
+        pharmacyMedicines: json["pharmacy_medicines"] == null
+            ? []
+            : List<PharmacyMedicine>.from(json["pharmacy_medicines"]!
+                .map((x) => PharmacyMedicine.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "medicinesId": medicinesId,
         "name": name,
-        "expiredAt": expiredAt?.toIso8601String(),
         "pharmaceuticalTiter": pharmaceuticalTiter,
         "pharmaceuticalIndications": pharmaceuticalIndications,
         "pharmaceuticalComposition": pharmaceuticalComposition,
@@ -106,5 +108,48 @@ class MedicineModel {
         "medImageUrl": medImageUrl,
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
+        "pharmacy_medicines": pharmacyMedicines == null
+            ? []
+            : List<dynamic>.from(pharmacyMedicines!.map((x) => x.toJson())),
+      };
+
+  @override
+  GeneralModel fromJson(json) {
+    return MedicineModel.fromJson(json);
+  }
+}
+
+class PharmacyMedicine {
+  final int? medicineId;
+  final int? numOfPharmacies;
+
+  PharmacyMedicine({
+    this.medicineId,
+    this.numOfPharmacies,
+  });
+
+  PharmacyMedicine copyWith({
+    int? medicineId,
+    int? numOfPharmacies,
+  }) =>
+      PharmacyMedicine(
+        medicineId: medicineId ?? this.medicineId,
+        numOfPharmacies: numOfPharmacies ?? this.numOfPharmacies,
+      );
+
+  factory PharmacyMedicine.fromRawJson(String str) =>
+      PharmacyMedicine.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory PharmacyMedicine.fromJson(Map<String, dynamic> json) =>
+      PharmacyMedicine(
+        medicineId: json["medicine_id"],
+        numOfPharmacies: json["numOfPharmacies"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "medicine_id": medicineId,
+        "numOfPharmacies": numOfPharmacies,
       };
 }

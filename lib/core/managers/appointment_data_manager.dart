@@ -37,6 +37,9 @@ class AppointmentDataManager {
   void setChildId({required String? childId}) {
     _bookAppointmentEntity = _bookAppointmentEntity.copyWith(childId: childId);
   }
+  void setVaccineId({required String? vaccineId}) {
+    _bookAppointmentEntity = _bookAppointmentEntity.copyWith(vaccineId: vaccineId);
+  }
 
   void reset() {
     _bookAppointmentEntity = BookAppointmentEntity();

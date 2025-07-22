@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/core/constant/constant.dart';
+import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
@@ -10,13 +13,21 @@ import 'package:patient_app/core/widgets/cards/key_value_card.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/core/widgets/cards/profile_email_widget.dart';
 import 'package:patient_app/core/widgets/cards/profile_phone_widget.dart';
+import 'package:patient_app/core/widgets/custom_error_widget.dart';
+import 'package:patient_app/core/widgets/custom_loading_widget.dart';
+import 'package:patient_app/data/pharmacies/models/pharmacy_details_model.dart';
 import 'package:patient_app/features/doctor_profile/model/availability_schedule_model.dart';
+import 'package:patient_app/features/pharmacy_profile/view_model/pharmacy_profile_view_model.dart';
 part 'widget/pharmacy_profile_details_section.dart';
 part 'widget/pharmacy_profile_navigation_section.dart';
 
 class PharmacyProfileScreen extends ConsumerStatefulWidget {
-  const PharmacyProfileScreen({super.key});
+  const PharmacyProfileScreen({
+    super.key,
+    this.pharmacyId,
+  });
   static const routeName = "/pharmacy_profile_screen";
+  final int? pharmacyId;
 
   @override
   ConsumerState<PharmacyProfileScreen> createState() =>
@@ -25,13 +36,36 @@ class PharmacyProfileScreen extends ConsumerStatefulWidget {
 
 class _PharmacyProfileScreenState extends ConsumerState<PharmacyProfileScreen> {
   @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(
+      () {
+        if (widget.pharmacyId == null) {
+          return;
+        }
+        ref
+            .read(pharmacyProfileViewModelProvider.notifier)
+            .getPharmacyDetails(id: widget.pharmacyId.toString());
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final pharmacyProfile = ref.watch(pharmacyProfileViewModelProvider);
     return Scaffold(
-      appBar: const SubAppBar(
+      appBar: SubAppBar(
         titleWidget: AppBarTitleWidget(
-          title: "Pharmacist name",
-          imagePath: "",
-          subtitle: "Pharmacy name",
+          title: joinStrings([
+            pharmacyProfile
+                .pharmacyDetailsResponse?.asData?.value.user?.firstName,
+            pharmacyProfile
+                .pharmacyDetailsResponse?.asData?.value.user?.lastName,
+          ]),
+          imagePath: pharmacyProfile
+              .pharmacyDetailsResponse?.asData?.value.user?.imgurl,
+          subtitle: pharmacyProfile.pharmacyDetailsResponse?.asData?.value.name,
         ),
       ),
       body: SingleChildScrollView(
@@ -41,30 +75,42 @@ class _PharmacyProfileScreenState extends ConsumerState<PharmacyProfileScreen> {
             const SizedBox(
               height: 10,
             ),
-            PharmacyProfileDetailsSection(
-              currentState: "Closed",
-              pharmacyaddress:
-                  "Tartous - Banias - The main square - Opposite of Falalfel Abo Adnan",
-              residentialsAddress: "Tartous - Banias - The main square",
-              phoneNumber: "0999999999",
-              emailAddress: "doctor@test.com",
-              availabilitySchedule: [
-                AvailabilitySchedule(
-                    day: "Sunday", schedule: "12:30 PM - 04:00 PM"),
-                AvailabilitySchedule(
-                    day: "Monday", schedule: "12:30 PM - 04:00 PM"),
-                AvailabilitySchedule(
-                    day: "Tuesday", schedule: "12:30 PM - 04:00 PM"),
-              ],
-            ),
+            pharmacyProfile.pharmacyDetailsResponse?.when(
+                  data: (data) => PharmacyProfileDetailsSection(
+                      currentState: "",
+                      pharmacyaddress: joinStrings([
+                        data.addressGovernorate,
+                        data.addressCity,
+                        data.addressRegion,
+                        data.addressStreet,
+                      ], joinChart: " - "),
+                      residentialsAddress: "",
+                      phoneNumber: data.phoneNumber ?? "",
+                      emailAddress: "",
+                      availabilitySchedule: data.workDays ?? []),
+                  error: (error, stackTrace) => CustomErrorWidget(
+                    message: error.toString(),
+                    onTryAgainTap: () {
+                      ref
+                          .read(pharmacyProfileViewModelProvider.notifier)
+                          .getPharmacyDetails(id: widget.pharmacyId.toString());
+                    },
+                  ),
+                  loading: () => CustomLoadingWidget(
+                    height: 300.h,
+                  ),
+                ) ??
+                const SizedBox.shrink(),
             const SizedBox(
               height: 24,
             ),
-            PharmacyProfileNavigationSection(
-              onPrescriptionTap: () {},
-              onMedicinesTap: () {},
-              onContractHistortTap: () {},
-            ),
+            // (!(pharmacyProfile.pharmacyDetailsResponse?.isLoading ?? false))
+            //     ? PharmacyProfileNavigationSection(
+            //         onPrescriptionTap: () {},
+            //         onMedicinesTap: () {},
+            //         onContractHistortTap: () {},
+            //       )
+            //     : const SizedBox.shrink(),
             const SizedBox(
               height: 40,
             )

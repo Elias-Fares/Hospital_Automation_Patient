@@ -16,7 +16,7 @@ class PharmacyProfileDetailsSection extends StatelessWidget {
   final String residentialsAddress;
   final String pharmacyaddress;
   final String currentState;
-  final List<AvailabilitySchedule> availabilitySchedule;
+  final List<WorkDay> availabilitySchedule;
 
   final String phoneNumber;
   final String emailAddress;
@@ -34,6 +34,7 @@ class PharmacyProfileDetailsSection extends StatelessWidget {
           iconData: Icons.location_on_rounded,
           keyTitle: "Pharmacy address",
           value: pharmacyaddress,
+          width: 280.w,
         ),
         const SizedBox(
           height: 20,
@@ -65,8 +66,11 @@ class PharmacyProfileDetailsSection extends StatelessWidget {
           children: List.generate(
             availabilitySchedule.length,
             (index) => KeyValueCard(
-                keyTitle: availabilitySchedule.elementAt(index).day,
-                value: availabilitySchedule.elementAt(index).schedule),
+                keyTitle: availabilitySchedule.elementAt(index).day ?? "",
+                value: joinStrings([
+                  availabilitySchedule.elementAt(index).workStartTime,
+                  availabilitySchedule.elementAt(index).workEndTime,
+                ], joinChart: " - ")),
           ),
         ),
         const SizedBox(

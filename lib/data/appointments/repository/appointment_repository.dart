@@ -44,9 +44,6 @@ class AppointmentRepository {
 
   Future<DataState> bookAppointment(
       {required BookAppointmentEntity bookAppointmentEntity}) async {
-
-
-
     final response = await _appointmentsDataSource.bookAppointment(
         bookAppointmentEntity: bookAppointmentEntity);
 

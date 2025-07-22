@@ -12,7 +12,10 @@ class ChildrenViewModel extends _$ChildrenViewModel {
 
   final _childrenRepository = getIt<ChildrenRepository>();
 
-  Future<void> getChildren() async {
+  Future<void> getChildren({bool withRefresh = false}) async {
+    if (withRefresh) {
+      _childrenRepository.clearCache();
+    }
     state = state.copyWith(childrenResponse: const AsyncValue.loading());
 
     final response = await _childrenRepository.getChildren();

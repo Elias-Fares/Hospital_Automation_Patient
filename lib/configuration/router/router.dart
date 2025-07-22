@@ -11,6 +11,7 @@ import 'package:patient_app/data/appointments/models/appointment_model.dart';
 import 'package:patient_app/data/doctors/models/department_model.dart';
 import 'package:patient_app/data/perscriptions/models/prescription_model.dart';
 import 'package:patient_app/data/profile/models/user_profile_model.dart';
+import 'package:patient_app/data/vaccines/models/vaccine_model.dart';
 import 'package:patient_app/features/appointment_details/view/appointment_details_screen.dart';
 import 'package:patient_app/features/appointments/view/appointments.dart';
 import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
@@ -214,7 +215,10 @@ class AppRouter {
             GoRoute(
               path: VaccineDetailsScreen.routeName,
               builder: (context, state) {
-                return const VaccineDetailsScreen();
+                final vaccine = state.extra as VaccineModel?;
+                return VaccineDetailsScreen(
+                  vaccine: vaccine,
+                );
               },
             )
           ]),
@@ -227,7 +231,8 @@ class AppRouter {
             GoRoute(
               path: PharmacyProfileScreen.routeName,
               builder: (context, state) {
-                return const PharmacyProfileScreen();
+                final pharmacyId = state.extra as int?;
+                return  PharmacyProfileScreen(pharmacyId : pharmacyId);
               },
             )
           ]),
