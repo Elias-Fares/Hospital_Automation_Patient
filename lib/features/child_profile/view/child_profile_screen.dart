@@ -9,6 +9,7 @@ import 'package:patient_app/core/params/child_appointment_params.dart';
 import 'package:patient_app/core/params/medical_records_screen_params.dart';
 import 'package:patient_app/core/params/prescriptions_screen_params.dart'
     show PrescriptionsScreenParams;
+import 'package:patient_app/core/params/vaccine_table_screen_param.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
 import 'package:patient_app/core/widgets/cards/icon_title_navigation_button.dart';
@@ -108,8 +109,16 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                         height: 24,
                       ),
                       ChildProfileNavigationSection(onVaccinationTap: () {
-                        context.push(RouterUtils.getNestedRoute(context,
-                            routeName: VaccinationTableScreen.routeName));
+                        context.push(
+                            RouterUtils.getNestedRoute(context,
+                                routeName: VaccinationTableScreen.routeName),
+                            extra: VaccineTableScreenParam(
+                                childId: data.childProfileData?.childId,
+                                childName: joinStrings([
+                                  data.childProfileData?.firstName,
+                                  data.childProfileData?.lastName,
+                                ]),
+                                imageUrl: ""));
                       }, onAppointmentTap: () {
                         context.push(
                             RouterUtils.getNestedRoute(context,

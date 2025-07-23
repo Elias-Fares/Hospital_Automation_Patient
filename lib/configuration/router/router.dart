@@ -6,6 +6,7 @@ import 'package:patient_app/core/enums/params_values.dart';
 import 'package:patient_app/core/params/child_appointment_params.dart';
 import 'package:patient_app/core/params/medical_records_screen_params.dart';
 import 'package:patient_app/core/params/prescriptions_screen_params.dart';
+import 'package:patient_app/core/params/vaccine_table_screen_param.dart';
 import 'package:patient_app/core/services/shared_preferences_service.dart';
 import 'package:patient_app/data/appointments/models/appointment_model.dart';
 import 'package:patient_app/data/doctors/models/department_model.dart';
@@ -67,6 +68,8 @@ class AppRouter {
           path: LoginScreen.routeName,
           builder: (context, state) => const LoginScreen(),
           redirect: (context, state) {
+            return null;
+
             // debugPrint("redirect called");
             // final sharedPrefsService = getIt<SharedPreferencesService>();
             // final token = sharedPrefsService.getToken();
@@ -232,7 +235,7 @@ class AppRouter {
               path: PharmacyProfileScreen.routeName,
               builder: (context, state) {
                 final pharmacyId = state.extra as int?;
-                return  PharmacyProfileScreen(pharmacyId : pharmacyId);
+                return PharmacyProfileScreen(pharmacyId: pharmacyId);
               },
             )
           ]),
@@ -282,7 +285,11 @@ class AppRouter {
                   GoRoute(
                     path: VaccinationTableScreen.routeName,
                     builder: (context, state) {
-                      return const VaccinationTableScreen();
+                      final vaccineTableScreenParam =
+                          state.extra as VaccineTableScreenParam?;
+                      return VaccinationTableScreen(
+                        vaccineTableScreenParam: vaccineTableScreenParam,
+                      );
                     },
                   )
                 ])
