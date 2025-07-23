@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:patient_app/core/base_dio/general_model.dart';
+import 'package:patient_app/core/models/work_day.dart';
+import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
 
 import '../../../core/models/user.dart';
 
@@ -199,47 +201,3 @@ class ClinicService {
       };
 }
 
-class WorkDay {
-  final String? day;
-  final int? workDaysId;
-  final String? workStartTime;
-  final String? workEndTime;
-
-  WorkDay({
-    this.day,
-    this.workDaysId,
-    this.workStartTime,
-    this.workEndTime,
-  });
-
-  WorkDay copyWith({
-    String? day,
-    int? workDaysId,
-    String? workStartTime,
-    String? workEndTime,
-  }) =>
-      WorkDay(
-        day: day ?? this.day,
-        workDaysId: workDaysId ?? this.workDaysId,
-        workStartTime: workStartTime ?? this.workStartTime,
-        workEndTime: workEndTime ?? this.workEndTime,
-      );
-
-  factory WorkDay.fromRawJson(String str) => WorkDay.fromJson(json.decode(str));
-
-  String toRawJson() => json.encode(toJson());
-
-  factory WorkDay.fromJson(Map<String, dynamic> json) => WorkDay(
-        day: json["day"],
-        workDaysId: json["work_DaysId"],
-        workStartTime: json["work_start_time"],
-        workEndTime: json["work_end_time"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "day": day,
-        "work_DaysId": workDaysId,
-        "work_start_time": workStartTime,
-        "work_end_time": workEndTime,
-      };
-}

@@ -8,12 +8,13 @@ import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
 import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
+import 'package:patient_app/core/widgets/cards/pharmacy_card.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/core/widgets/general_network_image.dart';
 import 'package:patient_app/features/pharmacies/view_model/pharmacies_view_model.dart';
 import 'package:patient_app/features/pharmacy_profile/view/pharmacy_profile_screen.dart';
-part 'widget/pharmacy_card.dart';
+
 
 class PharmaciesScreen extends ConsumerStatefulWidget {
   const PharmaciesScreen({super.key});

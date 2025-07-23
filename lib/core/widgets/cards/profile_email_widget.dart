@@ -5,9 +5,11 @@ import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class ProfileEmailWidget extends StatelessWidget {
-  const ProfileEmailWidget({super.key, this.onTap,});
+  const ProfileEmailWidget({
+    super.key,
+    this.onTap,
+  });
   final void Function()? onTap;
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class ProfileEmailWidget extends StatelessWidget {
               width: 18,
               height: 18,
               boxFit: BoxFit.contain,
+              color: AppColors.primary,
             ),
             const SizedBox(
               width: 7,

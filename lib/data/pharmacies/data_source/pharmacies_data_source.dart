@@ -21,20 +21,12 @@ class PharmaciesDataSource {
 
   Future<DataState> getPharmacyDetails({required String id}) async {
     final resposnse = await _baseDio.get<PharmacyDetailsModel>(
-        subUrl: "/user/pharmacy-details/$id",
-        model: PharmacyDetailsModel(),
-        needToken: true,
-        isListOfModel: true);
+      subUrl: "/user/pharmacy-details/$id",
+      model: PharmacyDetailsModel(),
+      needToken: true,
+    );
 
-    if (resposnse is DataSuccess) {
-      final List<PharmacyDetailsModel> models = resposnse.data;
-
-      return DataSuccess(models.elementAtOrNull(0));
-    } else {
-      return resposnse;
-    }
-
-    // return resposnse;
+    return resposnse;
   }
 
   Future<DataState> searchForMedicine({required String searchWord}) async {

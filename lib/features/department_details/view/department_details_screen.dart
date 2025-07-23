@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:patient_app/configuration/router/router_utils.dart';
+import 'package:patient_app/core/function/get_opening_status.dart';
 import 'package:patient_app/core/function/join_strings.dart';
 import 'package:patient_app/core/models/doctor_model.dart';
 import 'package:patient_app/core/models/user.dart';
+import 'package:patient_app/core/models/work_day.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
@@ -14,8 +18,11 @@ import 'package:patient_app/core/widgets/cards/persone_tile.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/data/doctors/models/department_model.dart';
+import 'package:patient_app/data/doctors/models/doctor_profile_model.dart'
+    show WorkDay;
 import 'package:patient_app/features/department_details/view_model/department_details_view_model.dart';
 import 'package:patient_app/features/doctor_profile/model/availability_schedule_model.dart';
+import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
 part 'widget/department_details_widget.dart';
 part 'widget/department_doctor_card.dart';
@@ -58,15 +65,24 @@ class _DepartmentDetailsScreenState
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: departmentDetailsState.departmentDetailsResponse?.when(
               data: (data) => DepartmentDetailsWidget(
+                  onDoctorCardTap: (index) {
+                    final doctorId = data.users?.elementAtOrNull(index)?.userId;
+
+                    context.push(
+                        RouterUtils.getNestedRoute(context,
+                            routeName: DoctorProfileScreen.routeName),
+                        extra: doctorId?.toString());
+                  },
                   departmentName: data.name ?? "",
-                  currentStatus: "Open",
+                  currentStatus: getOpeningStatus(data.workDays ?? []),
                   availabilitySchedule: data.workDays ?? [],
                   activeDoctors: data.users ?? [],
-                  services: const [
-                    "X-ray Machine",
-                    "CT Scanner",
-                    "Service",
-                  ]),
+                  services: data.clinicServices
+                          ?.map(
+                            (e) => e.name ?? "",
+                          )
+                          .toList() ??
+                      []),
               error: (error, stackTrace) =>
                   CustomErrorWidget(message: error.toString()),
               loading: () => const CustomLoadingWidget(),

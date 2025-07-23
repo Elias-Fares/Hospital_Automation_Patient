@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/constant/constant.dart';
+import 'package:patient_app/core/function/get_opening_status.dart';
 import 'package:patient_app/core/function/join_strings.dart';
+import 'package:patient_app/core/models/work_day.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
@@ -15,6 +17,7 @@ import 'package:patient_app/core/widgets/cards/profile_email_widget.dart';
 import 'package:patient_app/core/widgets/cards/profile_phone_widget.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
+import 'package:patient_app/data/doctors/models/department_model.dart';
 import 'package:patient_app/data/pharmacies/models/pharmacy_details_model.dart';
 import 'package:patient_app/features/doctor_profile/model/availability_schedule_model.dart';
 import 'package:patient_app/features/pharmacy_profile/view_model/pharmacy_profile_view_model.dart';
@@ -77,7 +80,7 @@ class _PharmacyProfileScreenState extends ConsumerState<PharmacyProfileScreen> {
             ),
             pharmacyProfile.pharmacyDetailsResponse?.when(
                   data: (data) => PharmacyProfileDetailsSection(
-                      currentState: "",
+                      currentState: getOpeningStatus(data.workDays ?? []),
                       pharmacyaddress: joinStrings([
                         data.addressGovernorate,
                         data.addressCity,
@@ -86,7 +89,7 @@ class _PharmacyProfileScreenState extends ConsumerState<PharmacyProfileScreen> {
                       ], joinChart: " - "),
                       residentialsAddress: "",
                       phoneNumber: data.phoneNumber ?? "",
-                      emailAddress: "",
+                      emailAddress: data.user?.email ?? "",
                       availabilitySchedule: data.workDays ?? []),
                   error: (error, stackTrace) => CustomErrorWidget(
                     message: error.toString(),

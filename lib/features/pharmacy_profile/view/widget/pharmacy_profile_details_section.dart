@@ -46,13 +46,13 @@ class PharmacyProfileDetailsSection extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        IconKeyValueWidget(
-            iconData: Icons.location_on_outlined,
-            keyTitle: "Residential address",
-            value: residentialsAddress),
-        const SizedBox(
-          height: 20,
-        ),
+        // IconKeyValueWidget(
+        //     iconData: Icons.location_on_outlined,
+        //     keyTitle: "Residential address",
+        //     value: residentialsAddress),
+        // const SizedBox(
+        //   height: 20,
+        // ),
         Text(
           "Availability Schedule",
           style: Theme.of(context).textTheme.titleMedium,

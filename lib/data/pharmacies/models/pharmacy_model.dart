@@ -32,14 +32,14 @@ class PharmacyModel extends GeneralModel {
 
   factory PharmacyModel.fromJson(Map<String, dynamic> json) => PharmacyModel(
         pharmacyId: json["pharmacyId"],
-        name: json["name"],
+        name: json["ph_name"],
         user: json["user"] == null ? null : User.fromJson(json["user"]),
       );
 
   @override
   Map<String, dynamic> toJson() => {
         "pharmacyId": pharmacyId,
-        "name": name,
+        "ph_name": name,
         "user": user?.toJson(),
       };
 

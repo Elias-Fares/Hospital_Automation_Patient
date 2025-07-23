@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:patient_app/core/base_dio/general_model.dart';
+import 'package:patient_app/core/models/user.dart';
 
 class MedicineModel extends GeneralModel {
   final int? medicinesId;
@@ -120,21 +121,21 @@ class MedicineModel extends GeneralModel {
 }
 
 class PharmacyMedicine {
-  final int? medicineId;
-  final int? numOfPharmacies;
+  final int? pharmacyId;
+  final Pharmacy? pharmacy;
 
   PharmacyMedicine({
-    this.medicineId,
-    this.numOfPharmacies,
+    this.pharmacyId,
+    this.pharmacy,
   });
 
   PharmacyMedicine copyWith({
-    int? medicineId,
-    int? numOfPharmacies,
+    int? pharmacyId,
+    Pharmacy? pharmacy,
   }) =>
       PharmacyMedicine(
-        medicineId: medicineId ?? this.medicineId,
-        numOfPharmacies: numOfPharmacies ?? this.numOfPharmacies,
+        pharmacyId: pharmacyId ?? this.pharmacyId,
+        pharmacy: pharmacy ?? this.pharmacy,
       );
 
   factory PharmacyMedicine.fromRawJson(String str) =>
@@ -144,12 +145,54 @@ class PharmacyMedicine {
 
   factory PharmacyMedicine.fromJson(Map<String, dynamic> json) =>
       PharmacyMedicine(
-        medicineId: json["medicine_id"],
-        numOfPharmacies: json["numOfPharmacies"],
+        pharmacyId: json["pharmacy_id"],
+        pharmacy: json["pharmacy"] == null
+            ? null
+            : Pharmacy.fromJson(json["pharmacy"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "medicine_id": medicineId,
-        "numOfPharmacies": numOfPharmacies,
+        "pharmacy_id": pharmacyId,
+        "pharmacy": pharmacy?.toJson(),
+      };
+}
+
+class Pharmacy {
+  final int? pharmacyId;
+  final String? phName;
+  final User? user;
+
+  Pharmacy({
+    this.pharmacyId,
+    this.phName,
+    this.user,
+  });
+
+  Pharmacy copyWith({
+    int? pharmacyId,
+    String? phName,
+    User? user,
+  }) =>
+      Pharmacy(
+        pharmacyId: pharmacyId ?? this.pharmacyId,
+        phName: phName ?? this.phName,
+        user: user ?? this.user,
+      );
+
+  factory Pharmacy.fromRawJson(String str) =>
+      Pharmacy.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Pharmacy.fromJson(Map<String, dynamic> json) => Pharmacy(
+        pharmacyId: json["pharmacyId"],
+        phName: json["ph_name"],
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "pharmacyId": pharmacyId,
+        "ph_name": phName,
+        "user": user?.toJson(),
       };
 }

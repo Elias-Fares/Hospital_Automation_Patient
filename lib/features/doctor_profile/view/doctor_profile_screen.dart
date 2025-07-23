@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/function/join_strings.dart';
+import 'package:patient_app/core/models/work_day.dart';
 import 'package:patient_app/core/style/card_container_decoration.dart';
 import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
 import 'package:patient_app/core/widgets/cards/icon_title_navigation_button.dart';

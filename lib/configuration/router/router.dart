@@ -200,14 +200,36 @@ class AppRouter {
           builder: (context, state) => const DepartmentsScreen(),
           routes: [
             GoRoute(
-              path: DepartmentDetailsScreen.routeName,
-              builder: (context, state) {
-                final departmentId = state.extra as int?;
-                return DepartmentDetailsScreen(
-                  departmentId: departmentId,
-                );
-              },
-            )
+                path: DepartmentDetailsScreen.routeName,
+                builder: (context, state) {
+                  final departmentId = state.extra as int?;
+                  return DepartmentDetailsScreen(
+                    departmentId: departmentId,
+                  );
+                },
+                routes: [
+                  GoRoute(
+                      path: DoctorProfileScreen.routeName,
+                      builder: (context, state) {
+                        final id = state.extra as String?;
+                        return DoctorProfileScreen(
+                          doctorId: id,
+                        );
+                      },
+                      routes: [
+                        GoRoute(
+                            path: BookAppointmentScreen.routeName,
+                            builder: (context, state) =>
+                                const BookAppointmentScreen(),
+                            routes: [
+                              GoRoute(
+                                path: ChooseAppointmentDateScreen.routeName,
+                                builder: (context, state) =>
+                                    const ChooseAppointmentDateScreen(),
+                              )
+                            ])
+                      ])
+                ])
           ]),
       GoRoute(
           path: VaccinesScreen.routeName,
@@ -244,13 +266,20 @@ class AppRouter {
           builder: (context, state) {
             return const MedicinesSearchScreen();
           },
-          routes: const [
+          routes: [
             // GoRoute(
             //   path: PharmacyProfileScreen.routeName,
             //   builder: (context, state) {
             //     return const PharmacyProfileScreen();
             //   },
             // )
+            GoRoute(
+              path: PharmacyProfileScreen.routeName,
+              builder: (context, state) {
+                final pharmacyId = state.extra as int?;
+                return PharmacyProfileScreen(pharmacyId: pharmacyId);
+              },
+            )
           ]),
     ]);
   }

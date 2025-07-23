@@ -8,6 +8,7 @@ class DepartmentDetailsWidget extends StatelessWidget {
     required this.availabilitySchedule,
     required this.activeDoctors,
     required this.services,
+    required this.onDoctorCardTap,
   });
 
   final String departmentName;
@@ -15,6 +16,7 @@ class DepartmentDetailsWidget extends StatelessWidget {
   final List<WorkDay> availabilitySchedule;
   final List<User> activeDoctors;
   final List<String> services;
+  final void Function(int) onDoctorCardTap;
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +103,9 @@ class DepartmentDetailsWidget extends StatelessWidget {
             children: List.generate(
               activeDoctors.length,
               (index) => DepartmentDoctorCard(
+                onTap: () {
+                  onDoctorCardTap(index);
+                },
                 doctorName: joinStrings([
                   activeDoctors.elementAt(index).firstName,
                   activeDoctors.elementAt(index).lastName,
