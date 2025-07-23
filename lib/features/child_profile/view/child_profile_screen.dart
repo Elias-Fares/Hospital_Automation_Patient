@@ -15,8 +15,10 @@ import 'package:patient_app/core/widgets/cards/icon_title_navigation_button.dart
 import 'package:patient_app/core/widgets/cards/key_value_card.dart';
 import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
+import 'package:patient_app/core/widgets/cards/svg_container.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
+import 'package:patient_app/core/widgets/general_image_asset.dart';
 import 'package:patient_app/features/child_appointments/view/child_appointments_screen.dart';
 import 'package:patient_app/features/child_profile/view_model/child_profile_view_model.dart';
 import 'package:patient_app/features/medical_record/view/medical_record_screen.dart';

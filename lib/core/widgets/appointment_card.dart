@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
+import 'package:patient_app/core/widgets/cards/icon_container.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
+import 'package:patient_app/core/widgets/cards/svg_container.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class AppointmentCard extends StatelessWidget {
@@ -37,10 +39,10 @@ class AppointmentCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const GeneralImageAssets(
-                      path: Res.childCardIcon,
-                      width: 40,
-                      height: 40,
+                    const SvgContainer(
+                      imgPath: Res.childCardIcon,
+                      imageWidth: 25,
+                      imageHieght: 25,
                     ),
                     const SizedBox(width: 12),
                     Text(name,
@@ -56,11 +58,7 @@ class AppointmentCard extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.asset(
-                      Res.calendarIcon,
-                      width: 24,
-                      height: 24,
-                    ),
+                    const SvgContainer(imgPath: Res.calendarIcon),
                     const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/core/style/app_colors.dart';
+import 'package:patient_app/core/widgets/general_image_asset.dart';
 import 'package:patient_app/features/app_drawer/view/app_drawer_screen.dart';
 import 'package:patient_app/features/children/view_model/children_view_model.dart';
 import 'package:patient_app/features/profile/view_model/profile_view_model.dart';
@@ -29,6 +30,19 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       () {
         ref.read(profileViewModelProvider.notifier).getUserProfile();
       },
+    );
+  }
+
+  Widget _navigationIcon(BuildContext context,
+      {required String imgPath, required bool isSelected}) {
+    return GeneralImageAssets(
+      path: imgPath,
+      boxFit: BoxFit.contain,
+      width: 18,
+      height: 18,
+      color: isSelected
+          ? AppColors.onPrimaryContainerBlue
+          : AppColors.onSurfaceVariant,
     );
   }
 
@@ -58,28 +72,34 @@ class _MainScreenState extends ConsumerState<MainScreen> {
         indicatorColor: AppColors.primaryContainer,
         destinations: [
           NavigationDestination(
-              icon: Image.asset(Res.appointmentIcon), label: "Appointments"),
+              selectedIcon: _navigationIcon(context,
+                  imgPath: Res.appointmentIcon, isSelected: true),
+              icon: _navigationIcon(context,
+                  imgPath: Res.appointmentIcon, isSelected: false),
+              label: "Appointments"),
           NavigationDestination(
-            icon: Image.asset(Res.childNavigationBarIcon),
+            selectedIcon: _navigationIcon(context,
+                imgPath: Res.childCardIcon, isSelected: true),
+            icon: _navigationIcon(context,
+                imgPath: Res.childCardIcon, isSelected: false),
             label: 'Children',
           ),
           NavigationDestination(
+            selectedIcon: _navigationIcon(context,
+                imgPath: Res.notificationIcon, isSelected: true),
             icon: Stack(
               children: [
-                Image.asset(
-                  Res.notificationIcon,
-                  width: 30,
-                  height: 30,
-                ),
-                const Positioned(
-                  right: 0,
-                  child: CircleAvatar(
-                    radius: 8,
-                    backgroundColor: AppColors.error,
-                    child: Text('3',
-                        style: TextStyle(fontSize: 10, color: Colors.white)),
-                  ),
-                )
+                _navigationIcon(context,
+                    imgPath: Res.notificationIcon, isSelected: false),
+                // const Positioned(
+                //   right: 0,
+                //   child: CircleAvatar(
+                //     radius: 8,
+                //     backgroundColor: AppColors.error,
+                //     child: Text('3',
+                //         style: TextStyle(fontSize: 10, color: Colors.white)),
+                //   ),
+                // )
               ],
             ),
             label: 'Notifications',

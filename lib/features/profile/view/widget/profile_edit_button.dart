@@ -14,6 +14,7 @@ class ProfileEditButton extends StatelessWidget {
         width: 24,
         height: 24,
         boxFit: BoxFit.contain,
+        color: AppColors.greenText,
       ),
     );
   }

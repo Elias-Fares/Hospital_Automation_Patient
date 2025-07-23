@@ -8,11 +8,13 @@ class SvgContainer extends StatelessWidget {
       this.containerPadding,
       required this.imgPath,
       this.imageWidth,
-      this.imageHieght});
+      this.imageHieght,
+      this.color});
   final String imgPath;
   final double? imageWidth;
   final double? imageHieght;
   final double? containerPadding;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class SvgContainer extends StatelessWidget {
             color: AppColors.backgroundColor, shape: BoxShape.circle),
         child: GeneralImageAssets(
           path: imgPath,
-          color: AppColors.primary,
+          color: color ?? AppColors.primary,
           width: imageWidth ?? 18,
           height: imageHieght ?? 18,
           boxFit: BoxFit.contain,

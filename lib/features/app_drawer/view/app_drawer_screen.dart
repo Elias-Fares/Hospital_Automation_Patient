@@ -48,6 +48,7 @@ class AppDrawerScreen extends ConsumerWidget {
                         width: 24,
                         height: 24,
                         boxFit: BoxFit.contain,
+                        color: AppColors.textColor,
                       ),
                       const SizedBox(
                         width: 8,

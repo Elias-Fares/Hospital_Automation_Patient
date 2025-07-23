@@ -32,49 +32,50 @@ class Res {
 
 //main screen icon
 
-  static const String appointmentIcon = "$mainScreenIconPath/appointment$png";
-  static const String calendarIcon = "$mainScreenIconPath/calendar$png";
+  static const String appointmentIcon = "$mainScreenIconPath/appointment$svg";
+  static const String calendarIcon = "$mainScreenIconPath/calendar$svg";
   static const String childNavigationBarIcon =
       "$mainScreenIconPath/child_bar$png";
-  static const String childCardIcon = "$mainScreenIconPath/child_card$png";
-  static const String notificationIcon = "$mainScreenIconPath/notification$png";
-  static const String motherIcon = "$mainScreenIconPath/mother_icon$png";
-  static const String fatherIcon = "$mainScreenIconPath/father_icon$png";
+  static const String childCardIcon = "$mainScreenIconPath/child_card$svg";
+  static const String notificationIcon = "$mainScreenIconPath/notification$svg";
+  static const String motherIcon = "$mainScreenIconPath/mother_icon$svg";
+  static const String fatherIcon = "$mainScreenIconPath/father_icon$svg";
   static const String errorIcon = "$mainScreenIconPath/error_icon$svg";
 
   //profile
   static const String appointmenProfiletIcon =
-      "$profileIconPath/appointments_icon$png";
-  static const String certificateIcon = "$profileIconPath/certificate_icon$png";
-  static const String genderIcon = "$profileIconPath/gender_icon$png";
+      "$profileIconPath/appointments_icon$svg";
+  static const String certificateIcon = "$profileIconPath/certificate_icon$svg";
+  static const String genderIcon = "$profileIconPath/gender_icon$svg";
   static const String prescriptionsIcon =
-      "$profileIconPath/prescriptions_icon$png";
-  static const String recordIcon = "$profileIconPath/record_icon$png";
-  static const String vaccinationIcon = "$profileIconPath/vaccination_icon$png";
-  static const String editPenIcon = "$profileIconPath/edit_pen_icon$png";
+      "$profileIconPath/prescriptions_icon$svg";
+  static const String recordIcon = "$profileIconPath/record_icon$svg";
+  static const String vaccinationIcon = "$profileIconPath/vaccination_icon$svg";
+  static const String editPenIcon = "$profileIconPath/edit_pen_icon$svg";
   static const String suspendUserIcon =
-      "$profileIconPath/suspend_user_icon$png";
-  static const String departmentIcon = "$profileIconPath/department_icon$png";
-  static const String emailIcon = "$profileIconPath/email_icon$png";
-  static const String phoneIcon = "$profileIconPath/phone_icon$png";
+      "$profileIconPath/suspend_user_icon$svg";
+  static const String departmentIcon = "$profileIconPath/department_icon$svg";
+  static const String emailIcon = "$profileIconPath/email_icon$svg";
+  static const String phoneIcon = "$profileIconPath/phone_icon$svg";
 
   //drawer
-  static const String drawerDepartmentIcon = "$drawerIconPath/d_department$png";
-  static const String drawerDoctorsIcon = "$drawerIconPath/d_doctors$png";
+  static const String drawerDepartmentIcon = "$drawerIconPath/d_department$svg";
+  static const String drawerDoctorsIcon = "$drawerIconPath/d_doctors$svg";
   static const String drawerMedicalRecordsIcon =
-      "$drawerIconPath/d_medical_record$png";
-  static const String drawerMedicineIcon = "$drawerIconPath/d_medicine$png";
-  static const String drawerPharmaciesIcon = "$drawerIconPath/d_pharmacies$png";
+      "$drawerIconPath/d_medical_record$svg";
+  static const String drawerMedicineIcon = "$drawerIconPath/d_medicine$svg";
+  static const String drawerPharmaciesIcon = "$drawerIconPath/d_pharmacies$svg";
   static const String drawerPrescriptionIcon =
-      "$drawerIconPath/d_prescription$png";
+      "$drawerIconPath/d_prescription$svg";
   static const String drawerProfileIcon = "$drawerIconPath/d_profile$svg";
   static const String drawerVaccinationIcon =
-      "$drawerIconPath/d_vaccination$png";
-  static const String medicineIcon = "$drawerIconPath/medicine_icon$png";
+      "$drawerIconPath/d_vaccination$svg";
+  static const String medicineIcon = "$drawerIconPath/medicine_icon$svg";
 
   //vaccine
   static const String lineEndCircle = "$vaccineIconPath/line_end_circle$svg";
-  static const String lineStartCircle = "$vaccineIconPath/line_start_circle$svg";
+  static const String lineStartCircle =
+      "$vaccineIconPath/line_start_circle$svg";
   static const String verified = "$vaccineIconPath/verified$svg";
   static const String diagnosis = "$vaccineIconPath/diagnosis$svg";
 }

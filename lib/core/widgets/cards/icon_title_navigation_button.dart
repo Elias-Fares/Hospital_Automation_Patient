@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:patient_app/core/style/app_colors.dart';
 import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
+import 'package:patient_app/core/widgets/cards/svg_container.dart';
 import 'package:patient_app/core/widgets/general_image_asset.dart';
 
 class IconTitleNavigationButton extends StatelessWidget {
@@ -22,17 +23,23 @@ class IconTitleNavigationButton extends StatelessWidget {
       color: AppColors.white,
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
+            border: Border(bottom: BorderSide(color: AppColors.surface))),
         child: Row(
           children: [
-            GeneralImageAssets(
-              path: iconPath,
-              width: 24,
-              height: 24,
-              boxFit: BoxFit.contain,
+            // GeneralImageAssets(
+            //   path: iconPath,
+            //   width: 24,
+            //   height: 24,
+            //   boxFit: BoxFit.contain,
+            // ),
+            SvgContainer(
+              imgPath: iconPath,
+              color: textColor,
             ),
             const SizedBox(
-              width: 16,
+              width: 10,
             ),
             Text(
               title,

@@ -12,10 +12,10 @@ class ChildProfileTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset(
-          Res.childCardIcon,
-          width: 30,
-          height: 30,
+        const SvgContainer(
+          imgPath: Res.childCardIcon,
+          imageWidth: 30,
+          imageHieght: 30,
         ),
         const SizedBox(
           width: 8,

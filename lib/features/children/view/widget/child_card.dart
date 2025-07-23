@@ -5,7 +5,8 @@ class ChildCard extends StatelessWidget {
     super.key,
     required this.childName,
     required this.motherName,
-    required this.fatherName, this.onTap,
+    required this.fatherName,
+    this.onTap,
   });
 
   final String childName;
@@ -19,7 +20,7 @@ class ChildCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 15),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: CustomInkwell(
-        onTap:onTap,
+        onTap: onTap,
         color: AppColors.white,
         borderRadius: BorderRadius.circular(10),
         child: Padding(
@@ -51,11 +52,7 @@ class ChildCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Image.asset(
-                    Res.fatherIcon,
-                    width: 24,
-                    height: 24,
-                  ),
+                  const SvgContainer(imgPath: Res.fatherIcon),
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,13 +68,7 @@ class ChildCard extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  ClipOval(
-                    child: Image.asset(
-                      Res.motherIcon,
-                      width: 24,
-                      height: 24,
-                    ),
-                  ),
+                  const SvgContainer(imgPath: Res.motherIcon),
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

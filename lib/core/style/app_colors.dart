@@ -48,7 +48,6 @@ class AppColors {
   static const Color hintTextColor = Color(0xFF99999F);
   static const Color backgroundLight = Color(0xFFF9F9FA);
 
-   static final Color shimmerColor = const Color.fromARGB(255, 245, 245, 245);
-  static final Color baserColor = const Color.fromARGB(255, 224, 224, 224);
-
+  static const Color shimmerColor = Color.fromARGB(255, 245, 245, 245);
+  static const Color baserColor = Color.fromARGB(255, 224, 224, 224);
 }
