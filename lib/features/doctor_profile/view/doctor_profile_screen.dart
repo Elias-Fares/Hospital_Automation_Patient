@@ -21,6 +21,7 @@ import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/core/widgets/general_network_image.dart';
 import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
 import 'package:patient_app/features/book_appointment/view/book_appointment_screen.dart';
+import 'package:patient_app/features/department_details/view/department_details_screen.dart';
 import 'package:patient_app/features/doctor_profile/view_model/doctor_profile_view_model.dart';
 
 part 'widget/doctor_profile_details_widget.dart';
@@ -87,6 +88,12 @@ class _DoctorProfileScreenState extends ConsumerState<DoctorProfileScreen> {
               child: Column(
                 children: [
                   DoctorProfileDetailsWidget(
+                      onDepartmentTap: () {
+                        context.push(
+                            RouterUtils.getNestedRoute(context,
+                                routeName: DepartmentDetailsScreen.routeName),
+                            extra: data.clinicId);
+                      },
                       name: joinStrings([
                         data.firstName,
                         data.middleName,
@@ -101,8 +108,7 @@ class _DoctorProfileScreenState extends ConsumerState<DoctorProfileScreen> {
                         data.addressRegion
                       ], joinChart: " - "),
                       doctorSpeciality: data.specialty ?? "",
-                      //TODO Need to send from backend
-                      doctorDepartment: "Need to send from backend",
+                      doctorDepartment: data.clinic?.name ?? "",
                       phoneNumber: data.phoneNumber ?? "",
                       emailAddress: data.email ?? "",
                       availabilitySchedule: data.workDays ?? [],

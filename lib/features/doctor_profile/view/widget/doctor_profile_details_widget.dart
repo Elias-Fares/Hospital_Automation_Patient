@@ -15,6 +15,7 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
     required this.emailAddress,
     this.onPhoneNumberTap,
     this.onEmailTap,
+    this.onDepartmentTap,
   });
 
   final String name;
@@ -30,6 +31,7 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
 
   final void Function()? onPhoneNumberTap;
   final void Function()? onEmailTap;
+  final void Function()? onDepartmentTap;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,8 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
           iconPath: Res.departmentIcon,
           keyTitle: "Department",
           value: doctorDepartment,
-          needOnTap: true,
+          needOnTap: false,
+          onTap: onDepartmentTap,
         ),
         const SizedBox(
           height: 20,
@@ -153,7 +156,6 @@ class DoctorProfileDetailsWidget extends StatelessWidget {
             )
           ],
         ),
-  
       ]),
     );
   }

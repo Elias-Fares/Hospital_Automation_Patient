@@ -42,18 +42,19 @@ class DepartmentCard extends StatelessWidget {
                     )),
                 const SizedBox(width: 12),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(departmentName,
                         style: Theme.of(context).textTheme.bodyMedium),
-                    Text(
-                      status,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: status.toLowerCase() == "open"
-                              ? AppColors.greenText
-                              : AppColors.error),
-                    ),
+                    // Text(
+                    //   status,
+                    //   style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    //       color: status.toLowerCase() == "open"
+                    //           ? AppColors.greenText
+                    //           : AppColors.error),
+                    // ),
                   ],
                 ),
               ],

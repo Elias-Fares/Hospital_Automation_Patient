@@ -6,7 +6,9 @@ part 'vaccine_details_view_model.g.dart';
 @riverpod
 class VaccineDetailsViewModel extends _$VaccineDetailsViewModel {
   @override
-  VaccineDetailsState build() => VaccineDetailsState();
+  VaccineDetailsState build() {
+    return VaccineDetailsState();
+  }
 
   void setVaccineId({required String vaccineId}) {
     ref.read(appointmentDataManagerProvider).setVaccineId(vaccineId: vaccineId);

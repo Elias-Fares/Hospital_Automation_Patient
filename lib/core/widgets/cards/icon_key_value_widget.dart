@@ -15,7 +15,8 @@ class IconKeyValueWidget extends StatelessWidget {
       required this.value,
       this.needOnTap = false,
       this.onTap,
-      this.iconData, this.width});
+      this.iconData,
+      this.width});
 
   final String? iconPath;
   final IconData? iconData;
@@ -38,7 +39,7 @@ class IconKeyValueWidget extends StatelessWidget {
 
   Row getWidget(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (iconPath != null) ...[
           // GeneralImageAssets(

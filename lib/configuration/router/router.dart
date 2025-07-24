@@ -119,14 +119,36 @@ class AppRouter {
           builder: (context, state) => const AppointmentsScreen(),
           routes: [
             GoRoute(
-              path: AppointmentDetailsScreen.routeName,
-              builder: (context, state) {
-                final appointmentModel = state.extra as AppointmentModel?;
-                return AppointmentDetailsScreen(
-                  appointmentModel: appointmentModel,
-                );
-              },
-            )
+                path: AppointmentDetailsScreen.routeName,
+                builder: (context, state) {
+                  final appointmentModel = state.extra as AppointmentModel?;
+                  return AppointmentDetailsScreen(
+                    appointmentModel: appointmentModel,
+                  );
+                },
+                routes: [
+                  GoRoute(
+                      path: DoctorProfileScreen.routeName,
+                      builder: (context, state) {
+                        final id = state.extra as String?;
+                        return DoctorProfileScreen(
+                          doctorId: id,
+                        );
+                      },
+                      routes: [
+                        GoRoute(
+                            path: BookAppointmentScreen.routeName,
+                            builder: (context, state) =>
+                                const BookAppointmentScreen(),
+                            routes: [
+                              GoRoute(
+                                path: ChooseAppointmentDateScreen.routeName,
+                                builder: (context, state) =>
+                                    const ChooseAppointmentDateScreen(),
+                              )
+                            ])
+                      ])
+                ])
           ]),
       GoRoute(
           path: ProfileScreen.routeName,
@@ -192,8 +214,11 @@ class AppRouter {
                           builder: (context, state) =>
                               const ChooseAppointmentDateScreen(),
                         )
-                      ])
-                ])
+                      ]),
+
+
+                ]),
+                
           ]),
       GoRoute(
           path: DepartmentsScreen.routeName,

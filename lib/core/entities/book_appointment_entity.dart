@@ -7,7 +7,7 @@ class BookAppointmentEntity {
   final String? childId;
   final String? vaccineId;
 
-  BookAppointmentEntity({
+  const BookAppointmentEntity({
     this.doctorId,
     this.appointmentType,
     this.date,
@@ -17,27 +17,39 @@ class BookAppointmentEntity {
     this.vaccineId,
   });
 
+  static const _noValue = Object();
+
   BookAppointmentEntity copyWith({
-    String? doctorId,
-    String? appointmentType,
-    String? date,
-    String? time,
-    String? type,
-    String? childId,
-    String? vaccineId,
+    Object? doctorId = _noValue,
+    Object? appointmentType = _noValue,
+    Object? date = _noValue,
+    Object? time = _noValue,
+    Object? type = _noValue,
+    Object? childId = _noValue,
+    Object? vaccineId = _noValue,
   }) {
     return BookAppointmentEntity(
-        doctorId: doctorId ?? this.doctorId,
-        appointmentType: appointmentType ?? this.appointmentType,
-        date: date ?? this.date,
-        time: time ?? this.time,
-        type: type ?? this.type,
-        childId: childId ?? this.childId,
-        vaccineId: vaccineId ?? this.vaccineId);
+      doctorId: doctorId == _noValue ? this.doctorId : doctorId as String?,
+      appointmentType: appointmentType == _noValue
+          ? this.appointmentType
+          : appointmentType as String?,
+      date: date == _noValue ? this.date : date as String?,
+      time: time == _noValue ? this.time : time as String?,
+      type: type == _noValue ? this.type : type as String?,
+      childId: childId == _noValue ? this.childId : childId as String?,
+      vaccineId: vaccineId == _noValue ? this.vaccineId : vaccineId as String?,
+    );
   }
 
   @override
   String toString() {
-    return 'BookAppointmentEntity(doctorId: $doctorId, childId: $childId appointmentType: $appointmentType, date: $date, type: $type, time: $time, vaccine ID: $vaccineId)';
+    return 'BookAppointmentEntity('
+        'doctorId: $doctorId, '
+        'childId: $childId, '
+        'appointmentType: $appointmentType, '
+        'date: $date, '
+        'type: $type, '
+        'time: $time, '
+        'vaccineId: $vaccineId)';
   }
 }

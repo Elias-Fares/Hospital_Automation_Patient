@@ -55,12 +55,13 @@ class PatientPrescriptionViewModel extends _$PatientPrescriptionViewModel {
 
   String getMedicinesNames(
       {required List<PrescriptionMedicine>? prescriptionMedicines}) {
-
-    return joinStrings(prescriptionMedicines
-            ?.map(
-              (e) => e.medicine?.name ?? "",
-            )
-            .toList() ??
-        []);
+    return joinStrings(
+        prescriptionMedicines
+                ?.map(
+                  (e) => e.medicine?.name ?? "",
+                )
+                .toList() ??
+            [],
+        joinChart: " - ");
   }
 }

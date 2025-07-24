@@ -35,6 +35,7 @@ class DoctorProfileModel extends GeneralModel {
   final int? acceptedBy;
   final List<AppointmentType>? appointmentTypes;
   final List<WorkDay>? workDays;
+  final Clinic? clinic;
 
   DoctorProfileModel({
     this.userId,
@@ -68,6 +69,7 @@ class DoctorProfileModel extends GeneralModel {
     this.acceptedBy,
     this.appointmentTypes,
     this.workDays,
+    this.clinic,
   });
 
   DoctorProfileModel copyWith({
@@ -102,6 +104,7 @@ class DoctorProfileModel extends GeneralModel {
     int? acceptedBy,
     List<AppointmentType>? appointmentTypes,
     List<WorkDay>? workDays,
+    Clinic? clinic,
   }) =>
       DoctorProfileModel(
         userId: userId ?? this.userId,
@@ -136,6 +139,7 @@ class DoctorProfileModel extends GeneralModel {
         acceptedBy: acceptedBy ?? this.acceptedBy,
         appointmentTypes: appointmentTypes ?? this.appointmentTypes,
         workDays: workDays ?? this.workDays,
+        clinic: clinic ?? this.clinic,
       );
 
   factory DoctorProfileModel.fromRawJson(String str) =>
@@ -186,6 +190,7 @@ class DoctorProfileModel extends GeneralModel {
             ? []
             : List<WorkDay>.from(
                 json["work_days"]!.map((x) => WorkDay.fromJson(x))),
+        clinic: json["clinic"] == null ? null : Clinic.fromJson(json["clinic"]),
       );
 
   @override
@@ -225,6 +230,7 @@ class DoctorProfileModel extends GeneralModel {
         "work_days": workDays == null
             ? []
             : List<dynamic>.from(workDays!.map((x) => x.toJson())),
+        "clinic": clinic?.toJson(),
       };
 
   @override
@@ -299,6 +305,39 @@ class AppointmentType {
         "createdAt": createdAt?.toIso8601String(),
         "updatedAt": updatedAt?.toIso8601String(),
         "doctor_id": doctorId,
+      };
+}
+
+class Clinic {
+  final int? clinicId;
+  final String? name;
+
+  Clinic({
+    this.clinicId,
+    this.name,
+  });
+
+  Clinic copyWith({
+    int? clinicId,
+    String? name,
+  }) =>
+      Clinic(
+        clinicId: clinicId ?? this.clinicId,
+        name: name ?? this.name,
+      );
+
+  factory Clinic.fromRawJson(String str) => Clinic.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory Clinic.fromJson(Map<String, dynamic> json) => Clinic(
+        clinicId: json["clinicId"],
+        name: json["name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "clinicId": clinicId,
+        "name": name,
       };
 }
 

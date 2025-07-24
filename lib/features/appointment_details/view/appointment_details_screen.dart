@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/res.dart';
 import 'package:patient_app/configuration/router/router_utils.dart';
 import 'package:patient_app/core/constant/constant.dart';
@@ -14,6 +15,7 @@ import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
 import 'package:patient_app/core/widgets/cards/outlined_card.dart';
 import 'package:patient_app/core/widgets/cards/persone_tile.dart';
 import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 
 class AppointmentDetailsScreen extends ConsumerStatefulWidget {
   const AppointmentDetailsScreen({super.key, this.appointmentModel});
@@ -43,7 +45,6 @@ class _AppointmentDetailsScreenState
                 ]),
         ),
       ),
-
       body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: AppointmentDetailsPage(
@@ -67,7 +68,12 @@ class _AppointmentDetailsScreenState
             notes: widget.appointmentModel?.recommndedVisitNote?.toString() ??
                 "No next recommended visit notes",
             medicalDiagnosis: widget.appointmentModel?.medicalDiagnosis ?? "",
-            viewDoctorProfile: () {},
+            viewDoctorProfile: () {
+              context.push(
+                  RouterUtils.getNestedRoute(context,
+                      routeName: DoctorProfileScreen.routeName),
+                  extra: widget.appointmentModel?.doctorId?.toString());
+            },
           )),
     );
   }

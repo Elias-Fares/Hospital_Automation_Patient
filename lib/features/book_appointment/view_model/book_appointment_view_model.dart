@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/base_dio/data_state.dart';
 import 'package:patient_app/core/enums/params_values.dart';
@@ -17,8 +18,16 @@ class BookAppointmentViewModel extends _$BookAppointmentViewModel {
         .read(appointmentDataManagerProvider)
         .setType(type: ParamsValues.patient.value);
 
+    ref.onDispose(
+      () {
+        clearData();
+        debugPrint("BookAppointmentViewModel Disposed!");
+      },
+    );
+
     return BookAppointmentState(
         selectedProcedure: "",
+        validationMessage: "",
         paramsValue: ParamsValues.patient,
         showChildrenList: false,
         childrenResponse: null);
@@ -77,5 +86,38 @@ class BookAppointmentViewModel extends _$BookAppointmentViewModel {
 
   void setChildId({required String? childId}) {
     ref.read(appointmentDataManagerProvider).setChildId(childId: childId);
+  }
+
+  void validatePage() {
+    final entity = ref.read(appointmentDataManagerProvider).current;
+    if (entity.type == null) {
+      state = state.copyWith(
+          validationMessage: "Please Select Who is the appointment for.");
+      return;
+    }
+    if (entity.type == ParamsValues.child.value) {
+      if (entity.childId == null) {
+        state = state.copyWith(
+            validationMessage:
+                "The Appintment for child, so please select one.");
+        return;
+      }
+    }
+
+    if (entity.appointmentType == null) {
+      state =
+          state.copyWith(validationMessage: "Please select Appointment Type");
+      return;
+    }
+
+    state = state.copyWith(validationMessage: "");
+  }
+
+  void clearData() {
+    final manager = ref.read(appointmentDataManagerProvider);
+
+    manager.setType(type: null);
+    manager.setChildId(childId: null);
+    manager.setAppointmentType(appointmentType: null);
   }
 }

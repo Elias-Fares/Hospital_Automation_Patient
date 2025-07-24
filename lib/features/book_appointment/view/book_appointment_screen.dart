@@ -53,6 +53,10 @@ class _BookAppointmentScreenState extends ConsumerState<BookAppointmentScreen> {
     final BookAppointmentState bookAppointmentState =
         ref.watch(bookAppointmentViewModelProvider);
 
+    final validationMessage = ref.watch(bookAppointmentViewModelProvider.select(
+      (value) => value.validationMessage,
+    ));
+
     return Scaffold(
       appBar: SubAppBar(
         titleWidget: PersoneTile(
@@ -62,15 +66,6 @@ class _BookAppointmentScreenState extends ConsumerState<BookAppointmentScreen> {
               doctorProfileModel?.lastName,
             ]),
             subtitle: doctorProfileModel?.specialty ?? ""),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // // ref.read(appointmentDataManagerProvider).reset();
-          // debugPrint(
-          //     ref.read(appointmentDataManagerProvider).current.toString());
-          getIt<ChildrenRepository>().clearCache();
-          ref.read(bookAppointmentViewModelProvider.notifier).getChildren();
-        },
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -180,14 +175,37 @@ class _BookAppointmentScreenState extends ConsumerState<BookAppointmentScreen> {
                 },
               ),
             ),
+            if (validationMessage.isNotEmpty) ...[
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                bookAppointmentState.validationMessage,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall
+                    ?.copyWith(color: AppColors.error),
+              )
+            ],
             const SizedBox(
               height: 24,
             ),
             LoadingButton(
               title: "Next",
-              onTap: () {
-                context.push(RouterUtils.getNestedRoute(context,
-                    routeName: ChooseAppointmentDateScreen.routeName));
+              onTap: () async {
+
+                ref
+                    .read(bookAppointmentViewModelProvider.notifier)
+                    .validatePage();
+
+                final validationMessage = ref
+                    .read(bookAppointmentViewModelProvider)
+                    .validationMessage;
+
+                if (validationMessage.isEmpty) {
+                  context.push(RouterUtils.getNestedRoute(context,
+                      routeName: ChooseAppointmentDateScreen.routeName));
+                }
               },
             )
           ],

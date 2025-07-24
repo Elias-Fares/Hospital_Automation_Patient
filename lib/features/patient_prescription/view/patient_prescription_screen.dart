@@ -77,7 +77,6 @@ class _PatientPrescriptionScreenState
         appBar: SubAppBar(
           titleWidget:
               AppBarTitleWidget(title: appBarTitle ?? "", imagePath: ""),
-          withSearch: true,
         ),
         body: prescriptionsState.prescriptionsResponse?.when(
               error: (error, stackTrace) => CustomErrorWidget(

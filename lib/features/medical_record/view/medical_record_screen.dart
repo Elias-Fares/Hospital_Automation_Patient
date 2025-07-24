@@ -71,7 +71,6 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
               title: appBarTitle,
               imagePath:
                   ref.read(profileViewModelProvider.notifier).getUserImage()),
-          withSearch: true,
         ),
         body: medicalRecordsState.medicalRecordsResponse?.when(
               error: (error, stackTrace) => CustomErrorWidget(

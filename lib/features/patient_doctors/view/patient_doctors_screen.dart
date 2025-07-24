@@ -40,12 +40,15 @@ class _PatientDoctorsScreenState extends ConsumerState<PatientDoctorsScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final doctorsState = ref.watch(patientDoctorsViewModelProvider);
     return Scaffold(
-      appBar: const SubAppBar(
-        withSearch: true,
-      ),
+      appBar: const SubAppBar(),
       body: doctorsState.doctorsResponse?.when(
             error: (error, stackTrace) => CustomErrorWidget(
               message: error.toString(),
