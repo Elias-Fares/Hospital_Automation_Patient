@@ -7,7 +7,7 @@ part of 'medicines_search_view_model.dart';
 // **************************************************************************
 
 String _$medicinesSearchViewModelHash() =>
-    r'9983927d32b656cd937abe9ee0960f48a7862a19';
+    r'64b45f7184b4ef60633c318863b059ffc0c400c1';
 
 /// See also [MedicinesSearchViewModel].
 @ProviderFor(MedicinesSearchViewModel)

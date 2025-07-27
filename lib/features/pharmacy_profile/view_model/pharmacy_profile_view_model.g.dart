@@ -7,7 +7,7 @@ part of 'pharmacy_profile_view_model.dart';
 // **************************************************************************
 
 String _$pharmacyProfileViewModelHash() =>
-    r'ab356b096fbb1ae70dced4ffee4ec77b720dce87';
+    r'2abd6a77ef54279fb843aec811f6375280923488';
 
 /// See also [PharmacyProfileViewModel].
 @ProviderFor(PharmacyProfileViewModel)

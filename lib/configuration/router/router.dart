@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:patient_app/configuration/router/my_go_router_observer.dart';
 import 'package:patient_app/configuration/service_locator.dart';
 import 'package:patient_app/core/enums/params_values.dart';
+import 'package:patient_app/core/models/medicine_model.dart';
 import 'package:patient_app/core/params/child_appointment_params.dart';
 import 'package:patient_app/core/params/medical_records_screen_params.dart';
 import 'package:patient_app/core/params/prescriptions_screen_params.dart';
@@ -31,6 +32,7 @@ import 'package:patient_app/features/departments/view/departments_screen.dart';
 import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
 import 'package:patient_app/features/edit_profile/view/edit_profile_screen.dart';
 import 'package:patient_app/features/main_screen/main_screen.dart';
+import 'package:patient_app/features/medicine_details/view/medicine_details_screen.dart';
 import 'package:patient_app/features/medicines_search/view/medicines_search_screen.dart';
 import 'package:patient_app/features/notifications/view/notifications_screen.dart';
 import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
@@ -215,10 +217,7 @@ class AppRouter {
                               const ChooseAppointmentDateScreen(),
                         )
                       ]),
-
-
                 ]),
-                
           ]),
       GoRoute(
           path: DepartmentsScreen.routeName,
@@ -304,7 +303,15 @@ class AppRouter {
                 final pharmacyId = state.extra as int?;
                 return PharmacyProfileScreen(pharmacyId: pharmacyId);
               },
-            )
+            ),
+
+            GoRoute(
+              path: MedicineDetailsScreen.routeName,
+              builder: (context, state) {
+                final med = state.extra as MedicineModel?;
+                return  MedicineDetailsScreen(med: med,);
+              },
+            ),
           ]),
     ]);
   }

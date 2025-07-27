@@ -6,7 +6,7 @@ part of 'vaccines_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$vaccinesViewModelHash() => r'83dc9de110f7a1e9c85586a4849335d930845b31';
+String _$vaccinesViewModelHash() => r'ec375fcd3c659236c45f30641ad673be42dcbb2e';
 
 /// See also [VaccinesViewModel].
 @ProviderFor(VaccinesViewModel)

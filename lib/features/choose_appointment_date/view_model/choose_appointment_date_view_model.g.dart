@@ -7,7 +7,7 @@ part of 'choose_appointment_date_view_model.dart';
 // **************************************************************************
 
 String _$chooseAppointmentDateViewModelHash() =>
-    r'd09ce8224d04dede3a0443219dd5454d7b114f86';
+    r'c219654070efffc858e2d0ed56ea7303a5dba5e6';
 
 /// See also [ChooseAppointmentDateViewModel].
 @ProviderFor(ChooseAppointmentDateViewModel)

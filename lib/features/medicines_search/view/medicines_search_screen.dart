@@ -14,6 +14,7 @@ import 'package:patient_app/core/widgets/cards/pharmacy_card.dart';
 import 'package:patient_app/core/widgets/custom_error_widget.dart';
 import 'package:patient_app/core/widgets/custom_loading_widget.dart';
 import 'package:patient_app/core/widgets/general_network_image.dart';
+import 'package:patient_app/features/medicine_details/view/medicine_details_screen.dart';
 
 import 'package:patient_app/features/medicines_search/view_model/medicines_search_view_model.dart';
 import 'package:patient_app/features/pharmacies/view/pharmacies_screen.dart';
@@ -94,6 +95,11 @@ class _MedicinesSearchScreenState extends ConsumerState<MedicinesSearchScreen> {
                           itemBuilder: (context, index) {
                             final med = data.elementAtOrNull(index);
                             return MedicineSearchCard(
+                              onTap: () {
+                                context.push(RouterUtils.getNestedRoute(context,
+                                    routeName:
+                                        MedicineDetailsScreen.routeName), extra: med);
+                              },
                               onPharmacyTap: () {
                                 PharmacyMedicinesBottomSheet.builder(
                                   context,

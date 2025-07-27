@@ -7,7 +7,7 @@ part of 'patient_prescription_view_model.dart';
 // **************************************************************************
 
 String _$patientPrescriptionViewModelHash() =>
-    r'4575ca22830ab9e93dfeb61ee53731ffb03cf980';
+    r'3c7097bce56a3845da3109064aa987e6e41b0e81';
 
 /// See also [PatientPrescriptionViewModel].
 @ProviderFor(PatientPrescriptionViewModel)

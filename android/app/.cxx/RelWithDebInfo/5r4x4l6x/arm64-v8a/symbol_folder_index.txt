@@ -1,0 +1,1 @@
+D:\projects\patient_app\build\app\intermediates\cxx\RelWithDebInfo\5r4x4l6x\obj\arm64-v8a

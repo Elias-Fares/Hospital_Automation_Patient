@@ -78,4 +78,6 @@ class Res {
       "$vaccineIconPath/line_start_circle$svg";
   static const String verified = "$vaccineIconPath/verified$svg";
   static const String diagnosis = "$vaccineIconPath/diagnosis$svg";
+  static const String medicineTiter = "$vaccineIconPath/medicine_titer$svg";
+  static const String medicineCompany = "$vaccineIconPath/medicine_company$svg";
 }

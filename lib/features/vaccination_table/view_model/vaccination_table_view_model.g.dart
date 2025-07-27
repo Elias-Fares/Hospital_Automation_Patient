@@ -7,7 +7,7 @@ part of 'vaccination_table_view_model.dart';
 // **************************************************************************
 
 String _$vaccinationTableViewModelHash() =>
-    r'5acfdadbd9b205e127b24919fd1e605d0eea8fe4';
+    r'352a9a140c17d406e152c4f3fb65691a56869379';
 
 /// See also [VaccinationTableViewModel].
 @ProviderFor(VaccinationTableViewModel)

@@ -11,6 +11,9 @@ class Constant {
   static const String USER_ID = 'USER_ID';
   static const String USER_TYPE = 'USER_TYPE';
   static const String ACCESS_TOKEN = 'ACCESS_TOKEN';
+  static const String appCurrency = 'S.P.';
+
+  
 
 
 }

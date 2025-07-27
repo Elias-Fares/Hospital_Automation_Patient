@@ -1,0 +1,2 @@
+D:/projects/patient_app/android/app/.cxx/RelWithDebInfo/5r4x4l6x/x86_64/CMakeFiles/edit_cache.dir
+D:/projects/patient_app/android/app/.cxx/RelWithDebInfo/5r4x4l6x/x86_64/CMakeFiles/rebuild_cache.dir

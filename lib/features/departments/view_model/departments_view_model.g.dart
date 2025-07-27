@@ -7,7 +7,7 @@ part of 'departments_view_model.dart';
 // **************************************************************************
 
 String _$departmentsViewModelHash() =>
-    r'623a4b7cd1fa7806880f8c374aba9da1f75655d2';
+    r'3cb32b5e26138d67ce241c6a3740a9b484626270';
 
 /// See also [DepartmentsViewModel].
 @ProviderFor(DepartmentsViewModel)
