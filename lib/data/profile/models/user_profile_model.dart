@@ -1,6 +1,5 @@
-import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
+import '../../../core/base_dio/general_model.dart';
 
 class UserProfileModel extends GeneralModel {
   final UserProfileData? userProfileData;
@@ -37,6 +36,7 @@ class UserProfileModel extends GeneralModel {
             : DateTime.parse(json["next_visit"]),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "data": userProfileData?.toJson(),
         "last_appointment":

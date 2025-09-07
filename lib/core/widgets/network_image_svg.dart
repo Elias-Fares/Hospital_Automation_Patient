@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import '../style/app_colors.dart';
 
 import 'package:shimmer/shimmer.dart';
 

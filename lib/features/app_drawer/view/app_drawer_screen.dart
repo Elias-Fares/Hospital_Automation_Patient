@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/router/router_utils.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
-import 'package:patient_app/features/app_drawer/view_model/riverpod/app_drawer_view_model.dart';
-import 'package:patient_app/features/appointments/view/appointments.dart';
-import 'package:patient_app/features/main_screen/main_screen.dart';
+import '../../../core/style/app_colors.dart';
+import '../../../core/widgets/buttons/custom_inkwell.dart';
+import '../../../core/widgets/general_image_asset.dart';
+import '../view_model/riverpod/app_drawer_view_model.dart';
+import '../../main_screen/main_screen.dart';
 
 class AppDrawerScreen extends ConsumerWidget {
   const AppDrawerScreen({super.key, required this.mainScreenKey});

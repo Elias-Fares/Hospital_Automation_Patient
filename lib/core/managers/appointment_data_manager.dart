@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/core/entities/book_appointment_entity.dart';
+import '../entities/book_appointment_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'appointment_data_manager.g.dart';
 
@@ -9,7 +9,7 @@ AppointmentDataManager appointmentDataManager(Ref ref) {
 }
 
 class AppointmentDataManager {
-  BookAppointmentEntity _bookAppointmentEntity = BookAppointmentEntity();
+  BookAppointmentEntity _bookAppointmentEntity = const BookAppointmentEntity();
 
   BookAppointmentEntity get current => _bookAppointmentEntity;
 
@@ -42,7 +42,7 @@ class AppointmentDataManager {
   }
 
   void reset() {
-    _bookAppointmentEntity = BookAppointmentEntity();
+    _bookAppointmentEntity = const BookAppointmentEntity();
   }
 
 

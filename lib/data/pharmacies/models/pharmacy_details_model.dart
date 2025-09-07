@@ -1,9 +1,8 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/user.dart';
-import 'package:patient_app/core/models/work_day.dart';
-import 'package:patient_app/data/doctors/models/department_model.dart';
+import '../../../core/base_dio/general_model.dart';
+import '../../../core/models/user.dart';
+import '../../../core/models/work_day.dart';
 
 class PharmacyDetailsModel extends GeneralModel {
   final int? pharmacyId;
@@ -123,6 +122,7 @@ class PharmacyDetailsModel extends GeneralModel {
                 json["work_days"]!.map((x) => WorkDay.fromJson(x))),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "pharmacyId": pharmacyId,
         "name": name,

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/models/doctor_model.dart';
-import 'package:patient_app/core/models/prescription_medicine_model.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
-import 'package:patient_app/core/widgets/cards/persone_tile.dart';
-import 'package:patient_app/data/perscriptions/models/prescription_model.dart';
+import '../../../configuration/res.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/models/prescription_medicine_model.dart';
+import '../../../core/style/card_container_decoration.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../core/widgets/cards/icon_key_value_widget.dart';
+import '../../../core/widgets/cards/persone_tile.dart';
+import '../../../data/perscriptions/models/prescription_model.dart';
 
 class PrescriptionDetailsScreen extends ConsumerStatefulWidget {
   const PrescriptionDetailsScreen({

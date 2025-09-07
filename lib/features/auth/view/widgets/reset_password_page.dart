@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
-import 'package:patient_app/core/widgets/buttons/loading_button.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
-import 'package:patient_app/features/auth/view/widgets/auth_text_form_field.dart';
-import 'package:patient_app/features/auth/view/widgets/email_widget.dart';
+import '../../../../configuration/res.dart';
+import '../../../../core/style/app_colors.dart';
+import '../../../../core/widgets/buttons/loading_button.dart';
+import '../../../../core/widgets/general_image_asset.dart';
+import 'auth_text_form_field.dart';
+import 'email_widget.dart';
 
 class ResetPasswordPage extends StatelessWidget {
   final FormFieldValidator<String>? passwordValidator;

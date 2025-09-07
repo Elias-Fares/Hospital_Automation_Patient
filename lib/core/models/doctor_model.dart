@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
+import '../base_dio/general_model.dart';
 
 class DoctorModel extends GeneralModel {
   final int? userId;
@@ -50,6 +50,7 @@ class DoctorModel extends GeneralModel {
         imgurl: json["imgurl"],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "userId": userId,
         "first_name": firstName,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/validators/fields_validator.dart';
-import 'package:patient_app/features/auth/view/widgets/reset_password_page.dart';
+import '../../../../core/validators/fields_validator.dart';
+import '../widgets/reset_password_page.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   static const routeName = "/reset_password";

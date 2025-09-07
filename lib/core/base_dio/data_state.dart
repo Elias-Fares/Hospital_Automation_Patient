@@ -2,7 +2,7 @@
 
 
 
-import 'package:patient_app/core/base_dio/errors_types_enum.dart';
+import 'errors_types_enum.dart';
 
 abstract class DataState<T> {
   final T? data;
@@ -15,6 +15,6 @@ class DataSuccess<T> extends DataState<T> {
   const DataSuccess(T data) : super(data: data);
 }
 
-class DataFailed<T> extends DataState<T> {
+class DataFailed extends DataState {
   const DataFailed(ExceptionResponse error) : super(exceptionResponse: error);
 }

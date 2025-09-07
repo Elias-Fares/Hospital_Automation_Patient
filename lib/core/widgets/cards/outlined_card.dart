@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import '../../style/app_colors.dart';
 
 class OutlinedCard extends StatelessWidget {
   const OutlinedCard({super.key, required this.text, this.icon});

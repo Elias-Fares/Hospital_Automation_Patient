@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/childern/models/child_model.dart';
+import '../../../core/enums/params_values.dart';
+import '../../../data/childern/models/child_model.dart';
 
 class BookAppointmentState {
   final String selectedProcedure;

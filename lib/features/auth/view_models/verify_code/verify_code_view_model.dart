@@ -1,7 +1,7 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/auth/repository/auth_repository.dart';
-import 'package:patient_app/features/auth/view_models/verify_code/verify_code_state.dart';
+import '../../../../configuration/service_locator.dart';
+import '../../../../core/base_dio/data_state.dart';
+import '../../../../data/auth/repository/auth_repository.dart';
+import 'verify_code_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'verify_code_view_model.g.dart';
 

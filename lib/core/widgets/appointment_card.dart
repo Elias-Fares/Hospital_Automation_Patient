@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
-import 'package:patient_app/core/widgets/cards/icon_container.dart';
-import 'package:patient_app/core/widgets/cards/outlined_card.dart';
-import 'package:patient_app/core/widgets/cards/svg_container.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
+import '../../configuration/res.dart';
+import '../style/app_colors.dart';
+import 'buttons/custom_inkwell.dart';
+import 'cards/outlined_card.dart';
+import 'cards/svg_container.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({

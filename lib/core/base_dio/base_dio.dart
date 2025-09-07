@@ -2,11 +2,11 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/base_dio/base_dio_interceptors.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/base_dio/errors_types_enum.dart';
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/constant/constant.dart';
+import 'base_dio_interceptors.dart';
+import 'data_state.dart';
+import 'errors_types_enum.dart';
+import 'general_model.dart';
+import '../constant/constant.dart';
 
 import '../services/shared_preferences_service.dart';
 
@@ -54,17 +54,13 @@ class BaseDio {
       return DataSuccess(responseObject);
     } on DioException catch (e) {
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     } catch (e, stacktrace) {
-      debugPrint("-----------------------------------------------");
-      debugPrint("The exception is Other: ${e.toString()}");
-      debugPrint("-----------------------------------------------");
       debugPrint("The StackTrace $stacktrace");
-      debugPrint("--------------End of Stacktrace----------------");
       final ExceptionResponse exceptionResponse = ExceptionResponse(
           statusCode: -888,
           exceptionMessages: ["Another exception was thrown"]);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     }
   }
 
@@ -130,14 +126,14 @@ class BaseDio {
     } on DioException catch (e) {
       print(e.stackTrace);
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     } catch (e, stacktrace) {
       print(e);
       print('Stacktrace: $stacktrace');
       final ExceptionResponse exceptionResponse = ExceptionResponse(
           statusCode: -888,
           exceptionMessages: ["Another exception was thrown"]);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     }
   }
 
@@ -172,14 +168,14 @@ class BaseDio {
   //   } on DioException catch (e) {
   //     print(e.stackTrace);
   //     final ExceptionResponse exceptionResponse = getExceptionResponse(e);
-  //     return DataFailed<ExceptionResponse>(exceptionResponse);
+  //     return DataFailed (exceptionResponse);
   //   } catch (e, stacktrace) {
   //     print(e);
   //     print('Stacktrace: $stacktrace');
   //     final ExceptionResponse exceptionResponse = ExceptionResponse(
   //         statusCode: -888,
   //         exceptionMessages: ["Another exception was thrown"]);
-  //     return DataFailed<ExceptionResponse>(exceptionResponse);
+  //     return DataFailed (exceptionResponse);
   //   }
   // }
   Future<DataState> basePost({
@@ -209,7 +205,7 @@ class BaseDio {
       return DataSuccess(responseData);
     } on DioException catch (e) {
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     } catch (e, stacktrace) {
       debugPrint("-----------------------------------------------");
       debugPrint("The exception is Other: ${e.toString()}");
@@ -218,7 +214,7 @@ class BaseDio {
       final ExceptionResponse exceptionResponse = ExceptionResponse(
           statusCode: -888,
           exceptionMessages: ["Another exception was thrown"]);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     }
   }
 
@@ -250,7 +246,7 @@ class BaseDio {
       return DataSuccess(responseObject);
     } on DioException catch (e) {
       final ExceptionResponse exceptionResponse = getExceptionResponse(e);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     } catch (e, stacktrace) {
       debugPrint("-----------------------------------------------");
       debugPrint("The exception is Other: ${e.toString()}");
@@ -260,7 +256,7 @@ class BaseDio {
       final ExceptionResponse exceptionResponse = ExceptionResponse(
           statusCode: -888,
           exceptionMessages: ["Another exception was thrown"]);
-      return DataFailed<ExceptionResponse>(exceptionResponse);
+      return DataFailed (exceptionResponse);
     }
   }
 }

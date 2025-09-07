@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/child.dart';
-import 'package:patient_app/core/models/user.dart';
+import '../../../core/base_dio/general_model.dart';
+import '../../../core/models/child.dart';
+import '../../../core/models/user.dart';
 
 
-import 'package:patient_app/data/vaccines/models/vaccine_model.dart';
+import 'vaccine_model.dart';
 
 class VaccineTableModel extends GeneralModel {
   final int? vaccinationTableId;
@@ -95,6 +95,7 @@ class VaccineTableModel extends GeneralModel {
         user: json["user"] == null ? null : User.fromJson(json["user"]),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "vaccinationTableId": vaccinationTableId,
         "state": state,

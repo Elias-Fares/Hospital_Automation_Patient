@@ -1,9 +1,8 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/medical_records/models/medical_record_model.dart';
-import 'package:patient_app/data/medical_records/repository/medical_records_repository.dart';
-import 'package:patient_app/data/profile/repository/profile_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/enums/params_values.dart';
+import '../../../data/medical_records/models/medical_record_model.dart';
+import '../../../data/medical_records/repository/medical_records_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'medical_record_view_model.g.dart';

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/params/medical_records_screen_params.dart';
-import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
-import 'package:patient_app/core/widgets/cards/persone_tile.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/widgets/custom_error_widget.dart';
-import 'package:patient_app/core/widgets/custom_loading_widget.dart';
-import 'package:patient_app/features/medical_record/view_model/medical_record_view_model.dart';
-import 'package:patient_app/features/profile/view_model/profile_view_model.dart';
+import '../../../core/enums/params_values.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/params/medical_records_screen_params.dart';
+import '../../../core/widgets/appbars/app_bar_title_widget.dart';
+import '../../../core/style/card_container_decoration.dart';
+import '../../../core/widgets/cards/icon_key_value_widget.dart';
+import '../../../core/widgets/cards/persone_tile.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../configuration/res.dart';
+import '../../../core/widgets/custom_error_widget.dart';
+import '../../../core/widgets/custom_loading_widget.dart';
+import '../view_model/medical_record_view_model.dart';
+import '../../profile/view_model/profile_view_model.dart';
 part 'widget/medical_record_card.dart';
 
 class MedicalRecordScreen extends ConsumerStatefulWidget {

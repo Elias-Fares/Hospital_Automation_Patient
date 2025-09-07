@@ -1,7 +1,7 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/models/medicine_model.dart';
-import 'package:patient_app/data/pharmacies/repository/pharmacies_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/models/medicine_model.dart';
+import '../../../data/pharmacies/repository/pharmacies_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'medicines_search_state.dart';
 part 'medicines_search_view_model.g.dart';

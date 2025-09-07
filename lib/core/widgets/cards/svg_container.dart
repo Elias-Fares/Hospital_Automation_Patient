@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
+import '../../style/app_colors.dart';
+import '../general_image_asset.dart';
 
 class SvgContainer extends StatelessWidget {
   const SvgContainer(

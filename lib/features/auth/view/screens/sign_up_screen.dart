@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/core/enums/gender_enum.dart';
-import 'package:patient_app/core/validators/fields_validator.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
-import 'package:patient_app/features/auth/view/screens/login_screen.dart';
-import 'package:patient_app/features/auth/view/screens/upload_profile_image_screen.dart';
-import 'package:patient_app/features/auth/view/screens/verification_code_screen.dart';
-import 'package:patient_app/features/auth/view/widgets/sign_up_page.dart';
-import 'package:patient_app/features/auth/view_models/sign_up/sign_up_view_model.dart';
+import '../../../../core/validators/fields_validator.dart';
+import '../../../../core/widgets/show_snack_bar_error_message.dart';
+import 'login_screen.dart';
+import 'verification_code_screen.dart';
+import '../widgets/sign_up_page.dart';
+import '../../view_models/sign_up/sign_up_view_model.dart';
 
 class SignupScreen extends ConsumerStatefulWidget {
   static const routeName = "/sign_up_screen";

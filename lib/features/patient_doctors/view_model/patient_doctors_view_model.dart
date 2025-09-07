@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/managers/appointment_data_manager.dart';
-import 'package:patient_app/core/models/doctor_model.dart';
-import 'package:patient_app/data/doctors/repository/doctors_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/managers/appointment_data_manager.dart';
+import '../../../core/models/doctor_model.dart';
+import '../../../data/doctors/repository/doctors_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'patient_doctors_view_model.g.dart';

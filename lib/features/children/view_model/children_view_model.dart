@@ -1,6 +1,6 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/childern/repository/children_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../data/childern/repository/children_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'children_state.dart';
 part 'children_view_model.g.dart';

@@ -1,11 +1,11 @@
-import 'package:patient_app/features/departments/view/departments_screen.dart';
-import 'package:patient_app/features/medicines_search/view/medicines_search_screen.dart';
-import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
-import 'package:patient_app/features/medical_record/view/medical_record_screen.dart';
-import 'package:patient_app/features/patient_prescription/view/patient_prescription_screen.dart';
-import 'package:patient_app/features/pharmacies/view/pharmacies_screen.dart';
-import 'package:patient_app/features/profile/view/profile_screen.dart';
-import 'package:patient_app/features/vaccines/view/vaccines_screen.dart';
+import '../../departments/view/departments_screen.dart';
+import '../../medicines_search/view/medicines_search_screen.dart';
+import '../../patient_doctors/view/patient_doctors_screen.dart';
+import '../../medical_record/view/medical_record_screen.dart';
+import '../../patient_prescription/view/patient_prescription_screen.dart';
+import '../../pharmacies/view/pharmacies_screen.dart';
+import '../../profile/view/profile_screen.dart';
+import '../../vaccines/view/vaccines_screen.dart';
 
 import '../../../configuration/res.dart';
 

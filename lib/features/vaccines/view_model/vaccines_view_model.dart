@@ -1,8 +1,7 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/doctors/repository/doctors_repository.dart';
-import 'package:patient_app/data/vaccines/models/vaccine_model.dart';
-import 'package:patient_app/data/vaccines/repository/vaccine_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../data/vaccines/models/vaccine_model.dart';
+import '../../../data/vaccines/repository/vaccine_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'vaccines_view_model.g.dart';

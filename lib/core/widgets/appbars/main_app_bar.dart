@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/features/main_screen/main_screen.dart';
+import '../../style/app_colors.dart';
+import '../../../features/main_screen/main_screen.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MainAppBar({super.key});

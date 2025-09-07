@@ -1,16 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/core/function/date_format.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/params/vaccine_table_screen_param.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/core/widgets/cards/icon_container.dart';
-import 'package:patient_app/core/widgets/cards/loading_card.dart';
-import 'package:patient_app/features/vaccination_table/view_model/vaccination_table_view_model.dart';
+import '../../../core/function/date_format.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/params/vaccine_table_screen_param.dart';
+import '../../../core/style/app_colors.dart';
+import '../../../core/style/card_container_decoration.dart';
+import '../../../core/widgets/appbars/app_bar_title_widget.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../core/widgets/cards/icon_container.dart';
+import '../../../core/widgets/cards/loading_card.dart';
+import '../view_model/vaccination_table_view_model.dart';
 
 class VaccinationTableScreen extends ConsumerStatefulWidget {
   const VaccinationTableScreen({

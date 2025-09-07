@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/enums/gender_enum.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
-import 'package:patient_app/core/widgets/buttons/loading_button.dart';
-import 'package:patient_app/features/auth/view/widgets/auth_text_form_field.dart';
-import 'package:patient_app/features/auth/view/widgets/select_gender_buttons.dart';
+import '../../../../core/enums/gender_enum.dart';
+import '../../../../core/style/app_colors.dart';
+import '../../../../core/widgets/buttons/custom_text_button.dart';
+import '../../../../core/widgets/buttons/loading_button.dart';
+import 'auth_text_form_field.dart';
+import 'select_gender_buttons.dart';
 
 class SignupPage extends StatelessWidget {
   final FormFieldValidator<String>? emailValidator;

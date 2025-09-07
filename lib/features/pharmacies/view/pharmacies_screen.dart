@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/router/router_utils.dart';
-import 'package:patient_app/core/constant/constant.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
-import 'package:patient_app/core/widgets/cards/pharmacy_card.dart';
-import 'package:patient_app/core/widgets/custom_error_widget.dart';
-import 'package:patient_app/core/widgets/custom_loading_widget.dart';
-import 'package:patient_app/core/widgets/general_network_image.dart';
-import 'package:patient_app/features/pharmacies/view_model/pharmacies_view_model.dart';
-import 'package:patient_app/features/pharmacy_profile/view/pharmacy_profile_screen.dart';
+import '../../../configuration/router/router_utils.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../core/widgets/cards/pharmacy_card.dart';
+import '../../../core/widgets/custom_error_widget.dart';
+import '../../../core/widgets/custom_loading_widget.dart';
+import '../view_model/pharmacies_view_model.dart';
+import '../../pharmacy_profile/view/pharmacy_profile_screen.dart';
 
 
 class PharmaciesScreen extends ConsumerStatefulWidget {

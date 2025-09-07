@@ -1,7 +1,7 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/appointments/repository/appointment_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/enums/params_values.dart';
+import '../../../data/appointments/repository/appointment_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'appointments_state.dart';
 part 'appointments_view_model.g.dart';

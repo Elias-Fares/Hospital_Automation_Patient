@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
+import '../../../core/base_dio/general_model.dart';
 
 class VaccineModel extends GeneralModel {
   final int? vaccinesId;
@@ -78,6 +78,7 @@ class VaccineModel extends GeneralModel {
                 json["interactions"]!.map((x) => Interaction.fromJson(x))),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "vaccinesId": vaccinesId,
         "name": name,

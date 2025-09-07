@@ -1,5 +1,5 @@
-import 'package:patient_app/data/childern/data_source/children_data_source.dart';
-import 'package:patient_app/data/childern/models/child_model.dart';
+import '../data_source/children_data_source.dart';
+import '../models/child_model.dart';
 
 import '../../../core/base_dio/data_state.dart';
 

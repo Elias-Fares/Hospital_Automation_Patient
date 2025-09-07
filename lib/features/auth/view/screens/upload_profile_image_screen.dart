@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
-import 'package:patient_app/core/widgets/buttons/loading_button.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
-import 'package:patient_app/features/appointments/view/appointments.dart';
-import 'package:patient_app/features/auth/view_models/upload_profile_image/upload_profile_image_view_model.dart';
+import '../../../../configuration/res.dart';
+import '../../../../core/style/app_colors.dart';
+import '../../../../core/widgets/buttons/custom_text_button.dart';
+import '../../../../core/widgets/buttons/loading_button.dart';
+import '../../../../core/widgets/general_image_asset.dart';
+import '../../../../core/widgets/show_snack_bar_error_message.dart';
+import '../../../appointments/view/appointments.dart';
+import '../../view_models/upload_profile_image/upload_profile_image_view_model.dart';
 
 class UploadProfileImageScreen extends ConsumerWidget {
   static const routeName = "/upload_profile_image";

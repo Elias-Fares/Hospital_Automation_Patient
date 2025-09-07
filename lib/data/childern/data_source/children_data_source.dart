@@ -1,8 +1,8 @@
-import 'package:patient_app/core/base_dio/base_dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/childern/models/child_model.dart';
-import 'package:patient_app/data/childern/models/child_profile_model.dart';
+import '../../../core/base_dio/base_dio.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/enums/params_values.dart';
+import '../models/child_model.dart';
+import '../models/child_profile_model.dart';
 
 class ChildrenDataSource {
   final BaseDio _baseDio;

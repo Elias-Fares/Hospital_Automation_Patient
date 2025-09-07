@@ -1,4 +1,4 @@
-import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import '../../../data/appointments/models/appointment_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class AppointmentsState {

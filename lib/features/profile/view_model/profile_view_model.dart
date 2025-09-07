@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/data/profile/models/user_profile_model.dart';
-import 'package:patient_app/data/profile/repository/profile_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../data/profile/models/user_profile_model.dart';
+import '../../../data/profile/repository/profile_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'profile_state.dart';
 part 'profile_view_model.g.dart';

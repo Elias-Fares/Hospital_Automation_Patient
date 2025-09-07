@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/router/router_utils.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
-import 'package:patient_app/core/widgets/custom_error_widget.dart';
-import 'package:patient_app/core/widgets/custom_loading_widget.dart';
-import 'package:patient_app/features/vaccine_details/view/vaccine_details_screen.dart';
-import 'package:patient_app/features/vaccine_details/view_model/vaccine_details_view_model.dart';
-import 'package:patient_app/features/vaccines/view_model/vaccines_view_model.dart';
+import '../../../configuration/router/router_utils.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/style/app_colors.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../core/widgets/buttons/custom_inkwell.dart';
+import '../../../core/widgets/custom_error_widget.dart';
+import '../../../core/widgets/custom_loading_widget.dart';
+import '../../vaccine_details/view/vaccine_details_screen.dart';
+import '../view_model/vaccines_view_model.dart';
 part 'widget/vaccine_card.dart';
 
 class VaccinesScreen extends ConsumerStatefulWidget {

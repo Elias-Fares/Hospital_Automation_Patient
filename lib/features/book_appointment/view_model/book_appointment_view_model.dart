@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/managers/appointment_data_manager.dart';
-import 'package:patient_app/data/childern/models/child_model.dart';
-import 'package:patient_app/data/childern/repository/children_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/enums/params_values.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/managers/appointment_data_manager.dart';
+import '../../../data/childern/repository/children_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'book_appointment_state.dart';
 part 'book_appointment_view_model.g.dart';

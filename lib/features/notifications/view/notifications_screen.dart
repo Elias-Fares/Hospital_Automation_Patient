@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import '../../../core/widgets/appbars/main_app_bar.dart';
+import '../../../core/style/app_colors.dart';
 
 part 'widget/notification_card.dart';
 part 'widget/notification_type_widget.dart';

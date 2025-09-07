@@ -1,4 +1,4 @@
-import 'package:patient_app/features/app_drawer/model/app_drawer_model.dart';
+import '../../model/app_drawer_model.dart';
 
 class AppDrawerState {
   final List<AppDrawerElement> drawerElements;

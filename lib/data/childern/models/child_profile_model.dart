@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/user.dart';
+import '../../../core/base_dio/general_model.dart';
+import '../../../core/models/user.dart';
 
 class ChildProfileModel extends GeneralModel {
   final ChildProfileData? childProfileData;
@@ -46,6 +46,7 @@ class ChildProfileModel extends GeneralModel {
         numOfGuardian: json["numOfGuardian"],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "data":childProfileData?.toJson(),
         "last_appointment":

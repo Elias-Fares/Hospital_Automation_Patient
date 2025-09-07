@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
+import '../../style/app_colors.dart';
+import 'custom_inkwell.dart';
 
 class CustomOutlinedButton extends StatelessWidget {
   const CustomOutlinedButton(

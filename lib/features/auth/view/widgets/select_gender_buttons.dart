@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/enums/gender_enum.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
+import '../../../../configuration/res.dart';
+import '../../../../core/enums/gender_enum.dart';
+import '../../../../core/style/app_colors.dart';
+import '../../../../core/widgets/general_image_asset.dart';
 
 class SelectGenderButtons extends StatelessWidget {
   const SelectGenderButtons(

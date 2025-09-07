@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/data/appointments/models/appointment_type_model.dart';
-import 'package:patient_app/data/appointments/models/clinic_model.dart';
-import 'package:patient_app/core/models/user.dart';
-import 'package:patient_app/data/childern/models/child_model.dart';
+import '../../../core/base_dio/general_model.dart';
+import 'appointment_type_model.dart';
+import 'clinic_model.dart';
+import '../../../core/models/user.dart';
+import '../../childern/models/child_model.dart';
 
 class AppointmentModel extends GeneralModel {
   final int? appointmentsId;
@@ -136,6 +136,7 @@ class AppointmentModel extends GeneralModel {
         user: json["user"] == null ? null : User.fromJson(json["user"]),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "appointmentsId": appointmentsId,
         "recommended_visit_date": recommendedVisitDate,

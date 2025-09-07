@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/managers/appointment_data_manager.dart';
-import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
-import 'package:patient_app/features/app_drawer/view/app_drawer_screen.dart';
-import 'package:patient_app/features/children/view_model/children_view_model.dart';
-import 'package:patient_app/features/profile/view_model/profile_view_model.dart';
+import '../../configuration/res.dart';
+import '../../core/style/app_colors.dart';
+import '../../core/widgets/general_image_asset.dart';
+import '../app_drawer/view/app_drawer_screen.dart';
+import '../profile/view_model/profile_view_model.dart';
 
-import '../../configuration/router/router_utils.dart';
 
 final GlobalKey<ScaffoldState> mainScreenScaffoldKey =
     GlobalKey<ScaffoldState>();
@@ -56,14 +51,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       drawer: AppDrawerScreen(
         mainScreenKey: mainScreenScaffoldKey,
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // RouterUtils.debugGoRouterStack(context);
-      //     final str =
-      //         ref.read(appointmentDataManagerProvider).current.toString();
-      //     debugPrint(str);
-      //   },
-      // ),
+
       bottomNavigationBar: NavigationBar(
         selectedIndex: widget.statefulNavigationShell.currentIndex,
         onDestinationSelected: (index) {

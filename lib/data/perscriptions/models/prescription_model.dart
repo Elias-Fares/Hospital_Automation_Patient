@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/doctor_model.dart';
-import 'package:patient_app/core/models/prescription_medicine_model.dart';
+import '../../../core/base_dio/general_model.dart';
+import '../../../core/models/doctor_model.dart';
+import '../../../core/models/prescription_medicine_model.dart';
 
 class PrescriptionModel extends GeneralModel {
   final int? prescriptionsId;

@@ -1,6 +1,5 @@
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/pharmacies/data_source/pharmacies_data_source.dart';
-import 'package:patient_app/data/vaccines/data_source/vaccines_data_source.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../data_source/pharmacies_data_source.dart';
 
 class PharmaciesRepository {
   final PharmaciesDataSource _dataSource;

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/services/shared_preferences_service.dart';
-import 'package:patient_app/data/auth/repository/auth_repository.dart';
-import 'package:patient_app/features/appointment_details/view/appointment_details_screen.dart';
-import 'package:patient_app/features/appointments/view/appointments.dart';
+import '../../../../configuration/service_locator.dart';
+import '../../../../core/base_dio/data_state.dart';
+import '../../../../core/services/shared_preferences_service.dart';
+import '../../../../data/auth/repository/auth_repository.dart';
+import '../../../appointments/view/appointments.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 part 'log_in_view_model.g.dart';
 
 @riverpod

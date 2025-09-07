@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/core/widgets/buttons/loading_button.dart';
-import 'package:patient_app/core/widgets/cards/icon_key_value_widget.dart';
-import 'package:patient_app/data/vaccines/models/vaccine_model.dart';
-import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
-import 'package:patient_app/features/vaccine_details/view_model/vaccine_details_view_model.dart';
+import '../../../configuration/res.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/style/card_container_decoration.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../core/widgets/buttons/loading_button.dart';
+import '../../../core/widgets/cards/icon_key_value_widget.dart';
+import '../../../data/vaccines/models/vaccine_model.dart';
+import '../../patient_doctors/view/patient_doctors_screen.dart';
+import '../view_model/vaccine_details_view_model.dart';
 part 'widget/vaccine_details_page.dart';
 
 class VaccineDetailsScreen extends ConsumerWidget {

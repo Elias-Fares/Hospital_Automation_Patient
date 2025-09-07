@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
+import '../../../core/base_dio/general_model.dart';
 
-import 'package:patient_app/core/models/user.dart';
+import '../../../core/models/user.dart';
 
 class ChildModel extends GeneralModel {
   final int? usersChildrenId;

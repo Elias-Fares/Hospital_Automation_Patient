@@ -1,9 +1,8 @@
-import 'package:patient_app/core/base_dio/base_dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
-import 'package:patient_app/data/profile/models/user_profile_model.dart';
-import 'package:patient_app/core/services/shared_preferences_service.dart';
+import '../../../core/base_dio/base_dio.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/enums/params_values.dart';
+import '../models/user_profile_model.dart';
+import '../../../core/services/shared_preferences_service.dart';
 
 class ProfileDataSource {
   final BaseDio _baseDio;

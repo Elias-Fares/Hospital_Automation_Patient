@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
-import 'package:patient_app/core/widgets/buttons/custom_text_button.dart';
-import 'package:patient_app/core/widgets/general_image_asset.dart';
+import '../../configuration/res.dart';
+import '../style/app_colors.dart';
+import 'buttons/custom_inkwell.dart';
+import 'general_image_asset.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({

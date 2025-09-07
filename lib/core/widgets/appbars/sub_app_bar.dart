@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import '../../style/app_colors.dart';
 
 class SubAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SubAppBar({super.key, this.titleWidget, this.withSearch = false});

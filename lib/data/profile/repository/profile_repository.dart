@@ -1,7 +1,5 @@
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/profile/data_source/profile_data_source.dart';
-import 'package:patient_app/data/profile/models/user_profile_model.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../data_source/profile_data_source.dart';
 
 class ProfileRepository {
   final ProfileDataSource _profileDataSource;

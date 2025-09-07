@@ -1,5 +1,5 @@
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/medical_records/data_source/medical_records_data_source.dart';
+import '../../../core/enums/params_values.dart';
+import '../data_source/medical_records_data_source.dart';
 
 import '../../../core/base_dio/data_state.dart';
 

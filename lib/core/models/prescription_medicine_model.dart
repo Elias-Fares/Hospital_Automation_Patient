@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/models/medicine_model.dart';
+import 'medicine_model.dart';
 
 class PrescriptionMedicine {
   final int? prescriptionMedicinesId;

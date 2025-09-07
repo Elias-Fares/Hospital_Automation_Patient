@@ -1,8 +1,8 @@
-import 'package:patient_app/core/base_dio/base_dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/entities/book_appointment_entity.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/appointments/models/appointment_model.dart';
+import '../../../core/base_dio/base_dio.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/entities/book_appointment_entity.dart';
+import '../../../core/enums/params_values.dart';
+import '../models/appointment_model.dart';
 
 class AppointmentsDataSource {
   final BaseDio _baseDio;

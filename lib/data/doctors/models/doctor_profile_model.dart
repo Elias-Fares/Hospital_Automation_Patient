@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/work_day.dart';
+import '../../../core/base_dio/general_model.dart';
+import '../../../core/models/work_day.dart';
 
 class DoctorProfileModel extends GeneralModel {
   final int? userId;

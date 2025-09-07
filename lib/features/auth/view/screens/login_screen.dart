@@ -1,20 +1,14 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/router/router.dart';
-import 'package:patient_app/core/function/get_message.dart';
-import 'package:patient_app/core/validators/fields_validator.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_success_message.dart';
-import 'package:patient_app/features/appointments/view/appointments.dart';
-import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
-import 'package:patient_app/features/auth/view/screens/reset_password_screen.dart';
-import 'package:patient_app/features/auth/view/screens/sign_up_screen.dart';
-import 'package:patient_app/features/auth/view/widgets/login_page.dart';
-import 'package:patient_app/features/auth/view_models/log_in/log_in_view_model.dart';
+import '../../../../core/validators/fields_validator.dart';
+import '../../../../core/widgets/show_snack_bar_error_message.dart';
+import '../../../appointments/view/appointments.dart';
+import 'reset_password_screen.dart';
+import 'sign_up_screen.dart';
+import '../widgets/login_page.dart';
+import '../../view_models/log_in/log_in_view_model.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   static const routeName = "/login_screen";

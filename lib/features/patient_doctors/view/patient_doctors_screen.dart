@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/style/card_container_decoration.dart';
-import 'package:patient_app/core/widgets/cards/persone_tile.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/widgets/buttons/custom_inkwell.dart';
-import 'package:patient_app/core/widgets/custom_error_widget.dart';
-import 'package:patient_app/core/widgets/custom_loading_widget.dart';
-import 'package:patient_app/features/doctor_profile/view/doctor_profile_screen.dart';
-import 'package:patient_app/features/main_screen/main_screen.dart';
-import 'package:patient_app/features/patient_doctors/view/patient_doctors_screen.dart';
-import 'package:patient_app/features/patient_doctors/view_model/patient_doctors_view_model.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/style/card_container_decoration.dart';
+import '../../../core/widgets/cards/persone_tile.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../configuration/res.dart';
+import '../../../core/style/app_colors.dart';
+import '../../../core/widgets/buttons/custom_inkwell.dart';
+import '../../../core/widgets/custom_error_widget.dart';
+import '../../../core/widgets/custom_loading_widget.dart';
+import '../../doctor_profile/view/doctor_profile_screen.dart';
+import '../view_model/patient_doctors_view_model.dart';
 
 import '../../../configuration/router/router_utils.dart';
 

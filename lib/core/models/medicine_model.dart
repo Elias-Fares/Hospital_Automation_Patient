@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/user.dart';
+import '../base_dio/general_model.dart';
+import 'user.dart';
 
 class MedicineModel extends GeneralModel {
   final int? medicinesId;
@@ -96,6 +96,7 @@ class MedicineModel extends GeneralModel {
                 .map((x) => PharmacyMedicine.fromJson(x))),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "medicinesId": medicinesId,
         "name": name,

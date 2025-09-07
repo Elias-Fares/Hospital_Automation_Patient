@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import '../../style/app_colors.dart';
 
 class LoadingButton extends StatelessWidget {
   const LoadingButton({
@@ -32,11 +32,11 @@ class LoadingButton extends StatelessWidget {
         onTap: !(isLoading ?? false) ? onTap : () {},
         child: Container(
           height: 45.h,
-          width: width ?? MediaQuery.of(context).size.width,
+          width: width ?? 1.sw,
           alignment: Alignment.center,
           decoration: BoxDecoration(
               border: border,
-              borderRadius: borderRaduis ?? BorderRadius.circular(50)),
+              borderRadius: borderRaduis ?? BorderRadius.circular(50.r)),
           child: !(isLoading ?? false)
               ? Text(
                   title,

@@ -1,8 +1,7 @@
-import 'package:dio/dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/base_dio/errors_types_enum.dart';
-import 'package:patient_app/core/entities/book_appointment_entity.dart';
-import 'package:patient_app/data/appointments/data_source/appointments_data_source.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/base_dio/errors_types_enum.dart';
+import '../../../core/entities/book_appointment_entity.dart';
+import '../data_source/appointments_data_source.dart';
 
 class AppointmentRepository {
   final AppointmentsDataSource _appointmentsDataSource;

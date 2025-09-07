@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/auth/repository/auth_repository.dart';
-import 'package:patient_app/data/childern/models/child_profile_model.dart';
-import 'package:patient_app/data/childern/repository/children_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../data/childern/models/child_profile_model.dart';
+import '../../../data/childern/repository/children_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'child_profile_view_model.g.dart';

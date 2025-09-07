@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
-import 'package:patient_app/core/models/work_day.dart';
-import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
+import '../../../core/base_dio/general_model.dart';
+import '../../../core/models/work_day.dart';
 
 import '../../../core/models/user.dart';
 
-import 'dart:convert';
 
 class DepartmentModel extends GeneralModel {
   final int? clinicId;
@@ -111,6 +109,7 @@ class DepartmentModel extends GeneralModel {
                 json["clinic_Services"]!.map((x) => ClinicService.fromJson(x))),
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "clinicId": clinicId,
         "first_available_time": firstAvailableTime,

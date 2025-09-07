@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import 'app_colors.dart';
 
 class AppTheme {
   static ThemeData defaultTheme = ThemeData(

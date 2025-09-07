@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/core/widgets/cards/loading_card.dart';
-import 'package:patient_app/core/widgets/textfields/show_options_bottom_sheet.dart';
+import '../cards/loading_card.dart';
+import 'show_options_bottom_sheet.dart';
 
 import '../../style/app_colors.dart';
 

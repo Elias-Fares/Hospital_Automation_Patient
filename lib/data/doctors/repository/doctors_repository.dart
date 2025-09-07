@@ -1,4 +1,4 @@
-import 'package:patient_app/data/doctors/data_source/doctors_data_source.dart';
+import '../data_source/doctors_data_source.dart';
 import '../../../core/base_dio/data_state.dart';
 
 class DoctorsRepository {

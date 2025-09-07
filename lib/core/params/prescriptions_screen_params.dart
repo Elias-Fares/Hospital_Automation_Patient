@@ -1,4 +1,4 @@
-import 'package:patient_app/core/enums/params_values.dart';
+import '../enums/params_values.dart';
 
 class PrescriptionsScreenParams {
   final ParamsValues comingFrom;

@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/configuration/router/router.dart';
-import 'package:patient_app/core/style/app_colors.dart';
-import 'package:patient_app/core/validators/fields_validator.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_success_message.dart';
-import 'package:patient_app/features/app/app.dart';
-import 'package:patient_app/features/auth/view/screens/add_residential_address_screen.dart';
-import 'package:patient_app/features/auth/view/screens/login_screen.dart';
-import 'package:patient_app/features/auth/view/widgets/verification_code_page.dart';
-import 'package:patient_app/features/auth/view_models/verify_code/verify_code_view_model.dart';
+import '../../../../core/validators/fields_validator.dart';
+import '../../../../core/widgets/show_snack_bar_error_message.dart';
+import '../../../../core/widgets/show_snack_bar_success_message.dart';
+import 'login_screen.dart';
+import '../widgets/verification_code_page.dart';
+import '../../view_models/verify_code/verify_code_view_model.dart';
 
 class VerificationCodeScreen extends ConsumerStatefulWidget {
   static const routeName = "/verification_code_screen";

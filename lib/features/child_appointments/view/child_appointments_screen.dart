@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/configuration/res.dart';
-import 'package:patient_app/core/function/date_format.dart';
-import 'package:patient_app/core/function/join_strings.dart';
-import 'package:patient_app/core/params/child_appointment_params.dart';
-import 'package:patient_app/core/widgets/appbars/app_bar_title_widget.dart';
-import 'package:patient_app/core/widgets/appbars/main_app_bar.dart';
-import 'package:patient_app/core/widgets/appbars/sub_app_bar.dart';
-import 'package:patient_app/core/widgets/custom_error_widget.dart';
-import 'package:patient_app/core/widgets/custom_loading_widget.dart';
-import 'package:patient_app/features/appointments/view/appointments.dart';
-import 'package:patient_app/features/child_appointments/view_model/child_appointments_view_model.dart';
+import '../../../core/function/date_format.dart';
+import '../../../core/function/join_strings.dart';
+import '../../../core/params/child_appointment_params.dart';
+import '../../../core/widgets/appbars/app_bar_title_widget.dart';
+import '../../../core/widgets/appbars/sub_app_bar.dart';
+import '../../../core/widgets/custom_error_widget.dart';
+import '../../../core/widgets/custom_loading_widget.dart';
+import '../view_model/child_appointments_view_model.dart';
 
 import '../../../core/widgets/appointment_card.dart';
 

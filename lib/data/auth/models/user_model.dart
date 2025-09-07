@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:patient_app/core/base_dio/general_model.dart';
+import '../../../core/base_dio/general_model.dart';
 
 class UserModel extends GeneralModel {
   final int? userId;
@@ -170,6 +170,7 @@ class UserModel extends GeneralModel {
         acceptedBy: json["accepted_by"],
       );
 
+  @override
   Map<String, dynamic> toJson() => {
         "userId": userId,
         "role": role,

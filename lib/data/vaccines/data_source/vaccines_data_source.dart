@@ -1,7 +1,7 @@
-import 'package:patient_app/core/base_dio/base_dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/data/vaccines/models/vaccine_model.dart';
-import 'package:patient_app/data/vaccines/models/vaccine_table_model.dart';
+import '../../../core/base_dio/base_dio.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../models/vaccine_model.dart';
+import '../models/vaccine_table_model.dart';
 
 class VaccinesDataSource {
   final BaseDio _baseDio;

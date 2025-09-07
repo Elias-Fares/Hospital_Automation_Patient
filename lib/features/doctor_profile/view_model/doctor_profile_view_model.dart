@@ -1,9 +1,8 @@
-import 'package:patient_app/configuration/service_locator.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/managers/appointment_data_manager.dart';
-import 'package:patient_app/data/doctors/models/doctor_profile_model.dart';
-import 'package:patient_app/data/doctors/repository/doctors_repository.dart';
-import 'package:patient_app/data/profile/repository/profile_repository.dart';
+import '../../../configuration/service_locator.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/managers/appointment_data_manager.dart';
+import '../../../data/doctors/models/doctor_profile_model.dart';
+import '../../../data/doctors/repository/doctors_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'doctor_profile_view_model.g.dart';

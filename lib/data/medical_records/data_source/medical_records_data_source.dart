@@ -1,7 +1,7 @@
-import 'package:patient_app/core/base_dio/base_dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/enums/params_values.dart';
-import 'package:patient_app/data/medical_records/models/medical_record_model.dart';
+import '../../../core/base_dio/base_dio.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/enums/params_values.dart';
+import '../models/medical_record_model.dart';
 
 class MedicalRecordsDataSource {
   final BaseDio _baseDio;

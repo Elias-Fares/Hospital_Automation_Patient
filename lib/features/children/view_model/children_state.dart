@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:patient_app/data/childern/models/child_model.dart';
+import '../../../data/childern/models/child_model.dart';
 
 class ChildrenState {
   final AsyncValue<List<ChildModel>>? childrenResponse;

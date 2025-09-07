@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:patient_app/core/validators/fields_validator.dart';
-import 'package:patient_app/core/widgets/show_snack_bar_error_message.dart';
-import 'package:patient_app/features/auth/view/screens/upload_profile_image_screen.dart';
-import 'package:patient_app/features/auth/view/widgets/add_residential_address_page.dart';
-import 'package:patient_app/features/auth/view_models/add_residential_address/add_residential_address_view_model.dart';
-import 'package:patient_app/features/main_screen/main_screen.dart';
+import '../../../../core/validators/fields_validator.dart';
+import '../../../../core/widgets/show_snack_bar_error_message.dart';
+import 'upload_profile_image_screen.dart';
+import '../widgets/add_residential_address_page.dart';
+import '../../view_models/add_residential_address/add_residential_address_view_model.dart';
 
 class AddResidentialAddressScreen extends ConsumerStatefulWidget {
   static const routeName = "/add_residential_address";

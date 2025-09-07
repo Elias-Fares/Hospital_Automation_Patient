@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:patient_app/core/style/app_colors.dart';
+import '../../style/app_colors.dart';
 
 class KeyValueCard extends StatelessWidget {
   const KeyValueCard({super.key, required this.keyTitle, required this.value});

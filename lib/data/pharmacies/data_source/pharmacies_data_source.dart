@@ -1,8 +1,8 @@
-import 'package:patient_app/core/base_dio/base_dio.dart';
-import 'package:patient_app/core/base_dio/data_state.dart';
-import 'package:patient_app/core/models/medicine_model.dart';
-import 'package:patient_app/data/pharmacies/models/pharmacy_details_model.dart';
-import 'package:patient_app/data/pharmacies/models/pharmacy_model.dart';
+import '../../../core/base_dio/base_dio.dart';
+import '../../../core/base_dio/data_state.dart';
+import '../../../core/models/medicine_model.dart';
+import '../models/pharmacy_details_model.dart';
+import '../models/pharmacy_model.dart';
 
 class PharmaciesDataSource {
   final BaseDio _baseDio;

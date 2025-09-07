@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:patient_app/core/widgets/buttons/loading_button.dart';
-import 'package:patient_app/features/auth/view/widgets/auth_text_form_field.dart';
+import '../../../../core/widgets/buttons/loading_button.dart';
+import 'auth_text_form_field.dart';
 
 class AddResidentialAddressPage extends StatelessWidget {
   final FormFieldValidator<String>? governateValidator;
