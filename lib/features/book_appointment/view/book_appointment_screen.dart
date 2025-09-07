@@ -187,7 +187,6 @@ class _BookAppointmentScreenState extends ConsumerState<BookAppointmentScreen> {
             LoadingButton(
               title: "Next",
               onTap: () async {
-
                 ref
                     .read(bookAppointmentViewModelProvider.notifier)
                     .validatePage();

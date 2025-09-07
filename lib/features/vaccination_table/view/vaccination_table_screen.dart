@@ -95,7 +95,9 @@ class _VaccinationTableScreenState
                           data: (data) => data
                               .map(
                                 (e) => _customDataRow(context,
-                                    visitNumber: e.vaccine?.visitNumber ?? "",
+                                    visitNumber:
+                                        e.vaccine?.visitNumber?.toString() ??
+                                            "",
                                     vaccine: e.vaccine?.name?.toString() ?? "",
                                     date: e.receivingDate?.getYearMonthDay() ??
                                         "Not Specified",

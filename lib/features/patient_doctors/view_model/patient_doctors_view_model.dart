@@ -13,9 +13,10 @@ part 'patient_doctors_state.dart';
 class PatientDoctorsViewModel extends _$PatientDoctorsViewModel {
   @override
   PatientDoctorsState build() {
+    final manager = ref.read(appointmentDataManagerProvider);
     ref.onDispose(
       () {
-        clearEntity();
+        manager.reset();
         debugPrint("PatientDoctorsViewModel Disposed!");
       },
     );
@@ -39,7 +40,7 @@ class PatientDoctorsViewModel extends _$PatientDoctorsViewModel {
     }
   }
 
-  void clearEntity() {
-    ref.read(appointmentDataManagerProvider).reset();
-  }
+  // void clearEntity() {
+  //   ref.read(appointmentDataManagerProvider).reset();
+  // }
 }

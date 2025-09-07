@@ -8,25 +8,28 @@ class ChildProfileModel extends GeneralModel {
   final DateTime? lastAppointment;
   final DateTime? lastVaccine;
   final int? numOfGuardian;
+  final VaccinesInfo? vaccinesInfo;
 
-  ChildProfileModel({
-    this.childProfileData,
-    this.lastAppointment,
-    this.lastVaccine,
-    this.numOfGuardian,
-  });
+  ChildProfileModel(
+      {this.childProfileData,
+      this.lastAppointment,
+      this.lastVaccine,
+      this.numOfGuardian,
+      this.vaccinesInfo});
 
   ChildProfileModel copyWith({
     ChildProfileData? childProfileData,
     DateTime? lastAppointment,
     DateTime? lastVaccine,
     int? numOfGuardian,
+    VaccinesInfo? vaccinesInfo,
   }) =>
       ChildProfileModel(
         childProfileData: childProfileData ?? this.childProfileData,
         lastAppointment: lastAppointment ?? this.lastAppointment,
         lastVaccine: lastVaccine ?? this.lastVaccine,
         numOfGuardian: numOfGuardian ?? this.numOfGuardian,
+        vaccinesInfo: vaccinesInfo ?? this.vaccinesInfo,
       );
 
   factory ChildProfileModel.fromRawJson(String str) =>
@@ -36,7 +39,9 @@ class ChildProfileModel extends GeneralModel {
 
   factory ChildProfileModel.fromJson(Map<String, dynamic> json) =>
       ChildProfileModel(
-        childProfileData: json["data"] == null ? null : ChildProfileData.fromJson(json["data"]),
+        childProfileData: json["data"] == null
+            ? null
+            : ChildProfileData.fromJson(json["data"]),
         lastAppointment: json["last_appointment"] == null
             ? null
             : DateTime.parse(json["last_appointment"]),
@@ -44,11 +49,14 @@ class ChildProfileModel extends GeneralModel {
             ? null
             : DateTime.parse(json["last_vaccine"]),
         numOfGuardian: json["numOfGuardian"],
+        vaccinesInfo: json["vaccinesInfo"] == null
+            ? null
+            : VaccinesInfo.fromJson(json["vaccinesInfo"]),
       );
 
   @override
   Map<String, dynamic> toJson() => {
-        "data":childProfileData?.toJson(),
+        "data": childProfileData?.toJson(),
         "last_appointment":
             "${lastAppointment!.year.toString().padLeft(4, '0')}-${lastAppointment!.month.toString().padLeft(2, '0')}-${lastAppointment!.day.toString().padLeft(2, '0')}",
         "last_vaccine": lastVaccine?.toIso8601String(),
@@ -128,11 +136,13 @@ class ChildProfileData {
         user: user ?? this.user,
       );
 
-  factory ChildProfileData.fromRawJson(String str) => ChildProfileData.fromJson(json.decode(str));
+  factory ChildProfileData.fromRawJson(String str) =>
+      ChildProfileData.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ChildProfileData.fromJson(Map<String, dynamic> json) => ChildProfileData(
+  factory ChildProfileData.fromJson(Map<String, dynamic> json) =>
+      ChildProfileData(
         childId: json["childId"],
         firstName: json["first_name"],
         lastName: json["last_name"],
@@ -174,3 +184,42 @@ class ChildProfileData {
       };
 }
 
+class VaccinesInfo {
+  final dynamic lastVaccine;
+  final String? lastVaccineName;
+  final String? nextVaccineName;
+
+  VaccinesInfo({
+    this.lastVaccine,
+    this.lastVaccineName,
+    this.nextVaccineName,
+  });
+
+  VaccinesInfo copyWith({
+    dynamic lastVaccine,
+    String? lastVaccineName,
+    String? nextVaccineName,
+  }) =>
+      VaccinesInfo(
+        lastVaccine: lastVaccine ?? this.lastVaccine,
+        lastVaccineName: lastVaccineName ?? this.lastVaccineName,
+        nextVaccineName: nextVaccineName ?? this.nextVaccineName,
+      );
+
+  factory VaccinesInfo.fromRawJson(String str) =>
+      VaccinesInfo.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory VaccinesInfo.fromJson(Map<String, dynamic> json) => VaccinesInfo(
+        lastVaccine: json["last_vaccine"],
+        lastVaccineName: json["last_vaccine_name"],
+        nextVaccineName: json["next_vaccine_name"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "last_vaccine": lastVaccine,
+        "last_vaccine_name": lastVaccineName,
+        "next_vaccine_name": nextVaccineName,
+      };
+}

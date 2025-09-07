@@ -6,22 +6,57 @@ part of 'medicine_details_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(MedicineDetailsViewModel)
+const medicineDetailsViewModelProvider = MedicineDetailsViewModelProvider._();
+
+final class MedicineDetailsViewModelProvider
+    extends $NotifierProvider<MedicineDetailsViewModel, MedicineDetailsState> {
+  const MedicineDetailsViewModelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'medicineDetailsViewModelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$medicineDetailsViewModelHash();
+
+  @$internal
+  @override
+  MedicineDetailsViewModel create() => MedicineDetailsViewModel();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(MedicineDetailsState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<MedicineDetailsState>(value),
+    );
+  }
+}
+
 String _$medicineDetailsViewModelHash() =>
     r'5a11e76292b7191afe98e1934f58bb3535aed308';
 
-/// See also [MedicineDetailsViewModel].
-@ProviderFor(MedicineDetailsViewModel)
-final medicineDetailsViewModelProvider = AutoDisposeNotifierProvider<
-    MedicineDetailsViewModel, MedicineDetailsState>.internal(
-  MedicineDetailsViewModel.new,
-  name: r'medicineDetailsViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$medicineDetailsViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$MedicineDetailsViewModel
+    extends $Notifier<MedicineDetailsState> {
+  MedicineDetailsState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<MedicineDetailsState, MedicineDetailsState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<MedicineDetailsState, MedicineDetailsState>,
+        MedicineDetailsState,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$MedicineDetailsViewModel = AutoDisposeNotifier<MedicineDetailsState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

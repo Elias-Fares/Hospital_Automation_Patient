@@ -6,10 +6,12 @@ class EditProfileAddNoteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DottedBorder(
-      radius: const Radius.circular(8),
-      borderType: BorderType.RRect,
-      color: AppColors.onSurfaceContainer,
-      strokeWidth: .7,
+      options: RoundedRectDottedBorderOptions(
+        radius: const Radius.circular(8),
+        // borderType: BorderType.RRect,
+        color: AppColors.onSurfaceContainer,
+        strokeWidth: .7,
+      ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 11),
         decoration: BoxDecoration(

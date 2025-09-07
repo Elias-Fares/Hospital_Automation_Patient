@@ -6,23 +6,59 @@ part of 'add_residential_address_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(AddResidentialAddressViewModel)
+const addResidentialAddressViewModelProvider =
+    AddResidentialAddressViewModelProvider._();
+
+final class AddResidentialAddressViewModelProvider extends $NotifierProvider<
+    AddResidentialAddressViewModel, AddResidentialAddressState> {
+  const AddResidentialAddressViewModelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'addResidentialAddressViewModelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$addResidentialAddressViewModelHash();
+
+  @$internal
+  @override
+  AddResidentialAddressViewModel create() => AddResidentialAddressViewModel();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AddResidentialAddressState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<AddResidentialAddressState>(value),
+    );
+  }
+}
+
 String _$addResidentialAddressViewModelHash() =>
     r'59af85760bcedf9d42af3d272bc49291fe404e55';
 
-/// See also [AddResidentialAddressViewModel].
-@ProviderFor(AddResidentialAddressViewModel)
-final addResidentialAddressViewModelProvider = AutoDisposeNotifierProvider<
-    AddResidentialAddressViewModel, AddResidentialAddressState>.internal(
-  AddResidentialAddressViewModel.new,
-  name: r'addResidentialAddressViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$addResidentialAddressViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$AddResidentialAddressViewModel
+    extends $Notifier<AddResidentialAddressState> {
+  AddResidentialAddressState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref
+        as $Ref<AddResidentialAddressState, AddResidentialAddressState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AddResidentialAddressState, AddResidentialAddressState>,
+        AddResidentialAddressState,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$AddResidentialAddressViewModel
-    = AutoDisposeNotifier<AddResidentialAddressState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -13,16 +13,17 @@ part 'book_appointment_view_model.g.dart';
 class BookAppointmentViewModel extends _$BookAppointmentViewModel {
   @override
   BookAppointmentState build() {
-    ref
-        .read(appointmentDataManagerProvider)
-        .setType(type: ParamsValues.patient.value);
+    final manager = ref.read(appointmentDataManagerProvider);
 
-    ref.onDispose(
-      () {
-        clearData();
-        debugPrint("BookAppointmentViewModel Disposed!");
-      },
-    );
+    manager.setType(type: ParamsValues.patient.value);
+
+    ref.onDispose(() {
+      manager.setType(type: null);
+      manager.setChildId(childId: null);
+      manager.setAppointmentType(appointmentType: null);
+
+      debugPrint("BookAppointmentViewModel Disposed!");
+    });
 
     return BookAppointmentState(
         selectedProcedure: "",
@@ -112,11 +113,15 @@ class BookAppointmentViewModel extends _$BookAppointmentViewModel {
     state = state.copyWith(validationMessage: "");
   }
 
-  void clearData() {
-    final manager = ref.read(appointmentDataManagerProvider);
+  // void clearData() {
+  //   try {
+  //     final manager = ref.read(appointmentDataManagerProvider);
 
-    manager.setType(type: null);
-    manager.setChildId(childId: null);
-    manager.setAppointmentType(appointmentType: null);
-  }
+  //     manager.setType(type: null);
+  //     manager.setChildId(childId: null);
+  //     manager.setAppointmentType(appointmentType: null);
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 }

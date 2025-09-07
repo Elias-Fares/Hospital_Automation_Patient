@@ -6,23 +6,60 @@ part of 'child_profile_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(ChildProfileViewModel)
+const childProfileViewModelProvider = ChildProfileViewModelProvider._();
+
+final class ChildProfileViewModelProvider extends $NotifierProvider<
+    ChildProfileViewModel, AsyncValue<ChildProfileModel>?> {
+  const ChildProfileViewModelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'childProfileViewModelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$childProfileViewModelHash();
+
+  @$internal
+  @override
+  ChildProfileViewModel create() => ChildProfileViewModel();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(AsyncValue<ChildProfileModel>? value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride:
+          $SyncValueProvider<AsyncValue<ChildProfileModel>?>(value),
+    );
+  }
+}
+
 String _$childProfileViewModelHash() =>
     r'b76e2eddd943177a468f60f8ac026f9b7df9db95';
 
-/// See also [ChildProfileViewModel].
-@ProviderFor(ChildProfileViewModel)
-final childProfileViewModelProvider = AutoDisposeNotifierProvider<
-    ChildProfileViewModel, AsyncValue<ChildProfileModel>?>.internal(
-  ChildProfileViewModel.new,
-  name: r'childProfileViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$childProfileViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$ChildProfileViewModel
+    extends $Notifier<AsyncValue<ChildProfileModel>?> {
+  AsyncValue<ChildProfileModel>? build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref
+        as $Ref<AsyncValue<ChildProfileModel>?, AsyncValue<ChildProfileModel>?>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<AsyncValue<ChildProfileModel>?,
+            AsyncValue<ChildProfileModel>?>,
+        AsyncValue<ChildProfileModel>?,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$ChildProfileViewModel
-    = AutoDisposeNotifier<AsyncValue<ChildProfileModel>?>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

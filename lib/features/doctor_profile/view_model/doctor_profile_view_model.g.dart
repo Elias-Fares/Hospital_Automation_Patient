@@ -6,22 +6,56 @@ part of 'doctor_profile_view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+@ProviderFor(DoctorProfileViewModel)
+const doctorProfileViewModelProvider = DoctorProfileViewModelProvider._();
+
+final class DoctorProfileViewModelProvider
+    extends $NotifierProvider<DoctorProfileViewModel, DoctorProfileState> {
+  const DoctorProfileViewModelProvider._()
+      : super(
+          from: null,
+          argument: null,
+          retry: null,
+          name: r'doctorProfileViewModelProvider',
+          isAutoDispose: true,
+          dependencies: null,
+          $allTransitiveDependencies: null,
+        );
+
+  @override
+  String debugGetCreateSourceHash() => _$doctorProfileViewModelHash();
+
+  @$internal
+  @override
+  DoctorProfileViewModel create() => DoctorProfileViewModel();
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(DoctorProfileState value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<DoctorProfileState>(value),
+    );
+  }
+}
+
 String _$doctorProfileViewModelHash() =>
     r'ed1741a91bcbe20b848646737935a1337e0b3ee0';
 
-/// See also [DoctorProfileViewModel].
-@ProviderFor(DoctorProfileViewModel)
-final doctorProfileViewModelProvider = AutoDisposeNotifierProvider<
-    DoctorProfileViewModel, DoctorProfileState>.internal(
-  DoctorProfileViewModel.new,
-  name: r'doctorProfileViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$doctorProfileViewModelHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+abstract class _$DoctorProfileViewModel extends $Notifier<DoctorProfileState> {
+  DoctorProfileState build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<DoctorProfileState, DoctorProfileState>;
+    final element = ref.element as $ClassProviderElement<
+        AnyNotifier<DoctorProfileState, DoctorProfileState>,
+        DoctorProfileState,
+        Object?,
+        Object?>;
+    element.handleValue(ref, created);
+  }
+}
 
-typedef _$DoctorProfileViewModel = AutoDisposeNotifier<DoctorProfileState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

@@ -34,6 +34,10 @@ class _AppointmentDetailsScreenState
     return Scaffold(
       appBar: SubAppBar(
         titleWidget: AppBarTitleWidget(
+          imagePath: widget.appointmentModel?.child != null
+              // ? "${Constant.baseUrl}/${widget.appointmentModel?.child}"
+              ? ""
+              : "${Constant.baseUrl}/${widget.appointmentModel?.user?.imgurl}",
           title: widget.appointmentModel?.child != null
               ? joinStrings([
                   widget.appointmentModel?.child?.firstName,
@@ -54,8 +58,8 @@ class _AppointmentDetailsScreenState
               widget.appointmentModel?.doctor?.lastName,
             ]),
             speciality: widget.appointmentModel?.doctor?.specialty ?? "",
-            doctorProfileImage: Constant.baseUrl +
-                (widget.appointmentModel?.doctor?.imgurl ?? ""),
+            doctorProfileImage:
+                "${Constant.baseUrl}/${widget.appointmentModel?.doctor?.imgurl ?? ""}",
             dateAndTime: joinStrings([
               widget.appointmentModel?.date?.getYearMonthDay(),
               widget.appointmentModel?.time?.substring(0, 5),

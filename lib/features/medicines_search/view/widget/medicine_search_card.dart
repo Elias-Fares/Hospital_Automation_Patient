@@ -1,4 +1,5 @@
-part of'../medicines_search_screen.dart';
+part of '../medicines_search_screen.dart';
+
 class MedicineSearchCard extends StatelessWidget {
   final String medicineName;
   final String medicineTiter;
@@ -34,6 +35,7 @@ class MedicineSearchCard extends StatelessWidget {
             Center(
               child: Container(
                   height: 120,
+                  width: 1.sw,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),

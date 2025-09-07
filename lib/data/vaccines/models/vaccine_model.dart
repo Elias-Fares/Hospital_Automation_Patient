@@ -10,7 +10,7 @@ class VaccineModel extends GeneralModel {
   final int? maxAge;
   final String? minAgeUnit;
   final String? maxAgeUnit;
-  final String? visitNumber;
+  final int? visitNumber;
   final int? quantity;
   final String? state;
   final List<Interaction>? interactions;
@@ -37,7 +37,7 @@ class VaccineModel extends GeneralModel {
     int? maxAge,
     String? minAgeUnit,
     String? maxAgeUnit,
-    String? visitNumber,
+    int? visitNumber,
     int? quantity,
     String? state,
     List<Interaction>? interactions,

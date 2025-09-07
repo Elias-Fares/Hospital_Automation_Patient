@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../configuration/router/router_utils.dart';
 import '../../../core/enums/params_values.dart';
@@ -10,6 +11,7 @@ import '../../../core/params/medical_records_screen_params.dart';
 import '../../../core/params/prescriptions_screen_params.dart'
     show PrescriptionsScreenParams;
 import '../../../core/params/vaccine_table_screen_param.dart';
+import '../../../core/style/app_colors.dart';
 import '../../../core/style/card_container_decoration.dart';
 import '../../../core/widgets/cards/icon_key_value_widget.dart';
 import '../../../core/widgets/cards/icon_title_navigation_button.dart';
@@ -100,8 +102,8 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                         birthCertificate: "Birth Certificate.jpg",
                         lastAppointment:
                             data.lastAppointment?.getYearMonthDay() ?? "",
-                        lastVaccination: 'Flu Shot',
-                        nextVaccination: 'MMR Booster',
+                        lastVaccination: data.vaccinesInfo?.lastVaccineName ?? "",
+                        nextVaccination: data.vaccinesInfo?.nextVaccineName ?? "",
                         guardiansCount: data.numOfGuardian?.toString() ?? "0",
                       ),
                       const SizedBox(

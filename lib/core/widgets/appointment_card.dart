@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import '../../configuration/res.dart';
 import '../style/app_colors.dart';
 import 'buttons/custom_inkwell.dart';
+import 'cards/fail_widget.dart';
+import 'cards/icon_container.dart';
 import 'cards/outlined_card.dart';
 import 'cards/svg_container.dart';
+import 'general_network_image.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({
@@ -13,12 +16,14 @@ class AppointmentCard extends StatelessWidget {
     required this.dateTime,
     required this.doctorName,
     this.onAppointmentCardTap,
+    required this.doctorProfileImageUrl,
   });
 
   final String name;
   final String type;
   final String dateTime;
   final String doctorName;
+  final String doctorProfileImageUrl;
   final void Function()? onAppointmentCardTap;
 
   @override
@@ -73,11 +78,11 @@ class AppointmentCard extends StatelessWidget {
                     ),
                     const Spacer(),
                     ClipOval(
-                      child: Image.asset(
-                        Res.personePlaceHolderImage,
-                        width: 24,
-                        height: 24,
-                      ),
+                      child: GeneralNetworkImage(
+                          url: doctorProfileImageUrl,
+                          width: 24,
+                          height: 24,
+                          failWidget: PersonFailWidget(name: doctorName)),
                     ),
                     const SizedBox(width: 10),
                     Column(

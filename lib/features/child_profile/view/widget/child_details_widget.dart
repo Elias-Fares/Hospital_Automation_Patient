@@ -67,18 +67,35 @@ class ChildDetailsWidget extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              KeyValueCard(
-                  keyTitle: "Last appointment", value: lastAppointment),
-              KeyValueCard(
-                  keyTitle: "Last vaccination", value: lastVaccination),
-              KeyValueCard(
-                  keyTitle: "Next vaccination", value: nextVaccination),
-              KeyValueCard(keyTitle: "Gaurdians", value: guardiansCount),
-            ],
+          SizedBox(
+            width: 1.sw,
+            // color: AppColors.error,
+            child: Wrap(
+              spacing: 10,
+              runSpacing: 10,
+              alignment: WrapAlignment.start,
+              runAlignment: WrapAlignment.start,
+              crossAxisAlignment: WrapCrossAlignment.start,
+              verticalDirection: VerticalDirection.up,
+              children: [
+                guardiansCount.isEmpty
+                    ? SizedBox.shrink()
+                    : KeyValueCard(
+                        keyTitle: "Gaurdians", value: guardiansCount),
+                lastAppointment.isEmpty
+                    ? SizedBox.shrink()
+                    : KeyValueCard(
+                        keyTitle: "Last appointment", value: lastAppointment),
+                lastVaccination.isEmpty
+                    ? SizedBox.shrink()
+                    : KeyValueCard(
+                        keyTitle: "Last vaccination", value: lastVaccination),
+                nextVaccination.isEmpty
+                    ? SizedBox.shrink()
+                    : KeyValueCard(
+                        keyTitle: "Next vaccination", value: nextVaccination),
+              ],
+            ),
           )
         ],
       ),

@@ -59,6 +59,7 @@ class _ChildAppointmentsScreenState
                   name: widget.childAppointmentParams.childName ?? "",
                   type: appointment?.appointmentType?.typeName ?? "",
                   dateTime: appointment?.date?.getYearMonthDay() ?? "",
+                  doctorProfileImageUrl: appointment?.doctor?.imgurl ?? "",
                   doctorName: joinStrings([
                     appointment?.doctor?.firstName,
                     appointment?.doctor?.middleName,

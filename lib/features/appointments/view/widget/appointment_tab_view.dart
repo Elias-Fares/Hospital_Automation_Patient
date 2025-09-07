@@ -29,6 +29,8 @@ class AppointmentTabView extends StatelessWidget {
               data.doctor?.middleName,
               data.doctor?.lastName
             ]),
+            doctorProfileImageUrl:
+                "${Constant.baseUrl}/${data.doctor?.imgurl ?? ""}",
             type: data.appointmentType?.typeName ?? "",
             onAppointmentCardTap: () {
               context.push(

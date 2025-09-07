@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constant/constant.dart';
 import '../../../core/function/join_strings.dart';
 import '../../../core/models/work_day.dart';
 import '../../../core/style/card_container_decoration.dart';
@@ -100,7 +101,7 @@ class _DoctorProfileScreenState extends ConsumerState<DoctorProfileScreen> {
                         data.lastName,
                       ]),
                       gender: data.gender ?? "",
-                      imagePath: data.imgurl ?? "",
+                      imagePath: "${Constant.baseUrl}/${data.imgurl ?? ""}",
                       address: joinStrings([
                         data.addressGovernorate,
                         data.addressCity,
