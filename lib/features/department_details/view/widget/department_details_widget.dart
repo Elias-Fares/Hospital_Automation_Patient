@@ -111,7 +111,8 @@ class DepartmentDetailsWidget extends StatelessWidget {
                   activeDoctors.elementAt(index).lastName,
                 ]),
                 doctorSpecialty: activeDoctors.elementAt(index).specialty ?? "",
-                doctorImageUrl: activeDoctors.elementAt(index).imgurl ?? "",
+                doctorImageUrl:
+                    "${Constant.baseUrl}/${activeDoctors.elementAt(index).imgurl ?? ""}",
               ),
             ),
           ),

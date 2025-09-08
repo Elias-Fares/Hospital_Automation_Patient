@@ -75,17 +75,28 @@ class _PharmacyProfileScreenState extends ConsumerState<PharmacyProfileScreen> {
             ),
             pharmacyProfile.pharmacyDetailsResponse?.when(
                   data: (data) => PharmacyProfileDetailsSection(
-                      currentState: getOpeningStatus(data.workDays ?? []),
-                      pharmacyaddress: joinStrings([
-                        data.addressGovernorate,
-                        data.addressCity,
-                        data.addressRegion,
-                        data.addressStreet,
-                      ], joinChart: " - "),
-                      residentialsAddress: "",
-                      phoneNumber: data.phoneNumber ?? "",
-                      emailAddress: data.user?.email ?? "",
-                      availabilitySchedule: data.workDays ?? []),
+                    currentState: getOpeningStatus(data.workDays ?? []),
+                    pharmacyaddress: joinStrings([
+                      data.addressGovernorate,
+                      data.addressCity,
+                      data.addressRegion,
+                      data.addressStreet,
+                    ], joinChart: " - "),
+                    residentialsAddress: "",
+                    phoneNumber: data.phoneNumber ?? "",
+                    emailAddress: data.user?.email ?? "",
+                    availabilitySchedule: data.workDays ?? [],
+                    onEmailTap: () {
+                      ref
+                          .read(pharmacyProfileViewModelProvider.notifier)
+                          .sendEmail(email: data.user?.email);
+                    },
+                    onPhoneNumberTap: () {
+                      ref
+                          .read(pharmacyProfileViewModelProvider.notifier)
+                          .makePhoneCall(phoneNumber: data.phoneNumber);
+                    },
+                  ),
                   error: (error, stackTrace) => CustomErrorWidget(
                     message: error.toString(),
                     onTryAgainTap: () {

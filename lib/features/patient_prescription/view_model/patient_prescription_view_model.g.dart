@@ -40,7 +40,7 @@ final class PatientPrescriptionViewModelProvider extends $NotifierProvider<
 }
 
 String _$patientPrescriptionViewModelHash() =>
-    r'3c7097bce56a3845da3109064aa987e6e41b0e81';
+    r'98781d0d8a6114b83468aef3638ca52b26973513';
 
 abstract class _$PatientPrescriptionViewModel
     extends $Notifier<PatientPrescriptionState> {

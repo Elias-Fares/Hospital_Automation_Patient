@@ -89,31 +89,42 @@ class _DoctorProfileScreenState extends ConsumerState<DoctorProfileScreen> {
               child: Column(
                 children: [
                   DoctorProfileDetailsWidget(
-                      onDepartmentTap: () {
-                        context.push(
-                            RouterUtils.getNestedRoute(context,
-                                routeName: DepartmentDetailsScreen.routeName),
-                            extra: data.clinicId);
-                      },
-                      name: joinStrings([
-                        data.firstName,
-                        data.middleName,
-                        data.lastName,
-                      ]),
-                      gender: data.gender ?? "",
-                      imagePath: "${Constant.baseUrl}/${data.imgurl ?? ""}",
-                      address: joinStrings([
-                        data.addressGovernorate,
-                        data.addressCity,
-                        data.addressRegion,
-                        data.addressRegion
-                      ], joinChart: " - "),
-                      doctorSpeciality: data.specialty ?? "",
-                      doctorDepartment: data.clinic?.name ?? "",
-                      phoneNumber: data.phoneNumber ?? "",
-                      emailAddress: data.email ?? "",
-                      availabilitySchedule: data.workDays ?? [],
-                      appointmentTypes: data.appointmentTypes ?? []),
+                    onDepartmentTap: () {
+                      context.push(
+                          RouterUtils.getNestedRoute(context,
+                              routeName: DepartmentDetailsScreen.routeName),
+                          extra: data.clinicId);
+                    },
+                    name: joinStrings([
+                      data.firstName,
+                      data.middleName,
+                      data.lastName,
+                    ]),
+                    gender: data.gender ?? "",
+                    imagePath: "${Constant.baseUrl}/${data.imgurl ?? ""}",
+                    address: joinStrings([
+                      data.addressGovernorate,
+                      data.addressCity,
+                      data.addressRegion,
+                      data.addressRegion
+                    ], joinChart: " - "),
+                    doctorSpeciality: data.specialty ?? "",
+                    doctorDepartment: data.clinic?.name ?? "",
+                    phoneNumber: data.phoneNumber ?? "",
+                    emailAddress: data.email ?? "",
+                    availabilitySchedule: data.workDays ?? [],
+                    appointmentTypes: data.appointmentTypes ?? [],
+                    onEmailTap: () {
+                      ref
+                          .read(doctorProfileViewModelProvider.notifier)
+                          .sendEmail(email: data.email);
+                    },
+                    onPhoneNumberTap: () {
+                      ref
+                          .read(doctorProfileViewModelProvider.notifier)
+                          .makePhoneCall(phoneNumber: data.phoneNumber);
+                    },
+                  ),
 
                   const SizedBox(
                     height: 80,

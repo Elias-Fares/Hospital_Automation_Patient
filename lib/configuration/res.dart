@@ -71,6 +71,7 @@ class Res {
   static const String drawerVaccinationIcon =
       "$drawerIconPath/d_vaccination$svg";
   static const String medicineIcon = "$drawerIconPath/medicine_icon$svg";
+  static const String aiIcon = "$drawerIconPath/ai_icon$svg";
 
   //vaccine
   static const String lineEndCircle = "$vaccineIconPath/line_end_circle$svg";

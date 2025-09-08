@@ -39,7 +39,7 @@ final class DoctorProfileViewModelProvider
 }
 
 String _$doctorProfileViewModelHash() =>
-    r'ed1741a91bcbe20b848646737935a1337e0b3ee0';
+    r'327aa6a2bcde1f78d1501b102416d0cc352cd1c2';
 
 abstract class _$DoctorProfileViewModel extends $Notifier<DoctorProfileState> {
   DoctorProfileState build();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../core/constant/constant.dart';
 import '../../../core/enums/params_values.dart';
 import '../../../core/function/join_strings.dart';
 import '../../../core/params/medical_records_screen_params.dart';
@@ -103,7 +104,8 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                               record?.doctorInfo?.firstName,
                               record?.doctorInfo?.lastName,
                             ]),
-                            doctorImageUrl: record?.doctorInfo?.imgurl ?? "",
+                            doctorImageUrl:
+                                "${Constant.baseUrl}/${record?.doctorInfo?.imgurl ?? ""}",
                             doctorSpecialty:
                                 record?.doctorInfo?.specialty ?? "",
                             appointmentsCount: record

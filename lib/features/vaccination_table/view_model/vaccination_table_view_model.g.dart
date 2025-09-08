@@ -39,7 +39,7 @@ final class VaccinationTableViewModelProvider extends $NotifierProvider<
 }
 
 String _$vaccinationTableViewModelHash() =>
-    r'352a9a140c17d406e152c4f3fb65691a56869379';
+    r'37a8e0979e388a022718ed3b1f82640515d6ba6f';
 
 abstract class _$VaccinationTableViewModel
     extends $Notifier<VaccinationTableState> {

@@ -13,7 +13,7 @@ class MedicalRecordViewModel extends _$MedicalRecordViewModel {
   @override
   MedicalRecordState build() => MedicalRecordState();
 
-    final _medicalRecordsRepository = getIt<MedicalRecordsRepository>();
+  final _medicalRecordsRepository = getIt<MedicalRecordsRepository>();
 
   Future<void> getMedicalRecords({
     required ParamsValues type,
@@ -21,12 +21,14 @@ class MedicalRecordViewModel extends _$MedicalRecordViewModel {
   }) async {
     state = state.copyWith(medicalRecordsResponse: const AsyncValue.loading());
 
-    final response = await _medicalRecordsRepository.getMedicalRecords(type: type, childId: childId);
+    final response = await _medicalRecordsRepository.getMedicalRecords(
+        type: type, childId: childId);
+
+    if (!ref.mounted) return;
 
     if (response is DataSuccess) {
-      state =
-          state.copyWith(medicalRecordsResponse: AsyncValue.data(response.data));
-
+      state = state.copyWith(
+          medicalRecordsResponse: AsyncValue.data(response.data));
     } else {
       state = state.copyWith(
           medicalRecordsResponse: AsyncValue.error(
@@ -34,6 +36,4 @@ class MedicalRecordViewModel extends _$MedicalRecordViewModel {
               StackTrace.current));
     }
   }
-
 }
-

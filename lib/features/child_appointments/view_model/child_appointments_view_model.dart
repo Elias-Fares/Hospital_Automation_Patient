@@ -25,6 +25,8 @@ class ChildAppointmentsViewModel extends _$ChildAppointmentsViewModel {
     final response = await _appointmentsRepository.getAppointments(
         type: ParamsValues.children.value, childId: childId);
 
+    if (!ref.mounted) return;
+
     if (response is DataSuccess) {
       state = AsyncValue.data(response.data);
     } else {

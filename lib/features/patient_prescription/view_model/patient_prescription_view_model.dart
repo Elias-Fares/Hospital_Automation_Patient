@@ -39,6 +39,8 @@ class PatientPrescriptionViewModel extends _$PatientPrescriptionViewModel {
     } else {
       response = await _prescriptionsRepository.getPatientPrescription();
     }
+    
+    if (!ref.mounted) return;
 
     if (response is DataSuccess) {
       state =

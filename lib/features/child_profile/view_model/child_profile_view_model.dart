@@ -23,6 +23,10 @@ class ChildProfileViewModel extends _$ChildProfileViewModel {
 
     final response =
         await _childrenRepository.getChildProfile(childId: childId);
+
+    if (!ref.mounted) return;
+
+    
     if (response is DataSuccess) {
       state = AsyncValue.data(response.data);
     } else {

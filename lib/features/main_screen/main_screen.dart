@@ -5,6 +5,7 @@ import '../../configuration/res.dart';
 import '../../core/style/app_colors.dart';
 import '../../core/widgets/general_image_asset.dart';
 import '../app_drawer/view/app_drawer_screen.dart';
+import '../notifications/view_model/riverpod/notifications_view_model.dart';
 import '../profile/view_model/profile_view_model.dart';
 
 
@@ -26,6 +27,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
     Future.microtask(
       () {
         ref.read(profileViewModelProvider.notifier).getUserProfile();
+        ref.read(notificationsViewModelProvider.notifier).notificationTrigger();
       },
     );
   }
@@ -80,6 +82,7 @@ class _MainScreenState extends ConsumerState<MainScreen> {
           NavigationDestination(
             selectedIcon: _navigationIcon(context,
                 imgPath: Res.notificationIcon, isSelected: true),
+              
             icon: Stack(
               children: [
                 _navigationIcon(context,

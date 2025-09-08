@@ -41,7 +41,7 @@ final class ChildAppointmentsViewModelProvider extends $NotifierProvider<
 }
 
 String _$childAppointmentsViewModelHash() =>
-    r'811d1e6a94492e572e55bbc57be8d7a0466c3391';
+    r'73173da41c10c0a35a2e6f2e7c300b3f1b5f6f1a';
 
 abstract class _$ChildAppointmentsViewModel
     extends $Notifier<AsyncValue<List<AppointmentModel>>?> {

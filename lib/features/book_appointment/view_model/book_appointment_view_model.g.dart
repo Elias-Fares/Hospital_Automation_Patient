@@ -39,7 +39,7 @@ final class BookAppointmentViewModelProvider
 }
 
 String _$bookAppointmentViewModelHash() =>
-    r'0aa6199f0868b3ca43b2324482c820f22e544269';
+    r'f659ca20bb329f8f55b97702d3985dba842cbc68';
 
 abstract class _$BookAppointmentViewModel
     extends $Notifier<BookAppointmentState> {

@@ -40,7 +40,7 @@ final class ChildProfileViewModelProvider extends $NotifierProvider<
 }
 
 String _$childProfileViewModelHash() =>
-    r'b76e2eddd943177a468f60f8ac026f9b7df9db95';
+    r'115f2e81cb49be6f6736858b29a8536b0eda0ae7';
 
 abstract class _$ChildProfileViewModel
     extends $Notifier<AsyncValue<ChildProfileModel>?> {

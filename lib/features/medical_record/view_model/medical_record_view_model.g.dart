@@ -39,7 +39,7 @@ final class MedicalRecordViewModelProvider
 }
 
 String _$medicalRecordViewModelHash() =>
-    r'243602b9a919be294816cb44b1212abc7babb74c';
+    r'b11a10f696ca7ae12bff51c3aa4d3f00ab53a1fd';
 
 abstract class _$MedicalRecordViewModel extends $Notifier<MedicalRecordState> {
   MedicalRecordState build();

@@ -1,3 +1,5 @@
+import 'package:url_launcher/url_launcher.dart';
+
 import '../../../configuration/service_locator.dart';
 import '../../../core/base_dio/data_state.dart';
 import '../../../core/managers/appointment_data_manager.dart';
@@ -35,4 +37,28 @@ class DoctorProfileViewModel extends _$DoctorProfileViewModel {
         doctorId:
             state.doctorProfileResponse?.asData?.value.userId?.toString());
   }
+
+  Future<void> makePhoneCall({required String? phoneNumber}) async {
+    if (phoneNumber == null) return;
+    final Uri launchUri = Uri(scheme: "tel", path: phoneNumber);
+
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
+    } else {
+      // throw 'Could not launch $launchUri';
+    }
+  }
+
+  Future<void> sendEmail({required String? email}) async {
+    if (email == null) return;
+    final Uri emailUri = Uri(scheme: "mailto", path: email);
+
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
+    } else {
+      // throw 'Could not launch $emailUri';
+    }
+  }
+
+
 }

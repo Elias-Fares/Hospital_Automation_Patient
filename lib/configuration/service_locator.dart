@@ -11,6 +11,8 @@ import '../data/doctors/data_source/doctors_data_source.dart';
 import '../data/doctors/repository/doctors_repository.dart';
 import '../data/medical_records/data_source/medical_records_data_source.dart';
 import '../data/medical_records/repository/medical_records_repository.dart';
+import '../data/notification/notification_remote_data_source.dart';
+import '../data/notification/notification_repository.dart';
 import '../data/perscriptions/data_source/prescriptions_data_source.dart';
 import '../data/perscriptions/repository/prescriptions_repository.dart';
 import '../data/pharmacies/data_source/pharmacies_data_source.dart';
@@ -36,6 +38,7 @@ Future<void> initializeDependencies() async {
   _initMedicalRecords();
   _initVaccines();
   _initPharmacies();
+  _initNotifications();
 }
 
 void _initDio() {
@@ -132,5 +135,12 @@ void _initPharmacies() {
   getIt.registerLazySingleton(
     () => PharmaciesRepository(
         dataSource: PharmaciesDataSource(baseDio: getIt<BaseDio>())),
+  );
+}
+
+void _initNotifications() {
+  getIt.registerLazySingleton(
+    () => NotificationRepository(
+        dataSource: NotificationRemoteDataSource(baseDio: getIt<BaseDio>())),
   );
 }

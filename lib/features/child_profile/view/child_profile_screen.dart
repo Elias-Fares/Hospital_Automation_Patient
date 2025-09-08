@@ -102,8 +102,10 @@ class _ChildProfileScreenState extends ConsumerState<ChildProfileScreen> {
                         birthCertificate: "Birth Certificate.jpg",
                         lastAppointment:
                             data.lastAppointment?.getYearMonthDay() ?? "",
-                        lastVaccination: data.vaccinesInfo?.lastVaccineName ?? "",
-                        nextVaccination: data.vaccinesInfo?.nextVaccineName ?? "",
+                        lastVaccination:
+                            data.vaccinesInfo?.lastVaccineName ?? "",
+                        nextVaccination:
+                            data.vaccinesInfo?.nextVaccineName ?? "",
                         guardiansCount: data.numOfGuardian?.toString() ?? "0",
                       ),
                       const SizedBox(

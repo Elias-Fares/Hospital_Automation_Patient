@@ -13,6 +13,18 @@ class PharmaciesRepository {
     return resposnse;
   }
 
+  Future<DataState> getMedicineClass(
+      {required String medicineName,
+      required String composition1,
+      String? composition2}) async {
+    final resposnse = await _dataSource.getMedicineClass(
+        medicineName: medicineName,
+        composition1: composition1,
+        composition2: composition2);
+
+    return resposnse;
+  }
+
   Future<DataState> getPharmacyDetails({required String id}) async {
     final resposnse = await _dataSource.getPharmacyDetails(id: id);
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/medicine_classifier/view/medicine_classifier_screen.dart';
 import 'my_go_router_observer.dart';
 import '../../core/enums/params_values.dart';
 import '../../core/models/medicine_model.dart';
@@ -306,10 +307,16 @@ class AppRouter {
               path: MedicineDetailsScreen.routeName,
               builder: (context, state) {
                 final med = state.extra as MedicineModel?;
-                return  MedicineDetailsScreen(med: med,);
+                return MedicineDetailsScreen(
+                  med: med,
+                );
               },
             ),
           ]),
+      GoRoute(
+        path: MedicineClassifierScreen.routeName,
+        builder: (context, state) => MedicineClassifierScreen(),
+      )
     ]);
   }
 

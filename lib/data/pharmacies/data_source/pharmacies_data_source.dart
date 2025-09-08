@@ -3,6 +3,7 @@ import '../../../core/base_dio/data_state.dart';
 import '../../../core/models/medicine_model.dart';
 import '../models/pharmacy_details_model.dart';
 import '../models/pharmacy_model.dart';
+import '../models/result_class_model.dart';
 
 class PharmaciesDataSource {
   final BaseDio _baseDio;
@@ -38,6 +39,24 @@ class PharmaciesDataSource {
         queryParameters: {
           "name": searchWord,
         });
+
+    return resposnse;
+  }
+
+  Future<DataState> getMedicineClass(
+      {required String medicineName,
+      required String composition1,
+      String? composition2}) async {
+    final bodyMap = {"name": medicineName, "composition1": composition1};
+
+    if (composition2 != null && composition2.isNotEmpty) {
+      bodyMap["composition2"] = composition2;
+    }
+    final resposnse = await _baseDio.post<ResultClassModel>(
+        subUrl: "/user/predict-for-medicine-class",
+        model: ResultClassModel(),
+        needToken: true,
+        data: bodyMap);
 
     return resposnse;
   }

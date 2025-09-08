@@ -1,4 +1,5 @@
 import '../../departments/view/departments_screen.dart';
+import '../../medicine_classifier/view/medicine_classifier_screen.dart';
 import '../../medicines_search/view/medicines_search_screen.dart';
 import '../../patient_doctors/view/patient_doctors_screen.dart';
 import '../../medical_record/view/medical_record_screen.dart';
@@ -58,6 +59,10 @@ class AppDrawerModel {
           iconPath: Res.drawerMedicineIcon,
           title: "Search for medicine",
           routeName: MedicinesSearchScreen.routeName),
+      AppDrawerElement(
+          iconPath: Res.aiIcon,
+          title: "Medicine Classifier",
+          routeName: MedicineClassifierScreen.routeName),
     ];
   }
 }

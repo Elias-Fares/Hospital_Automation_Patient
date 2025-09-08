@@ -15,7 +15,9 @@ import '../../../core/widgets/custom_error_widget.dart';
 import '../../../core/widgets/custom_loading_widget.dart';
 import '../../../core/widgets/show_snack_bar_error_message.dart';
 import '../../../core/widgets/show_snack_bar_success_message.dart';
+import '../../appointment_details/view_model/appointment_details_view_model.dart';
 import '../../appointments/view/appointments.dart';
+import '../../appointments/view_model/appointments_view_model.dart';
 import '../view_model/choose_appointment_date_view_model.dart';
 import '../../doctor_profile/view_model/doctor_profile_view_model.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -77,7 +79,21 @@ class _ChooseAppointmentDateScreenState
             showSnackBarSuccessMessage(context,
                 message: "The appointment has been booked successfully.");
 
-            context.go(AppointmentsScreen.routeName);
+            Future.delayed(
+              Duration(seconds: 1),
+              () {
+                if (context.mounted) context.go(AppointmentsScreen.routeName);
+                ref
+                    .read(appointmentsViewModelProvider.notifier)
+                    .getBothMissedAppointments();
+                ref
+                    .read(appointmentsViewModelProvider.notifier)
+                    .getBothPassedAppointments();
+                ref
+                    .read(appointmentsViewModelProvider.notifier)
+                    .getBothUpcomingAppointments();
+              },
+            );
           },
           error: (error, stackTrace) {
             showSnackBarErrorMessage(context, message: error.toString());

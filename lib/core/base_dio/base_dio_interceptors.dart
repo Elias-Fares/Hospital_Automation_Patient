@@ -36,6 +36,7 @@ class BaseDioInterceptors extends Interceptor {
     debugPrint(" ⛔️ The exception is DioException ⛔️");
     debugPrint("The error type is ${err.type.toString()}");
     debugPrint("The error message is ${err.message.toString()}");
+    debugPrint("the error data is ${err.response?.data}");
     debugPrint("the error status code is ${err.response?.statusCode}");
 
     handler.next(err);

@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../../../configuration/service_locator.dart';
 import '../../../core/base_dio/data_state.dart';
 import '../../../data/vaccines/models/vaccine_table_model.dart';
@@ -9,7 +11,9 @@ part 'vaccination_table_view_model.g.dart';
 @riverpod
 class VaccinationTableViewModel extends _$VaccinationTableViewModel {
   @override
-  VaccinationTableState build() => VaccinationTableState();
+  VaccinationTableState build() {
+    return VaccinationTableState();
+  }
 
   final _vaccinesRepository = getIt<VaccineRepository>();
 
@@ -18,6 +22,8 @@ class VaccinationTableViewModel extends _$VaccinationTableViewModel {
 
     final response =
         await _vaccinesRepository.getVaccinesTable(childId: childId);
+
+    if (!ref.mounted) return;
 
     if (response is DataSuccess) {
       state =

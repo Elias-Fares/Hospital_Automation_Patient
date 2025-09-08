@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../core/constant/constant.dart';
 import '../../../core/function/join_strings.dart';
 import '../../../core/style/card_container_decoration.dart';
 import '../../../core/widgets/cards/persone_tile.dart';
@@ -72,7 +73,7 @@ class _PatientDoctorsScreenState extends ConsumerState<PatientDoctorsScreen> {
                           doctor?.lastName,
                         ]),
                         doctorSpecialty: doctor?.specialty ?? "",
-                        doctorImageUrl: Res.personePlaceHolderImage,
+                        doctorImageUrl: "${Constant.baseUrl}/${doctor?.imgurl}",
                         onTap: () {
                           context.push(
                               RouterUtils.nestedRoute(
