@@ -40,7 +40,7 @@ final class MedicineClassifierViewModelProvider extends $NotifierProvider<
 }
 
 String _$medicineClassifierViewModelHash() =>
-    r'3a8fd34ee45072eaa0d3d5947f9fb2b8a6e88fbb';
+    r'0f35b8bdf4adc9934f8b901170266f91c222ba41';
 
 abstract class _$MedicineClassifierViewModel
     extends $Notifier<MedicineClassifierState> {

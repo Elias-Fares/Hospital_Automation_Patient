@@ -1,57 +1,54 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_view_model.dart';
+part of 'splash_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-@ProviderFor(ProfileViewModel)
-const profileViewModelProvider = ProfileViewModelProvider._();
+@ProviderFor(SplashViewModel)
+const splashViewModelProvider = SplashViewModelProvider._();
 
-final class ProfileViewModelProvider
-    extends $NotifierProvider<ProfileViewModel, ProfileState> {
-  const ProfileViewModelProvider._()
+final class SplashViewModelProvider
+    extends $NotifierProvider<SplashViewModel, SplashState> {
+  const SplashViewModelProvider._()
       : super(
           from: null,
           argument: null,
           retry: null,
-          name: r'profileViewModelProvider',
-          isAutoDispose: false,
+          name: r'splashViewModelProvider',
+          isAutoDispose: true,
           dependencies: null,
           $allTransitiveDependencies: null,
         );
 
   @override
-  String debugGetCreateSourceHash() => _$profileViewModelHash();
+  String debugGetCreateSourceHash() => _$splashViewModelHash();
 
   @$internal
   @override
-  ProfileViewModel create() => ProfileViewModel();
+  SplashViewModel create() => SplashViewModel();
 
   /// {@macro riverpod.override_with_value}
-  Override overrideWithValue(ProfileState value) {
+  Override overrideWithValue(SplashState value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $SyncValueProvider<ProfileState>(value),
+      providerOverride: $SyncValueProvider<SplashState>(value),
     );
   }
 }
 
-String _$profileViewModelHash() => r'02052b86ca8a19de0873b83bca88b136ee66f25c';
+String _$splashViewModelHash() => r'408d9b2967ae9a43ed8e37c4c1b593bdd4c2268e';
 
-abstract class _$ProfileViewModel extends $Notifier<ProfileState> {
-  ProfileState build();
+abstract class _$SplashViewModel extends $Notifier<SplashState> {
+  SplashState build();
   @$mustCallSuper
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<ProfileState, ProfileState>;
+    final ref = this.ref as $Ref<SplashState, SplashState>;
     final element = ref.element as $ClassProviderElement<
-        AnyNotifier<ProfileState, ProfileState>,
-        ProfileState,
-        Object?,
-        Object?>;
+        AnyNotifier<SplashState, SplashState>, SplashState, Object?, Object?>;
     element.handleValue(ref, created);
   }
 }

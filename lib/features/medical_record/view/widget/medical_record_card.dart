@@ -8,6 +8,8 @@ class MedicalRecordCard extends StatelessWidget {
     required this.doctorSpecialty,
     required this.appointmentsCount,
     required this.prescriptionCount,
+    this.onAppointmentTap,
+    this.onPrescriptionTap,
   });
 
   final String doctorName;
@@ -16,6 +18,10 @@ class MedicalRecordCard extends StatelessWidget {
 
   final String appointmentsCount;
   final String prescriptionCount;
+
+  final void Function()? onAppointmentTap;
+
+  final void Function()? onPrescriptionTap;
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +45,18 @@ class MedicalRecordCard extends StatelessWidget {
                 iconPath: Res.appointmenProfiletIcon,
                 keyTitle: "Appointments",
                 value: appointmentsCount,
+                onTap: onAppointmentTap,
+                needOnTap: true,
+                withArrow: false,
               ),
               IconKeyValueWidget(
-                  iconPath: Res.appointmenProfiletIcon,
-                  keyTitle: "Prescription",
-                  value: prescriptionCount),
+                iconPath: Res.appointmenProfiletIcon,
+                keyTitle: "Prescription",
+                value: prescriptionCount,
+                onTap: onPrescriptionTap,
+                needOnTap: true,
+                withArrow: false,
+              ),
             ],
           )
         ],

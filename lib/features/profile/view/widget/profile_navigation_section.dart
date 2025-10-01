@@ -30,8 +30,8 @@ class ProfileNavigationSection extends StatelessWidget {
             onTap: onMedicalRecordTap,
           ),
           IconTitleNavigationButton(
-            iconPath: Res.suspendUserIcon,
-            title: "Suspend user account",
+            iconPath: Res.logOutIcon,
+            title: "log out",
             onTap: onSuspendUserAccountTap,
             textColor: AppColors.error,
           ),

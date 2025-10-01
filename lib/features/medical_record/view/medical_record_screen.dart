@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import '../../../configuration/router/router_utils.dart';
 import '../../../core/constant/constant.dart';
 import '../../../core/enums/params_values.dart';
 import '../../../core/function/join_strings.dart';
 import '../../../core/params/medical_records_screen_params.dart';
 import '../../../core/widgets/appbars/app_bar_title_widget.dart';
 import '../../../core/style/card_container_decoration.dart';
+import '../../../core/widgets/buttons/custom_inkwell.dart';
 import '../../../core/widgets/cards/icon_key_value_widget.dart';
 import '../../../core/widgets/cards/persone_tile.dart';
 import '../../../core/widgets/appbars/sub_app_bar.dart';
 import '../../../configuration/res.dart';
 import '../../../core/widgets/custom_error_widget.dart';
 import '../../../core/widgets/custom_loading_widget.dart';
+import '../../medical_record_appointments/view/medical_record_appointments_screen.dart';
+import '../../medical_record_prescriptions/view/medical_record_prescriptions_screen.dart';
 import '../view_model/medical_record_view_model.dart';
 import '../../profile/view_model/profile_view_model.dart';
 part 'widget/medical_record_card.dart';
@@ -100,21 +105,38 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                       itemBuilder: (context, index) {
                         final record = data.elementAtOrNull(index);
                         return MedicalRecordCard(
-                            doctorName: joinStrings([
-                              record?.doctorInfo?.firstName,
-                              record?.doctorInfo?.lastName,
-                            ]),
-                            doctorImageUrl:
-                                "${Constant.baseUrl}/${record?.doctorInfo?.imgurl ?? ""}",
-                            doctorSpecialty:
-                                record?.doctorInfo?.specialty ?? "",
-                            appointmentsCount: record
-                                    ?.doctorsAppointments?.length
-                                    .toString() ??
-                                "0",
-                            prescriptionCount:
-                                record?.doctorPrescription?.length.toString() ??
-                                    "0");
+                          doctorName: joinStrings([
+                            record?.doctorInfo?.firstName,
+                            record?.doctorInfo?.lastName,
+                          ]),
+                          doctorImageUrl:
+                              "${Constant.baseUrl}/${record?.doctorInfo?.imgurl ?? ""}",
+                          doctorSpecialty: record?.doctorInfo?.specialty ?? "",
+                          appointmentsCount:
+                              record?.doctorsAppointments?.length.toString() ??
+                                  "0",
+                          prescriptionCount:
+                              record?.doctorPrescription?.length.toString() ??
+                                  "0",
+                          onAppointmentTap: () {
+                            context.push(
+                                RouterUtils.getNestedRoute(
+                                  context,
+                                  routeName:
+                                      MedicalRecordAppointmentsScreen.routeName,
+                                ),
+                                extra: record);
+                          },
+                          onPrescriptionTap: () {
+                            context.push(
+                                RouterUtils.getNestedRoute(
+                                  context,
+                                  routeName: MedicalRecordPrescriptionsScreen
+                                      .routeName,
+                                ),
+                                extra: record);
+                          },
+                        );
                       },
                     )
                   ],

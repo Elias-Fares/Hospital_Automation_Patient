@@ -21,6 +21,7 @@ import '../../../core/widgets/custom_loading_widget.dart';
 import '../../../core/widgets/general_image_asset.dart';
 import '../../../core/widgets/general_network_image.dart';
 
+import '../../auth/view/screens/login_screen.dart';
 import '../../edit_profile/view/edit_profile_screen.dart';
 import '../../medical_record/view/medical_record_screen.dart';
 import '../../patient_prescription/view/patient_prescription_screen.dart';
@@ -115,7 +116,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             comingFrom: ParamsValues.patient,
                           ));
                     },
-                    onSuspendUserAccountTap: () {},
+                    onSuspendUserAccountTap: () async {
+                      await ref
+                          .read(profileViewModelProvider.notifier)
+                          .logout();
+
+                      if (context.mounted) {
+                        context.go(LoginScreen.routeName);
+                      }
+                    },
                   )
                 ],
               ),

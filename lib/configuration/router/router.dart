@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../data/medical_records/models/medical_record_model.dart';
+import '../../features/medical_record_appointments/view/medical_record_appointments_screen.dart';
+import '../../features/medical_record_prescriptions/view/medical_record_prescriptions_screen.dart';
 import '../../features/medicine_classifier/view/medicine_classifier_screen.dart';
+import '../../features/splash/view/splash_screen.dart';
 import 'my_go_router_observer.dart';
 import '../../core/enums/params_values.dart';
 import '../../core/models/medicine_model.dart';
@@ -47,7 +51,7 @@ import '../../features/vaccines/view/vaccines_screen.dart';
 class AppRouter {
   AppRouter._();
   // static String initialRoute = getIt<> "/appointments";
-  static String initialRoute = LoginScreen.routeName;
+  static String initialRoute = SplashScreen.routeName;
 
   static final rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: "root");
 
@@ -58,6 +62,10 @@ class AppRouter {
         MyGoRouterObserver()
       ],
       routes: [
+        GoRoute(
+          path: SplashScreen.routeName,
+          builder: (context, state) => const SplashScreen(),
+        ),
         // ==============================================================//
         //Auth feature
         GoRoute(
@@ -165,12 +173,31 @@ class AppRouter {
             )
           ]),
       GoRoute(
-        path: MedicalRecordScreen.routeName,
-        builder: (context, state) {
-          final params = state.extra as MedicalRecordsScreenParams?;
-          return MedicalRecordScreen(medicalRecordsScreenParams: params);
-        },
-      ),
+          path: MedicalRecordScreen.routeName,
+          builder: (context, state) {
+            final params = state.extra as MedicalRecordsScreenParams?;
+            return MedicalRecordScreen(medicalRecordsScreenParams: params);
+          },
+          routes: [
+            GoRoute(
+              path: MedicalRecordAppointmentsScreen.routeName,
+              builder: (context, state) {
+                final record = state.extra as MedicalRecordModel;
+                return MedicalRecordAppointmentsScreen(
+                  doctorsAppointments: record,
+                );
+              },
+            ),
+            GoRoute(
+              path: MedicalRecordPrescriptionsScreen.routeName,
+              builder: (context, state) {
+                final record = state.extra as MedicalRecordModel;
+                return MedicalRecordPrescriptionsScreen(
+                  prescriptions: record,
+                );
+              },
+            ),
+          ]),
       GoRoute(
           path: PatientPrescriptionScreen.routeName,
           builder: (context, state) {
@@ -337,16 +364,53 @@ class AppRouter {
                 },
                 routes: [
                   GoRoute(
-                    path: ChildAppointmentsScreen.routeName,
-                    builder: (context, state) {
-                      final childAppointmentParams =
-                          state.extra as ChildAppointmentParams?;
-                      return ChildAppointmentsScreen(
-                        childAppointmentParams:
-                            childAppointmentParams ?? ChildAppointmentParams(),
-                      );
-                    },
-                  ),
+                      path: ChildAppointmentsScreen.routeName,
+                      builder: (context, state) {
+                        final childAppointmentParams =
+                            state.extra as ChildAppointmentParams?;
+                        return ChildAppointmentsScreen(
+                          childAppointmentParams: childAppointmentParams ??
+                              ChildAppointmentParams(),
+                        );
+                      },
+                      routes: [
+                        // GoRoute(
+
+                        // ),
+                        GoRoute(
+                            path: AppointmentDetailsScreen.routeName,
+                            builder: (context, state) {
+                              final appointmentModel =
+                                  state.extra as AppointmentModel?;
+                              return AppointmentDetailsScreen(
+                                appointmentModel: appointmentModel,
+                              );
+                            },
+                            routes: [
+                              GoRoute(
+                                  path: DoctorProfileScreen.routeName,
+                                  builder: (context, state) {
+                                    final id = state.extra as String?;
+                                    return DoctorProfileScreen(
+                                      doctorId: id,
+                                    );
+                                  },
+                                  routes: [
+                                    GoRoute(
+                                        path: BookAppointmentScreen.routeName,
+                                        builder: (context, state) =>
+                                            const BookAppointmentScreen(),
+                                        routes: [
+                                          GoRoute(
+                                            path: ChooseAppointmentDateScreen
+                                                .routeName,
+                                            builder: (context, state) =>
+                                                const ChooseAppointmentDateScreen(),
+                                          )
+                                        ])
+                                  ])
+                            ])
+                      ]),
                   GoRoute(
                     path: VaccinationTableScreen.routeName,
                     builder: (context, state) {

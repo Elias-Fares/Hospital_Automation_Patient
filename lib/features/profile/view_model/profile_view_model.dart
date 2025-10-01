@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../configuration/service_locator.dart';
 import '../../../core/base_dio/data_state.dart';
 import '../../../core/function/join_strings.dart';
+import '../../../data/auth/repository/auth_repository.dart';
 import '../../../data/profile/models/user_profile_model.dart';
 import '../../../data/profile/repository/profile_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -14,6 +15,7 @@ class ProfileViewModel extends _$ProfileViewModel {
   ProfileState build() => ProfileState();
 
   final _profileRepository = getIt<ProfileRepository>();
+  final _authRepository = getIt<AuthRepository>();
 
   Future<void> getUserProfile() async {
     state = state.copyWith(userProfileResponse: const AsyncValue.loading());
@@ -52,6 +54,13 @@ class ProfileViewModel extends _$ProfileViewModel {
   String getUserImage() {
     //TODO implement it later
     return "";
+  }
+
+    Future<void> logout() async {
+    await _authRepository.clearEmail();
+    await _authRepository.clearPassword();
+    await _authRepository.clearToken();
+  
   }
 
   

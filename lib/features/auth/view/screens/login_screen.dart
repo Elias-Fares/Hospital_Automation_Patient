@@ -31,13 +31,13 @@ class _LoginScreenV2State extends ConsumerState<LoginScreen> {
   void initState() {
     super.initState();
 
-    Future.microtask(
-      () {
-        if (mounted) {
-          ref.read(logInViewModelProvider.notifier).autoLogin(context: context);
-        }
-      },
-    );
+    // Future.microtask(
+    //   () {
+    //     if (mounted) {
+    //       ref.read(logInViewModelProvider.notifier).autoLogin(context: context);
+    //     }
+    //   },
+    // );
   }
 
   @override

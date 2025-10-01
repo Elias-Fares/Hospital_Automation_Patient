@@ -13,13 +13,14 @@ class IconKeyValueWidget extends StatelessWidget {
       this.needOnTap = false,
       this.onTap,
       this.iconData,
-      this.width});
+      this.width,  this.withArrow = true});
 
   final String? iconPath;
   final IconData? iconData;
   final String keyTitle;
   final String value;
   final bool needOnTap;
+  final bool withArrow;
   final double? width;
   final void Function()? onTap;
 
@@ -77,7 +78,7 @@ class IconKeyValueWidget extends StatelessWidget {
             ),
           ],
         ),
-        if (needOnTap) ...[
+        if (needOnTap && withArrow) ...[
           const Spacer(),
           const Icon(
             Icons.arrow_forward_ios,
