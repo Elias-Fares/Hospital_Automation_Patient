@@ -164,10 +164,4 @@ lib/
 
 ---
 
-## 📄 License
-This project is proprietary and not publicly licensed.  
-(You can modify this section later if you decide to add a license.)
-
----
-
 **Developed with ❤️ using Flutter & Riverpod**
