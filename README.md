@@ -2,6 +2,8 @@
 
 A Flutter-based mobile application designed to streamline clinic operations by helping patients efficiently manage their appointments and vaccination schedules. The app empowers users to avoid long waiting times, access accurate healthcare information, and stay informed about their own and their children’s medical records.
 
+![Screens](assets/patient_app_mockup.jpg)
+
 ---
 
 ## 📱 Features
